@@ -15,11 +15,11 @@ class CreateCategoriaLineasTable extends Migration
     {
         Schema::create('categoria_lineas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_marca');
+            // $table->unsignedInteger('id_marca');
             $table->unsignedInteger('id_linea');            
             $table->unsignedInteger('id_producto');
 
-            $table->foreign('id_marca')->references('id')->on('marcas');
+            // $table->foreign('id_marca')->references('id')->on('marcas');
             $table->foreign('id_linea')->references('id')->on('lineas');
             $table->foreign('id_producto')->references('id')->on('productos');
 

@@ -14,7 +14,7 @@ class CreateFacturasDetallesTable extends Migration
     public function up()
     {
         Schema::create('facturas_detalles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->unsignedInteger('id_factura');
             $table->unsignedInteger('id_almacen');
             $table->unsignedInteger('cantidad');
