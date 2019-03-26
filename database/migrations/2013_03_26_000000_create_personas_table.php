@@ -17,10 +17,10 @@ class CreatePersonasTable extends Migration
             $table->increments('id');
             $table->string('nombre', 100);
             $table->string('apellidos', 100);
-            $table->unsignedInteger('id_tipos_documento');
-            $table->string('num_documento', 45);
-            $table->string('direccion', 55);
-            $table->string('telefono', 45);
+            $table->unsignedInteger('id_tipos_documento')->default(1);
+            $table->string('num_documento', 45)->nullable();
+            $table->string('direccion', 55)->nullable();
+            $table->string('telefono', 45)->nullable();
             $table->string('correo', 100);
             $table->timestamps();
 

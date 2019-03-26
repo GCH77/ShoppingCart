@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImagenesTable extends Migration
+class CreateNotificacionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateImagenesTable extends Migration
      */
     public function up()
     {
-        Schema::create('imagenes', function (Blueprint $table) {
+        Schema::create('notificaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_productos');
-            $table->string('ruta', 150);
+            $table->unsignedInteger('id_producto');
+            $table->boolean('viewed');
             $table->timestamps();
 
-            $table->foreign('id_productos')->references('id')->on('productos');
+            $table->foreign('id_producto')->references('id')->on('productos');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateImagenesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('imagenes');
+        Schema::dropIfExists('notificaciones');
     }
 }

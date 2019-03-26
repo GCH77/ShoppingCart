@@ -18,7 +18,10 @@ class CreateProductosTable extends Migration
             $table->string('nombre', 80);
             $table->string('descripcion', 450);
             $table->string('cod_barras', 30);
+            $table->unsignedInteger('id_marca');
             $table->timestamps();
+
+            $table->foreign('id_marca')->references('id')->on('marcas');
         });
     }
 
