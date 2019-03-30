@@ -16,7 +16,8 @@ class CreateNotificacionesTable extends Migration
         Schema::create('notificaciones', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_producto');
-            $table->boolean('viewed');
+            $table->string('descripcion', 250);
+            $table->boolean('viewed')->default(false);
             $table->timestamps();
 
             $table->foreign('id_producto')->references('id')->on('productos');
