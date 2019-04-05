@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriaLineasTable extends Migration
+class CreateProductosLineasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCategoriaLineasTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoria_lineas', function (Blueprint $table) {
+        Schema::create('productos_lineas', function (Blueprint $table) {
             $table->increments('id');
             // $table->unsignedInteger('id_marca');
             $table->unsignedInteger('id_linea');            
@@ -34,6 +34,6 @@ class CreateCategoriaLineasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categoria_lineas');
+        Schema::dropIfExists('productos_lineas');
     }
 }
