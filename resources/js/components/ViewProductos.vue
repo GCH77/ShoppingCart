@@ -1,12 +1,12 @@
 <template>
-   <table-component :headers="cabeceras" :model="producto">
+   <table-component :headers="cabeceras" :model="producto" getUrl="/personas">
       <template #colums="props">
          <td>{{props.id}}</td>
          <td>{{props.nombre}}</td>
-         <td>{{props.precio}}</td>
+         <td>{{props.descripcion}}</td>
       </template>       
       <template #newProduct="props">
-            <form-new-product :model="props"></form-new-product>
+         <form-new-product :model="props"></form-new-product>
       </template>
    </table-component>
 </template>
@@ -15,7 +15,7 @@ export default {
    name: "view-productos",
    data(){
       return{
-         cabeceras: ['#', 'Nombre producto', 'Precio'],
+         cabeceras: ['#', 'Nombre', 'Apellidos'],
          producto: {
             id: '',
             nombre: '',

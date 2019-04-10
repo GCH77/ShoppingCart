@@ -7,7 +7,10 @@
                   Productos
                </div>
                <div class="col-md4">
-                  <button type="button" class="btn btn-primary" @click="openNewModal = true">Nuevo</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newModal">
+                     Launch demo modal
+                  </button>
+                  <!-- <button type="button" class="btn btn-primary" @click="openNewModal = true">Nuevo</button> -->
                </div>
             </div>
          </div>
@@ -29,10 +32,24 @@
             </table>
          </div>
       </div>
-      <template v-if="openNewModal">
-         <slot name="newProduct" v-bind="crudModel" @eventForm="saveData(data)"></slot>
+      <!-- <template v-if="openNewModal"> -->
+         <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                  <div class="modal-body">
+                     <slot name="newProduct" v-bind="crudModel"></slot>                     
+                  </div>
+               </div>
+            </div>
+         </div>
          <!-- <button type="button" class="btn btn-success" @click="saveData">Enviar</button> -->
-      </template>
+      <!-- </template> -->
    </div>
 </template>
 <script>
@@ -47,17 +64,24 @@ export default {
       headers:{
          type: Array,
          required: true
+      },
+      getUrl: {
+         type: String,
+         required: true
       }
    },
    created(){
       this.crudModel = this.model;
+      if (this.items.length <= 0) {
+         this.getAllRegisters();
+      }else{
+         console.log("Ya estoy lleno");
+      }
    },
    data(){
       return{
          openNewModal: false,
-         items: [
-            {id: 1, nombre: "Arroz Diana", precio: 1500}
-         ],
+         items: [],
          crudModel: null
       }
    },
@@ -66,6 +90,15 @@ export default {
          this.items.push(data);
          this.crudModel = '';
          this.openNewModal = false;
+      },
+      getAllRegisters(){
+         axios.get(this.getUrl).then((response) => {
+            console.log(response);
+            for (const item of response.data) {
+               this.items.push(item);
+            }
+            // this.items = response
+         });
       }
    }
 }

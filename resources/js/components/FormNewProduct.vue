@@ -13,7 +13,8 @@
          <input v-model="newProduct.precio" type="text" class="form-control" id="modelPrecio" placeholder="Precio">
       </div>
       <div class="form-group">
-          <button type="button" class="btn btn-success" @click="$parent.saveData(newProduct)">Enviar</button>
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+         <button type="button" class="btn btn-success" data-dismiss="modal" @click="$parent.saveData(newProduct)">Enviar</button>
       </div>
    </div>
 </template>
