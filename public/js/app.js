@@ -1782,6 +1782,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "form-new-product",
   props: {
@@ -1846,6 +1847,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "table-component",
   inheritAttrs: false,
@@ -1857,19 +1875,25 @@ __webpack_require__.r(__webpack_exports__);
     headers: {
       type: Array,
       required: true
+    },
+    getUrl: {
+      type: String,
+      required: true
     }
   },
   created: function created() {
     this.crudModel = this.model;
+
+    if (this.items.length <= 0) {
+      this.getAllRegisters();
+    } else {
+      console.log("Ya estoy lleno");
+    }
   },
   data: function data() {
     return {
       openNewModal: false,
-      items: [{
-        id: 1,
-        nombre: "Arroz Diana",
-        precio: 1500
-      }],
+      items: [],
       crudModel: null
     };
   },
@@ -1878,6 +1902,38 @@ __webpack_require__.r(__webpack_exports__);
       this.items.push(data);
       this.crudModel = '';
       this.openNewModal = false;
+    },
+    getAllRegisters: function getAllRegisters() {
+      var _this = this;
+
+      axios.get(this.getUrl).then(function (response) {
+        console.log(response);
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          for (var _iterator = response.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var item = _step.value;
+
+            _this.items.push(item);
+          } // this.items = response
+
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+      });
     }
   }
 });
@@ -1905,11 +1961,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "view-productos",
   data: function data() {
     return {
-      cabeceras: ['#', 'Nombre producto', 'Precio'],
+      cabeceras: ['#', 'Nombre', 'Descripcion', 'Color'],
       producto: {
         id: '',
         nombre: '',
@@ -37053,8 +37117,17 @@ var render = function() {
       _c(
         "button",
         {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Cancelar")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
           staticClass: "btn btn-success",
-          attrs: { type: "button" },
+          attrs: { type: "button", "data-dismiss": "modal" },
           on: {
             click: function($event) {
               return _vm.$parent.saveData(_vm.newProduct)
@@ -37167,7 +37240,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "tab-content", attrs: { id: "v-pills-tabContent" } },
-        [_c("router-view")],
+        [_c("keep-alive", [_c("router-view")], 1)],
         1
       )
     ])
@@ -37195,74 +37268,129 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _c("div", { staticClass: "row justify-content-between" }, [
-            _c("div", { staticClass: "col-md4" }, [
-              _vm._v("\n               Productos\n            ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md4" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.openNewModal = true
-                    }
-                  }
-                },
-                [_vm._v("Nuevo")]
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _vm.items
-            ? _c("table", { staticClass: "table table-hover" }, [
-                _c("thead", [
-                  _c(
-                    "tr",
-                    _vm._l(_vm.headers, function(title) {
-                      return _c("th", { key: title, attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(title))
-                      ])
-                    }),
-                    0
-                  )
-                ]),
-                _vm._v(" "),
+  return _c("div", [
+    _c("div", { staticClass: "card" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _vm.items
+          ? _c("table", { staticClass: "table table-hover" }, [
+              _c("thead", [
                 _c(
-                  "tbody",
-                  _vm._l(_vm.items, function(item) {
-                    return _c(
-                      "tr",
-                      { key: item.id },
-                      [_vm._t("colums", null, null, item)],
-                      2
-                    )
+                  "tr",
+                  _vm._l(_vm.headers, function(title) {
+                    return _c("th", { key: title, attrs: { scope: "col" } }, [
+                      _vm._v(_vm._s(title))
+                    ])
                   }),
                   0
                 )
-              ])
-            : _vm._e()
-        ])
-      ]),
-      _vm._v(" "),
-      _vm.openNewModal
-        ? [_vm._t("newProduct", null, null, _vm.crudModel)]
-        : _vm._e()
-    ],
-    2
-  )
+              ]),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.items, function(item) {
+                  return _c(
+                    "tr",
+                    { key: item.id },
+                    [_vm._t("colums", null, null, item)],
+                    2
+                  )
+                }),
+                0
+              )
+            ])
+          : _vm._e()
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "newModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "modal-body" },
+                [_vm._t("newProduct", null, null, _vm.crudModel)],
+                2
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "row justify-content-between" }, [
+        _c("div", { staticClass: "col-md4" }, [
+          _vm._v("\n               Productos\n            ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md4" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#newModal"
+              }
+            },
+            [_vm._v("\n                  Launch demo modal\n               ")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Modal title")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -37285,7 +37413,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("table-component", {
-    attrs: { headers: _vm.cabeceras, model: _vm.producto },
+    attrs: { headers: _vm.cabeceras, model: _vm.producto, getUrl: "/personas" },
     scopedSlots: _vm._u([
       {
         key: "colums",
@@ -37295,7 +37423,31 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(props.nombre))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(props.precio))])
+            _c("td", [_vm._v(_vm._s(props.descripcion))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "div",
+                { staticClass: "row" },
+                [
+                  _vm._l(props.colores_producto, function(middle, index) {
+                    return [
+                      _c("div", {
+                        key: index,
+                        staticStyle: {
+                          height: "15px",
+                          width: "15px",
+                          border: "1px solid black",
+                          "margin-left": "3px"
+                        },
+                        style: { backgroundColor: middle.color.hexa }
+                      })
+                    ]
+                  })
+                ],
+                2
+              )
+            ])
           ]
         }
       },
@@ -52640,8 +52792,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\ShoppingCart\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\ShoppingCart\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\shoppingCart\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\shoppingCart\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

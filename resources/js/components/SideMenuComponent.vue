@@ -29,7 +29,9 @@
 		</div>
 		<div class="col-10">
 			<div class="tab-content" id="v-pills-tabContent">
-				<router-view></router-view>	
+				<keep-alive>
+					<router-view></router-view>
+				</keep-alive>
 			</div>
 		</div>
 	</div>
