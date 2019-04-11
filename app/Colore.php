@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Colore extends Model
 {
-    public function producto()
+    public function coloresProducto()
     {
-        return $this->belongsToMany('App\Producto');
+        return $this->hasMany('App\ColoresProducto', 'id_colores', 'id');
     }
 }

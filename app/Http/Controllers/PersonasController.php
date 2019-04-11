@@ -10,6 +10,6 @@ class PersonasController extends Controller
 {
     public function index()
     {
-        return Producto::all();
+        return Producto::with('coloresProducto.color')->get();
     }
 }

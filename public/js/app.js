@@ -1961,11 +1961,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "view-productos",
   data: function data() {
     return {
-      cabeceras: ['#', 'Nombre', 'Apellidos'],
+      cabeceras: ['#', 'Nombre', 'Descripcion', 'Color'],
       producto: {
         id: '',
         nombre: '',
@@ -37415,7 +37423,31 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(props.nombre))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(props.descripcion))])
+            _c("td", [_vm._v(_vm._s(props.descripcion))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "div",
+                { staticClass: "row" },
+                [
+                  _vm._l(props.colores_producto, function(middle, index) {
+                    return [
+                      _c("div", {
+                        key: index,
+                        staticStyle: {
+                          height: "15px",
+                          width: "15px",
+                          border: "1px solid black",
+                          "margin-left": "3px"
+                        },
+                        style: { backgroundColor: middle.color.hexa }
+                      })
+                    ]
+                  })
+                ],
+                2
+              )
+            ])
           ]
         }
       },

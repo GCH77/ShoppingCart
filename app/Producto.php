@@ -8,16 +8,11 @@ class Producto extends Model
 {
     public function marca()
     {
-        return $this->hasOne('App\Marca', 'id_marca', 'id');
+        return $this->hasOne('App\Marca', 'id', 'id_marca');
     }
 
-    public function colores()
+    public function coloresProducto()
     {
-        return $this->belongsToMany('App\Colore')
-                    ->using('App\ColoresProducto')
-                    ->withPivot([
-                        'color',
-                        'hexa'
-                    ]);
+        return $this->hasMany('App\ColoresProducto', 'id_productos', 'id');
     }
 }

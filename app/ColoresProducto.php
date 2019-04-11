@@ -2,15 +2,17 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
 
-class ColoresProducto extends Pivot
+class ColoresProducto extends Model
 {
-       /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    
-    public $incrementing = true;
+  public function productos()
+  {
+    return $this->hasOne('App\Producto', 'id', 'id_productos');
+  }
+
+  public function color()
+  {
+    return $this->hasOne('App\Colore', 'id', 'id_colores');
+  }
 }
