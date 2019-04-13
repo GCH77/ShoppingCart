@@ -37543,7 +37543,7 @@ var render = function() {
     attrs: {
       headers: _vm.cabeceras,
       model: _vm.producto,
-      getUrl: "/personas",
+      getUrl: "/productos",
       title: "Lista de Productos",
       titleCreate: "Nuevo producto",
       titleEdit: "Editar producto"
