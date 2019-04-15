@@ -25,6 +25,18 @@
 				>
 				Proveedores
 				</router-link>
+
+				<router-link 
+					class="nav-link"
+					id="v-pills-profile-tab"
+					data-toggle="pill" 
+					role="tab" 
+					aria-controls="v-pills-profile" 
+					aria-selected="false"					
+					:to="{name: 'roles'}"
+				>
+				Roles
+				</router-link>
 			</div>
 		</div>
 		<div class="col-10">
