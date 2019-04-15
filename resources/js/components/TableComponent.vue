@@ -4,12 +4,21 @@
          <div class="card-header">
             <div class="row justify-content-between">
                <div class="col-md4">
-                  Productos
+                  <div class="ml-3"><h4>{{ title }}</h4></div>
                </div>
                <div class="col-md4">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newModal">
-                     Launch demo modal
-                  </button>
+                  <div class="mr-2">
+                     <button 
+                        type="button" 
+                        class="btn btn-primary" 
+                        data-toggle="modal" 
+                        data-target="#newModal" 
+                        data-backdrop="static" 
+                        data-keyboard="false"
+                     >
+                        <i class="fas fa-plus"></i> Nuevo
+                     </button>
+                  </div>
                   <!-- <button type="button" class="btn btn-primary" @click="openNewModal = true">Nuevo</button> -->
                </div>
             </div>
@@ -24,6 +33,17 @@
                <tbody>
                   <tr v-for="item in items" :key="item.id">
                      <slot name="colums" v-bind="item"></slot>
+                     <td>
+                        <button 
+                           type="button" 
+                           class="btn btn-outline-info btn-sm" 
+                           @click="editItem(item)"
+                           data-toggle="modal" data-target="#newModal"
+                        >
+                           <i class="fas fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                     </td>
                      <!-- <template v-for="item in items">
                         <th scope="row" v-for="val in item" :key="val.id">{{val}}</th>
                      </template> -->
@@ -37,8 +57,8 @@
             <div class="modal-dialog" role="document">
                <div class="modal-content">
                   <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <h5 class="modal-title" id="exampleModalLabel">{{ titleModal }}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clearModel">
                      <span aria-hidden="true">&times;</span>
                   </button>
                   </div>
@@ -48,8 +68,6 @@
                </div>
             </div>
          </div>
-         <!-- <button type="button" class="btn btn-success" @click="saveData">Enviar</button> -->
-      <!-- </template> -->
    </div>
 </template>
 <script>
@@ -68,6 +86,18 @@ export default {
       getUrl: {
          type: String,
          required: true
+      },
+      title: {
+         type: String,
+         required: true
+      },
+      titleCreate: {
+         type: String,
+         required: true
+      },
+      titleEdit: {
+         type: String,
+         required: true
       }
    },
    created(){
@@ -82,14 +112,28 @@ export default {
       return{
          openNewModal: false,
          items: [],
-         crudModel: null
+         crudModel: null,
+         isEdition: false,
+         titleModal: this.titleCreate
+      }
+   },
+   watch: {
+      isEdition(){
+         return this.isEdition ? this.titleModal = this.titleEdit : this.titleModal = this.titleCreate;
       }
    },
    methods: {
+      editItem(item){
+         this.isEdition = true;
+         this.crudModel = item;
+      },
       saveData(data){
          this.items.push(data);
          this.crudModel = '';
          this.openNewModal = false;
+      },
+      editData(data){
+         console.log(data);
       },
       getAllRegisters(){
          axios.get(this.getUrl).then((response) => {
@@ -99,6 +143,10 @@ export default {
             }
             // this.items = response
          });
+      },
+      clearModel(data){
+         this.isEdition = false;
+         this.crudModel = this.model;
       }
    }
 }

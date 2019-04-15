@@ -20,5 +20,5 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function(){
     //Put all of routes here
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/personas', 'PersonasController@index');
+    Route::get('/productos', 'ProductosController@index');
 });

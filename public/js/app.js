@@ -1796,6 +1796,13 @@ __webpack_require__.r(__webpack_exports__);
       newProduct: this.model
     };
   },
+  watch: {
+    model: function model(data) {
+      console.log("Cambio la info..");
+      console.log(data);
+      this.newProduct = data;
+    }
+  },
   methods: {}
 });
 
@@ -1810,6 +1817,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1879,6 +1904,18 @@ __webpack_require__.r(__webpack_exports__);
     getUrl: {
       type: String,
       required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    titleCreate: {
+      type: String,
+      required: true
+    },
+    titleEdit: {
+      type: String,
+      required: true
     }
   },
   created: function created() {
@@ -1894,14 +1931,28 @@ __webpack_require__.r(__webpack_exports__);
     return {
       openNewModal: false,
       items: [],
-      crudModel: null
+      crudModel: null,
+      isEdition: false,
+      titleModal: this.titleCreate
     };
   },
+  watch: {
+    isEdition: function isEdition() {
+      return this.isEdition ? this.titleModal = this.titleEdit : this.titleModal = this.titleCreate;
+    }
+  },
   methods: {
+    editItem: function editItem(item) {
+      this.isEdition = true;
+      this.crudModel = item;
+    },
     saveData: function saveData(data) {
       this.items.push(data);
       this.crudModel = '';
       this.openNewModal = false;
+    },
+    editData: function editData(data) {
+      console.log(data);
     },
     getAllRegisters: function getAllRegisters() {
       var _this = this;
@@ -1934,6 +1985,10 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
+    },
+    clearModel: function clearModel(data) {
+      this.isEdition = false;
+      this.crudModel = this.model;
     }
   }
 });
@@ -1969,19 +2024,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "view-productos",
   data: function data() {
     return {
-      cabeceras: ['#', 'Nombre', 'Descripcion', 'Color'],
+      cabeceras: ['#', 'Nombre', 'Descripcion', 'Colores', 'Acciones'],
       producto: {
-        id: '',
         nombre: '',
-        precio: ''
+        descripcion: ''
       }
     };
   },
-  methods: {}
+  methods: {
+    hola: function hola() {
+      console.log("Gang");
+    }
+  }
 });
 
 /***/ }),
@@ -37030,34 +37095,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "modelId" } }, [
-        _vm._v("Nombre del producto")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.newProduct.id,
-            expression: "newProduct.id"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: { type: "text", id: "modelId", placeholder: "Id" },
-        domProps: { value: _vm.newProduct.id },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.newProduct, "id", $event.target.value)
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "modelNombre" } }, [
         _vm._v("Nombre del producto")
       ]),
@@ -37087,7 +37124,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "modelPrecio" } }, [
-        _vm._v("Nombre del producto")
+        _vm._v("Descripcion del producto")
       ]),
       _vm._v(" "),
       _c("input", {
@@ -37095,48 +37132,87 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.newProduct.precio,
-            expression: "newProduct.precio"
+            value: _vm.newProduct.descripcion,
+            expression: "newProduct.descripcion"
           }
         ],
         staticClass: "form-control",
         attrs: { type: "text", id: "modelPrecio", placeholder: "Precio" },
-        domProps: { value: _vm.newProduct.precio },
+        domProps: { value: _vm.newProduct.descripcion },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.$set(_vm.newProduct, "precio", $event.target.value)
+            _vm.$set(_vm.newProduct, "descripcion", $event.target.value)
           }
         }
       })
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Cancelar")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-success",
-          attrs: { type: "button", "data-dismiss": "modal" },
-          on: {
-            click: function($event) {
-              return _vm.$parent.saveData(_vm.newProduct)
-            }
-          }
-        },
-        [_vm._v("Enviar")]
-      )
-    ])
+    !_vm.newProduct.id
+      ? _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary",
+              attrs: { type: "button", "data-dismiss": "modal" },
+              on: {
+                click: function($event) {
+                  return _vm.$parent.clearModel()
+                }
+              }
+            },
+            [_vm._v("Cancelar")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              attrs: { type: "button", "data-dismiss": "modal" },
+              on: {
+                click: function($event) {
+                  return _vm.$parent.saveData(_vm.newProduct)
+                }
+              }
+            },
+            [_vm._v("Crear")]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.newProduct.id
+      ? _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary",
+              attrs: { type: "button", "data-dismiss": "modal" },
+              on: {
+                click: function($event) {
+                  return _vm.$parent.clearModel()
+                }
+              }
+            },
+            [_vm._v("Cancelar")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              attrs: { type: "button", "data-dismiss": "modal" },
+              on: {
+                click: function($event) {
+                  return _vm.$parent.editData(_vm.newProduct)
+                }
+              }
+            },
+            [_vm._v("Editar")]
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -37213,7 +37289,10 @@ var render = function() {
                 to: { name: "productos" }
               }
             },
-            [_vm._v("\n\t\t\t\tProductos\n\t\t\t\t")]
+            [
+              _c("i", { staticClass: "fab fa-buffer" }),
+              _vm._v("\n\t\t\t\t\tProductos\n\t\t\t\t")
+            ]
           ),
           _vm._v(" "),
           _c(
@@ -37270,7 +37349,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "card" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "card-header" }, [
+        _c("div", { staticClass: "row justify-content-between" }, [
+          _c("div", { staticClass: "col-md4" }, [
+            _c("div", { staticClass: "ml-3" }, [
+              _c("h4", [_vm._v(_vm._s(_vm.title))])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _vm.items
@@ -37293,7 +37382,31 @@ var render = function() {
                   return _c(
                     "tr",
                     { key: item.id },
-                    [_vm._t("colums", null, null, item)],
+                    [
+                      _vm._t("colums", null, null, item),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-info btn-sm",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#newModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editItem(item)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-edit" })]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(1, true)
+                      ])
+                    ],
                     2
                   )
                 }),
@@ -37322,7 +37435,34 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v(_vm._s(_vm.titleModal))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    },
+                    on: { click: _vm.clearModel }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
               _vm._v(" "),
               _c(
                 "div",
@@ -37342,26 +37482,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("div", { staticClass: "row justify-content-between" }, [
-        _c("div", { staticClass: "col-md4" }, [
-          _vm._v("\n               Productos\n            ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md4" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary",
-              attrs: {
-                type: "button",
-                "data-toggle": "modal",
-                "data-target": "#newModal"
-              }
-            },
-            [_vm._v("\n                  Launch demo modal\n               ")]
-          )
-        ])
+    return _c("div", { staticClass: "col-md4" }, [
+      _c("div", { staticClass: "mr-2" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": "#newModal",
+              "data-backdrop": "static",
+              "data-keyboard": "false"
+            }
+          },
+          [
+            _c("i", { staticClass: "fas fa-plus" }),
+            _vm._v(" Nuevo\n                  ")
+          ]
+        )
       ])
     ])
   },
@@ -37369,26 +37508,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Modal title")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-danger btn-sm",
+        attrs: { type: "button" }
+      },
+      [_c("i", { staticClass: "fas fa-trash-alt" })]
+    )
   }
 ]
 render._withStripped = true
@@ -37413,7 +37540,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("table-component", {
-    attrs: { headers: _vm.cabeceras, model: _vm.producto, getUrl: "/personas" },
+    attrs: {
+      headers: _vm.cabeceras,
+      model: _vm.producto,
+      getUrl: "/productos",
+      title: "Lista de Productos",
+      titleCreate: "Nuevo producto",
+      titleEdit: "Editar producto"
+    },
     scopedSlots: _vm._u([
       {
         key: "colums",
@@ -37434,12 +37568,7 @@ var render = function() {
                     return [
                       _c("div", {
                         key: index,
-                        staticStyle: {
-                          height: "15px",
-                          width: "15px",
-                          border: "1px solid black",
-                          "margin-left": "3px"
-                        },
+                        staticClass: "picker-color",
                         style: { backgroundColor: middle.color.hexa }
                       })
                     ]

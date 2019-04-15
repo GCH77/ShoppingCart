@@ -1,20 +1,20 @@
 <template>
    <div>
       <div class="form-group">
-         <label for="modelId">Nombre del producto</label>
-         <input v-model="newProduct.id" type="text" class="form-control" id="modelId" placeholder="Id">
-      </div>
-      <div class="form-group">
          <label for="modelNombre">Nombre del producto</label>
          <input v-model="newProduct.nombre" type="text" class="form-control" id="modelNombre" placeholder="Nombre">
       </div>
       <div class="form-group">
-         <label for="modelPrecio">Nombre del producto</label>
-         <input v-model="newProduct.precio" type="text" class="form-control" id="modelPrecio" placeholder="Precio">
+         <label for="modelPrecio">Descripcion del producto</label>
+         <input v-model="newProduct.descripcion" type="text" class="form-control" id="modelPrecio" placeholder="Precio">
       </div>
-      <div class="form-group">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-         <button type="button" class="btn btn-success" data-dismiss="modal" @click="$parent.saveData(newProduct)">Enviar</button>
+      <div class="form-group" v-if="!newProduct.id">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$parent.clearModel()">Cancelar</button>
+         <button type="button" class="btn btn-success" data-dismiss="modal" @click="$parent.saveData(newProduct)">Crear</button>
+      </div>
+      <div class="form-group" v-if="newProduct.id">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$parent.clearModel()">Cancelar</button>
+         <button type="button" class="btn btn-success" data-dismiss="modal" @click="$parent.editData(newProduct)">Editar</button>
       </div>
    </div>
 </template>
@@ -30,6 +30,13 @@ export default {
    data(){
       return{
          newProduct: this.model
+      }
+   },
+   watch: {
+      model(data){
+         console.log("Cambio la info..");
+         console.log(data);
+         this.newProduct = data;
       }
    },
    methods: {

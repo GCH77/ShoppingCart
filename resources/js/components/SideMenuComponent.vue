@@ -11,7 +11,8 @@
 					aria-selected="true"
 					:to="{name: 'productos'}"
 				>
-				Productos
+					<i class="fab fa-buffer"></i>
+					Productos
 				</router-link>
 
 				<router-link 

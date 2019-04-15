@@ -1,5 +1,12 @@
 <template>
-   <table-component :headers="cabeceras" :model="producto" getUrl="/personas">
+   <table-component 
+      :headers="cabeceras" 
+      :model="producto" 
+      getUrl="/productos"
+      title="Lista de Productos"
+      titleCreate="Nuevo producto"
+      titleEdit="Editar producto"
+   >
       <template #colums="props">
          <td>{{props.id}}</td>
          <td>{{props.nombre}}</td>
@@ -7,11 +14,11 @@
          <td>
             <div class="row">
                <template v-for="(middle, index) in props.colores_producto">
-                  <div style="height: 15px; width: 15px; border: 1px solid black; margin-left: 3px;" :key="index" :style="{backgroundColor: middle.color.hexa}"></div>
+                  <div class="picker-color" :key="index" :style="{backgroundColor: middle.color.hexa}"></div>
                   <!-- <span :key="middle">{{middle.color.color}}</span> -->
                </template>
             </div> 
-         </td>
+         </td>         
       </template>       
       <template #newProduct="props">
          <form-new-product :model="props"></form-new-product>
@@ -23,16 +30,17 @@ export default {
    name: "view-productos",
    data(){
       return{
-         cabeceras: ['#', 'Nombre', 'Descripcion', 'Color'],
+         cabeceras: ['#', 'Nombre', 'Descripcion', 'Colores', 'Acciones'],
          producto: {
-            id: '',
             nombre: '',
-            precio: ''
+            descripcion: ''
          }
       }
    },
    methods: {
-
+      hola(){
+         console.log("Gang");
+      }
    }
 }
 </script>
