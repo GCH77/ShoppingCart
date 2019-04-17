@@ -23,7 +23,7 @@
             </div>
          </div>
          <div class="card-body">
-            <table class="table table-hover" v-if="items">
+            <table class="table table-hover" v-if="items.length > 0">
                <thead>
                   <tr>
                      <th scope="col" v-for="title in headers" :key="title">{{title}}</th>
@@ -55,6 +55,9 @@
                   </tr>
                </tbody>
             </table>
+            <div v-else>
+               <h4>No se encontraron registros</h4>   
+            </div>          
          </div>
       </div>
       <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
