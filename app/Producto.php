@@ -23,6 +23,6 @@ class Producto extends Model
 
     public function categoriaLineas()
     {
-        return $this->hasMany('App\CategoriaLinea', 'id_producto', 'id');
+        return $this->hasMany('App\LineasProducto', 'id_productos', 'id');
     }
 }
