@@ -44,7 +44,13 @@
                         >
                            <i class="fas fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                        <button 
+                           type="button" 
+                           class="btn btn-outline-danger btn-sm"
+                           @click="deleteItem(item)"
+                           >
+                              <i class="fas fa-trash-alt"></i>
+                        </button>
                      </td>
                   </tr>
                </tbody>
@@ -125,13 +131,32 @@ export default {
          this.isEdition = true;
          this.crudModel = item;
       },
+      deleteItem(item){
+         axios.delete(this.getUrl+'/'+item.id).then((response) => {
+            this.items.filter((value, index) => {
+               if (value.id === item.id) {
+                     this.items.splice(index, 1);
+               }
+            })
+         });
+      },
       saveData(data){
-         this.items.push(data);
+         axios.post(this.getUrl, data).then((response) => {
+            this.items.push(response.data);
+            console.log(response.data);
+         });
          this.crudModel = '';
          this.openNewModal = false;
       },
       editData(data){
-         console.log(data);
+         axios.put(this.getUrl+'/'+data.id, data).then((response) => {
+            this.items.filter((value, index) => {
+               if (value.id === response.data.id) {
+                  this.items.splice(index, 1, response.data);
+               }
+            });
+            this.clearModel();
+         });
       },
       getAllRegisters(){
          axios.get(this.getUrl).then((response) => {

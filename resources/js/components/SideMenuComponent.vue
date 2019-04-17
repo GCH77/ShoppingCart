@@ -26,6 +26,19 @@
 				>
 				Proveedores
 				</router-link>
+
+				<router-link 
+					class="nav-link"
+					id="v-pills-profile-tab"
+					data-toggle="pill" 
+					role="tab" 
+					aria-controls="v-pills-profile" 
+					aria-selected="false"					
+					:to="{name: 'roles'}"
+				>
+					<i class="fas fa-users-cog"></i>
+					Roles
+				</router-link>
 			</div>
 		</div>
 		<div class="col-10">
@@ -65,10 +78,10 @@
 							</a>
 						</li>
 						<li id="roles" @click="addActiveClass('roles')">
-							<a href="#">
+							<router-link :to="{name: 'roles'}">
 								<i class="fas fa-image"></i>
 								Roles
-							</a>
+							</router-link>
 						</li>
 						<li>
 							<a href="#">
