@@ -36,7 +36,8 @@
 					aria-selected="false"					
 					:to="{name: 'roles'}"
 				>
-				Roles
+					<i class="fas fa-users-cog"></i>
+					Roles
 				</router-link>
 			</div>
 		</div>
