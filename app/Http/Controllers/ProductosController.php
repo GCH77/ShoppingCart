@@ -9,6 +9,6 @@ class ProductosController extends Controller
 {
     public function index()
     {
-        return Producto::with('coloresProducto.color')->get();
+        return Producto::with('coloresProducto.color', 'marca', 'categoriaLineas.lineas')->get();
     }
 }

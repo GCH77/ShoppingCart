@@ -19,7 +19,6 @@
                         <i class="fas fa-plus"></i> Nuevo
                      </button>
                   </div>
-                  <!-- <button type="button" class="btn btn-primary" @click="openNewModal = true">Nuevo</button> -->
                </div>
             </div>
          </div>
@@ -38,36 +37,35 @@
                            type="button" 
                            class="btn btn-outline-info btn-sm" 
                            @click="editItem(item)"
-                           data-toggle="modal" data-target="#newModal"
+                           data-toggle="modal" 
+                           data-target="#newModal"
+                           data-backdrop="static" 
+                           data-keyboard="false"
                         >
                            <i class="fas fa-edit"></i>
                         </button>
                         <button type="button" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                      </td>
-                     <!-- <template v-for="item in items">
-                        <th scope="row" v-for="val in item" :key="val.id">{{val}}</th>
-                     </template> -->
                   </tr>
                </tbody>
             </table>
          </div>
       </div>
-      <!-- <template v-if="openNewModal"> -->
-         <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-               <div class="modal-content">
-                  <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">{{ titleModal }}</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clearModel">
-                     <span aria-hidden="true">&times;</span>
-                  </button>
-                  </div>
-                  <div class="modal-body">
-                     <slot name="newProduct" v-bind="crudModel"></slot>                     
-                  </div>
+      <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">{{ titleModal }}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clearModel">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+               </div>
+               <div class="modal-body">
+                  <slot name="newProduct" v-bind="crudModel"></slot>                     
                </div>
             </div>
          </div>
+      </div>
    </div>
 </template>
 <script>

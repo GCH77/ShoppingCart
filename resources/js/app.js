@@ -36,7 +36,9 @@ Vue.component('form-new-product', require('./components/FormNewProduct.vue').def
  */
 
 const router = new VueRouter({
-    routes
+    routes,
+    linkActiveClass: "active",
+    linkExactActiveClass: "active"
 });
 
 const app = new Vue({

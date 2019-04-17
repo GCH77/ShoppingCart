@@ -15,4 +15,14 @@ class Producto extends Model
     {
         return $this->hasMany('App\ColoresProducto', 'id_productos', 'id');
     }
+
+    public function imagenes()
+    {
+        return $this->hasMany('App\Imagenes', 'id_productos', 'id');
+    }
+
+    public function categoriaLineas()
+    {
+        return $this->hasMany('App\CategoriaLinea', 'id_producto', 'id');
+    }
 }
