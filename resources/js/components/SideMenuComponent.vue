@@ -79,7 +79,7 @@
 						</li>
 						<li id="roles" @click="addActiveClass('roles')">
 							<router-link :to="{name: 'roles'}">
-								<i class="fas fa-image"></i>
+								<i class="fas fa-users-cog"></i>
 								Roles
 							</router-link>
 						</li>
