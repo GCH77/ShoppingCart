@@ -2145,6 +2145,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "table-component",
   inheritAttrs: false,
@@ -38588,7 +38591,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
-        _vm.items
+        _vm.items.length > 0
           ? _c("table", { staticClass: "table table-hover" }, [
               _c("thead", [
                 _c(
@@ -38653,7 +38656,7 @@ var render = function() {
                 0
               )
             ])
-          : _vm._e()
+          : _c("div", [_c("h4", [_vm._v("No se encontraron registros")])])
       ])
     ]),
     _vm._v(" "),

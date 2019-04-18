@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TallasSeeder::class);
         $this->call(GenerosSeeder::class);
         $this->call(ColoresSeeder::class);
-
+        $this->call(PersonaSeeder::class);
     }
 }
