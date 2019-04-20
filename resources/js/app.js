@@ -30,6 +30,8 @@ Vue.component('view-roles', require('./components/ViewRoles.vue').default);
 Vue.component('table-component', require('./components/TableComponent.vue').default);
 Vue.component('form-new-product', require('./components/FormNewProduct.vue').default);
 Vue.component('form-new-rol', require('./components/FormNewRol.vue').default);
+// Vue.component('view-product-list', require('./components/ViewProductList.vue').default);
+// Vue.component('product-list-component', require('./components/ProductListComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
