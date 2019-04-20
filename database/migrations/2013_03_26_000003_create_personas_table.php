@@ -15,6 +15,7 @@ class CreatePersonasTable extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('id_rol');
             $table->string('nombre', 100);
             $table->string('apellidos', 100);
             $table->unsignedInteger('id_tipos_documento')->default(1);
@@ -25,6 +26,7 @@ class CreatePersonasTable extends Migration
             $table->timestamps();
 
             $table->foreign('id_tipos_documento')->references('id')->on('tipos_documentos');
+            $table->foreign('id_rol')->references('id')->on('roles');
         });
     }
 

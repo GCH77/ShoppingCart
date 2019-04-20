@@ -16,7 +16,6 @@ class PersonaSeeder extends Seeder
             function($persona){
                 DB::table('users')->insert([
                     'id_persona' => $persona->id,
-                    'id_rol_main' => 1,
                     'username' => 'Admin',
                     'email' => 'admin@admin.com',
                     'email_verified_at' => now(),

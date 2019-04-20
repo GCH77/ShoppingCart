@@ -15,12 +15,12 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_personas_rol_cliente');
+            $table->unsignedInteger('id_personas');
             $table->string('num_comprobante')->unique();
             $table->dateTime('fecha_hora');
             $table->timestamps();
 
-            $table->foreign('id_personas_rol_cliente')->references('id')->on('personas_roles');
+            $table->foreign('id_personas')->references('id')->on('personas');
         });
     }
 
