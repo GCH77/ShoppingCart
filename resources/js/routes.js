@@ -1,12 +1,14 @@
-import ViewProductos from './components/ViewProductos';
-import ViewProveedores from './components/ViewProveedores';
-import ViewRoles from './components/ViewRoles';
-// import ViewProductList from './components/ViewProductList';
+import Bienvenida from './components/Bienvenida';
+import ViewProductos from './components/Productos/ViewProductos';
+import ViewProveedores from './components/Proveedores/ViewProveedores';
+import ViewRoles from './components/Roles/ViewRoles';
+import ViewUsuarios from './components/Usuarios/ViewUsuarios';
 
 const routes = [
-   { path: '/', name: 'productos', component: ViewProductos },
+   { path: '/', name: 'home', component: Bienvenida },
+   { path: '/productos', name: 'productos', component: ViewProductos },
    { path: '/proveedores', name: 'proveedores', component: ViewProveedores },
    { path: '/roles', name: 'roles', component: ViewRoles },
-   // { path: '/', name: 'product-list', component: ViewProductList }
+   { path: '/usuarios', name: 'usuarios', component: ViewUsuarios }
 ]
 export default routes;

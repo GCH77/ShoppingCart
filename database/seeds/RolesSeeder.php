@@ -26,5 +26,10 @@ class RolesSeeder extends Seeder
             'rol' => 'Almacenista',
             'descripcion' => 'Acceso a gestion de pedidos y proveedores'
         ]);
+
+        DB::table('roles')->insert([
+            'rol' => 'Cliente',
+            'descripcion' => 'Acceso a vista, compra y facturacion de productos'
+        ]);
     }
 }

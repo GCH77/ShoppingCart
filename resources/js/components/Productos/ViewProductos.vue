@@ -38,9 +38,7 @@ export default {
       }
    },
    methods: {
-      hola(){
-         console.log("Gang");
-      }
+
    }
 }
 </script>

@@ -12,7 +12,7 @@
          <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$parent.clearModel()">Cancelar</button>
          <button type="button" class="btn btn-success" data-dismiss="modal" @click="$parent.saveData(newProduct)">Crear</button>
       </div>
-      <div class="form-group" v-if="newProduct.id">
+      <div class="form-group" v-else>
          <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$parent.clearModel()">Cancelar</button>
          <button type="button" class="btn btn-success" data-dismiss="modal" @click="$parent.editData(newProduct)">Editar</button>
       </div>
@@ -34,8 +34,6 @@ export default {
    },
    watch: {
       model(data){
-         console.log("Cambio la info..");
-         console.log(data);
          this.newProduct = data;
       }
    },
