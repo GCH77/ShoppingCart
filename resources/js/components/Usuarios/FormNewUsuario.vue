@@ -60,10 +60,7 @@
          <div class="col-md-12">
             <div class="form-group">
                <label for="modelRol">Rol</label>
-               <select v-if="newUsuario.id" v-model="newUsuario.user.id_rol_main" id="modelRol" class="form-control" disabled>
-                  <option v-for="rol in roles" :key="rol.id" :value="rol.id">{{rol.rol}}</option>
-               </select>
-               <select v-else v-model="newUsuario.rol" id="modelRol" class="form-control">
+               <select v-model="newUsuario.id_rol" id="modelRol" class="form-control">
                   <option v-for="rol in roles" :key="rol.id" :value="rol.id">{{rol.rol}}</option>
                </select>
             </div>

@@ -15,7 +15,7 @@
          <td>{{props.telefono}}</td>
          <td>{{props.user.username}}</td>
          <td>{{props.correo}}</td>
-         <td>{{props.user.id_rol_main}}</td>
+         <td>{{props.id_rol}}</td>
          <!-- <template v-for="(rol, index) in props.personas_roles">
             <td :key="index">{{rol.roles.rol}}</td>
          </template> -->
@@ -37,7 +37,7 @@ export default {
             num_documento: '',
             username: '',
             correo: '',
-            rol: '',
+            id_rol: '',
             id_tipos_documento: '',
             direccion: '',
             telefono: ''
