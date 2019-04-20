@@ -15,11 +15,11 @@ class CreateProveedorProductosTable extends Migration
     {
         Schema::create('proveedor_productos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_persona_rol');
+            $table->unsignedInteger('id_persona');
             $table->unsignedInteger('id_producto');
             $table->timestamps();
 
-            $table->foreign('id_persona_rol')->references('id')->on('personas_roles');
+            $table->foreign('id_persona')->references('id')->on('personas');
             $table->foreign('id_producto')->references('id')->on('productos');
         });
     }
