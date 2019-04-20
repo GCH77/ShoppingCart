@@ -1,6 +1,6 @@
-{{-- <div class="container-fluid">
+<div class="container-fluid">
     <product-list-component></product-list-component>
-</div> --}}
+</div>
 <div class="container">
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">

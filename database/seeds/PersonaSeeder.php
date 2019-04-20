@@ -14,11 +14,6 @@ class PersonaSeeder extends Seeder
     {
         factory(App\Persona::class, 1)->create()->each(
             function($persona){
-                DB::table('personas_roles')->insert([
-                    'id_persona' => $persona->id,
-                    'id_roles' => 1
-                ]);
-
                 DB::table('users')->insert([
                     'id_persona' => $persona->id,
                     'id_rol_main' => 1,
