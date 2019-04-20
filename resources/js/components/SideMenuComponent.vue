@@ -59,27 +59,39 @@
 					</div>
 
 					<ul class="list-unstyled components">
-						<li id="productos" @click="addActiveClass('productos')" class="active">
+						<li 
+							id="home"
+							:class="[this.$router.currentRoute.name === 'home' ? 'active' : '']"
+						>
+							<router-link :to="{name: 'home'}">
+								<i class="fas fa-home"></i>
+								Inicio
+							</router-link>							
+						</li>
+						<li 
+							id="productos"
+							:class="[this.$router.currentRoute.name === 'productos' ? 'active' : '']"
+						>
 							<router-link :to="{name: 'productos'}">
-								<i class="fas fa-briefcase"></i>
+								<i class="fas fa-layer-group"></i>
 								Productos
 							</router-link>							
 						</li>
-						<li id="proveedores" @click="addActiveClass('proveedores')">
+						<li id="proveedores" :class="[this.$router.currentRoute.name === 'proveedores' ? 'active' : '']">
 							<router-link :to="{name: 'proveedores'}">
-								<i class="fas fa-briefcase"></i>
+								<i class="fas fa-dolly"></i>
 								Proveedores
 							</router-link>						
 						</li>
-						<li id="usuarios" @click="addActiveClass('usuarios')">
-							<a href="#">
-								<i class="fas fa-briefcase"></i>
+						<li id="usuarios" :class="[this.$router.currentRoute.name === 'usuarios' ? 'active' : '']">
+							<router-link :to="{name: 'usuarios'}">
+								<i class="fas fa-users"></i>
 								Usuarios
-							</a>
+							</router-link>	
 						</li>
-						<li id="roles" @click="addActiveClass('roles')">
+						<li id="roles" :class="[this.$router.currentRoute.name === 'roles' ? 'active' : '']">
 							<router-link :to="{name: 'roles'}">
-								<i class="fas fa-image"></i>
+								<i class="fas fa-key"></i>
 								Roles
 							</router-link>
 						</li>
@@ -115,6 +127,7 @@
 </template>
 <script>
 	export default {
+		props: ['auth'],
 		data(){
 			return{
 				window: {
@@ -163,20 +176,6 @@
 			},
 			isImpar(n){
 				return n % 2 === 0 ? false: true;
-			},
-			hola(){
-				console.log("odivncm");
-			},
-			addActiveClass(idElement){				
-				let ids = $('.active').map(function() {
-					return this.id != '' ? this.id : null;
-				}).get();
-				ids.filter((value, index) => {
-					if (value != idElement) {
-						$(`#${value}`).removeClass("active");
-					}
-				});
-				$(`#${idElement}`).addClass("active");
 			}
 		}
 	}

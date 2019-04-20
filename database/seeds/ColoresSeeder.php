@@ -12,8 +12,8 @@ class ColoresSeeder extends Seeder
     public function run()
     {
         DB::table('colores')->insert([
-            'color' => 'Blanco',
-            'hexa' => '#FFFFFF'
+            'color' => 'Naranja',
+            'hexa' => '#FF8000'
         ]);
 
         DB::table('colores')->insert([

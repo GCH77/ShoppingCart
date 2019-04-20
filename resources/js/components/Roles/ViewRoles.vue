@@ -14,12 +14,7 @@
       </template>
 
       <template #newProduct="props">
-         <form-new-rol 
-         :model="props"
-         @update="UpdateRol(index)"
-         @delete="DeleteRol(index)">
-         >
-         </form-new-rol>
+         <form-new-rol :model="props"></form-new-rol>
       </template>
 
    </table-component>
@@ -39,12 +34,7 @@ export default {
       }
    },
    methods: {
-      UpdateRol(index) {
-         this.roles[index]=rol;
-        },
-      DeleteRol(index) {
-         this.roles.splice(index, 1);
-        }
+
    }
 }
 </script>

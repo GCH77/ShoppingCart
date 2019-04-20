@@ -24,12 +24,15 @@ Vue.use(VueRouter);
 
 Vue.component('layout-component', require('./components/LayoutComponent.vue').default);
 Vue.component('side-menu-component', require('./components/SideMenuComponent.vue').default);
-Vue.component('view-productos', require('./components/ViewProductos.vue').default);
-Vue.component('view-proveedores', require('./components/ViewProveedores.vue').default);
-Vue.component('view-roles', require('./components/ViewRoles.vue').default);
+Vue.component('view-bienvenida', require('./components/Bienvenida.vue').default);
+Vue.component('view-productos', require('./components/Productos/ViewProductos.vue').default);
+Vue.component('view-proveedores', require('./components/Proveedores/ViewProveedores.vue').default);
+Vue.component('view-roles', require('./components/Roles/ViewRoles.vue').default);
+Vue.component('view-usuarios', require('./components/Usuarios/ViewUsuarios.vue').default);
 Vue.component('table-component', require('./components/TableComponent.vue').default);
-Vue.component('form-new-product', require('./components/FormNewProduct.vue').default);
-Vue.component('form-new-rol', require('./components/FormNewRol.vue').default);
+Vue.component('form-new-product', require('./components/Productos/FormNewProduct.vue').default);
+Vue.component('form-new-rol', require('./components/Roles/FormNewRol.vue').default);
+Vue.component('form-new-usuario', require('./components/Usuarios/FormNewUsuario.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

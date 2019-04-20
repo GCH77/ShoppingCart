@@ -7,6 +7,7 @@ $factory->define(Persona::class, function (Faker $faker) {
     return [
         'nombre' => 'Super',
         'apellidos' => 'admin',
+        'id_tipos_documento' => 2,
         'num_documento' => '1118754293',
         'direccion' => 'Cll 01 # 20 - 10',
         'telefono' => '320458752',
