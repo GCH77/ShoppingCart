@@ -15,11 +15,6 @@ class Persona extends Model
         return $this->hasOne('App\TiposDocumento', 'id', 'id_tipos_documento');
     }
 
-    public function personasRoles()
-    {
-        return $this->hasMany('App\PersonasRole', 'id_persona', 'id');
-    }
-
     public function user()
     {
         return $this->hasOne('App\User', 'id_persona', 'id');
