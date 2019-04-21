@@ -8,6 +8,6 @@ class Genero extends Model
 {
     public function generosProducto()
     {
-        return $this->hasMany('App\GenerosProducto', 'id_generos', 'id');
+        return $this->belongsTo('App\Producto', 'id_genero');
     }
 }

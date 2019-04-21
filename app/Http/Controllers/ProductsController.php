@@ -16,7 +16,7 @@ class ProductsController extends Controller
     {
         return Producto::with('marca', 'coloresProducto.color', 
                                 'imagenes', 'lineasProducto.lineas', 
-                                'almacenes', 'generosProducto.generos',
+                                'almacenes', 'genero',
                                 'tallasProducto.tallas'
                                 
                                 )->get();

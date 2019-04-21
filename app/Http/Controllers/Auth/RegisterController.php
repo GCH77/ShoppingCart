@@ -80,6 +80,8 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->save();
 
+        $this->redirectTo = 'home#/details';
+
         return $user;
         // return User::create([
         //     'name' => $data['name'],

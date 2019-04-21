@@ -53,7 +53,7 @@
 			
     </div>
     <template v-for="item in productos">
-        <product-list-component :key="item.id" :item="item" :filter="$attrs"></product-list-component>
+        <product-list-component :key="item.id" :item="item"></product-list-component>
     </template>
 </div>
 

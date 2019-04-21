@@ -37,6 +37,8 @@ Vue.component('view-welcome', require('./components/cliente/ViewWelcome.vue').de
 Vue.component('product-list-component', require('./components/cliente/ProductListComponent.vue').default);
 Vue.component('view-details', require('./components/cliente/ViewDetails.vue').default);
 Vue.component('product-details-component', require('./components/cliente/ProductDetailsComponent.vue').default);
+Vue.component('view-checkout', require('./components/cliente/ViewCheckout.vue').default);
+Vue.component('checkout-component', require('./components/cliente/CheckoutComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

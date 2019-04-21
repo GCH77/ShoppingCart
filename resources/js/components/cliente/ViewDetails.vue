@@ -11,6 +11,7 @@ export default {
         }
     },
     created() {
+        
         // console.log("mmm");
         // console.log(this.item);
     },

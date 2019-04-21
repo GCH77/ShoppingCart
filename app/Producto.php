@@ -36,11 +36,6 @@ class Producto extends Model
         return $this->hasMany('App\Almacene', 'id_productos', 'id');
     }
 
-    public function generosProducto()
-    {
-        return $this->hasMany('App\GenerosProducto', 'id_productos', 'id');
-    }
-
     public function tallasProducto()
     {
         return $this->hasMany('App\TallasProducto', 'id_productos', 'id');

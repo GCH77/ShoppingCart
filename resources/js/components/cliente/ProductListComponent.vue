@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card mb-4 box-shadow">
-                <img class="card-img-top" :src="`../../../../${item.imagenes[0].ruta}`" alt="Card image cap">
+                <img class="card-img-top" :src="urlImg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"> <p class="lead font-weight-bold">{{item.nombre}}</p></h5>
                     <p class="card-text"> {{ item.descripcion }}</p>
@@ -22,7 +22,7 @@
 <script>
 export default {
    name: "product-list-component",
-   props:['item', 'filter'],
+   props:['item'],
    data(){
        return{
            
@@ -30,6 +30,12 @@ export default {
    },
    created() {
        
+   },
+   computed: {
+       urlImg(){
+           let words = this.item.imagenes[0].ruta.split("\\");
+           return "../../../../"+words[4]+"/"+words[7]+"/"+words[8];
+       }
    },
    methods: {
        redireccionar(data){
