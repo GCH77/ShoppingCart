@@ -35,7 +35,7 @@ export default {
             nombre: '',
             apellidos: '',
             num_documento: '',
-            username: '',
+            nameuser: '',
             correo: '',
             id_rol: '',
             id_tipos_documento: '',

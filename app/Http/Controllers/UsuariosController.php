@@ -50,7 +50,7 @@ class UsuariosController extends Controller
 
         $user = new User();
         $user->id_persona = $persona->id;
-        $user->username = $request->username;
+        $user->username = $request->nameuser;
         $user->email = $request->correo;
         $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; //password
         $user->save();

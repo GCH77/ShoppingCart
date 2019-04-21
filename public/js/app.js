@@ -2608,7 +2608,7 @@ __webpack_require__.r(__webpack_exports__);
         nombre: '',
         apellidos: '',
         num_documento: '',
-        username: '',
+        nameuser: '',
         correo: '',
         id_rol: '',
         id_tipos_documento: '',
@@ -39318,8 +39318,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.newUsuario.username,
-                      expression: "newUsuario.username"
+                      value: _vm.newUsuario.nameuser,
+                      expression: "newUsuario.nameuser"
                     }
                   ],
                   staticClass: "form-control",
@@ -39330,13 +39330,13 @@ var render = function() {
                     "aria-describedby": "inputGroupPrepend",
                     required: ""
                   },
-                  domProps: { value: _vm.newUsuario.username },
+                  domProps: { value: _vm.newUsuario.nameuser },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.newUsuario, "username", $event.target.value)
+                      _vm.$set(_vm.newUsuario, "nameuser", $event.target.value)
                     }
                   }
                 })

@@ -21,7 +21,7 @@
                      <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-user"></i></span>
                   </div>
                   <input v-if="newUsuario.id" v-model="newUsuario.user.username" type="text" class="form-control" id="modelUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
-                  <input v-else v-model="newUsuario.username" type="text" class="form-control" id="modelUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                  <input v-else v-model="newUsuario.nameuser" type="text" class="form-control" id="modelUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
                </div>
             </div>
          </div>
