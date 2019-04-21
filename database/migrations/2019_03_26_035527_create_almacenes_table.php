@@ -15,13 +15,13 @@ class CreateAlmacenesTable extends Migration
     {
         Schema::create('almacenes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_producto');
+            $table->unsignedInteger('id_productos');
             $table->integer('cantidad');
             $table->float('precio_compra', 10, 3);
             $table->float('precio_venta', 10, 3);
             $table->timestamps();
 
-            $table->foreign('id_producto')->references('id')->on('productos');
+            $table->foreign('id_productos')->references('id')->on('productos');
         });
     }
 
