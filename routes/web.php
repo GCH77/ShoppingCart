@@ -16,20 +16,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/detalles', function () {
-    return view('productsdescription');
- });
- Route::get('/confirmar-pago', function () {
-    return view('checkout');
- });
- Route::resource('productos', 'ProductsController');
-
+Route::resource('list', 'ProductsController');
 
 Route::group(['middleware' => ['auth']], function(){
     //Put all of routes here
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/productos', 'ProductosController@index');
     Route::get('/tiposDocumentos', 'TiposDocumentoController@index');
     Route::resource('roles', 'RolesController');
     Route::resource('usuarios', 'UsuariosController');

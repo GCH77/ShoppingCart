@@ -1,47 +1,43 @@
-@extends('layouts.app')
-
-@section('content')
+<template>
 
 <div class="main">
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-6 mb-4" id="imagenproducto">
-                <img src="{{ asset('storage/nb.png') }}" class="img-fluid" alt="">  
+                <img :src="`../../../../${item.imagenes[0].ruta}`" class="img-fluid" alt="">   
             </div>
             
             <div class="col-md-6 mb-4">
-                <div class="p-4">
+                <a href class="ml-2">
+                    <template v-for="(middle, index) in item.lineas_producto">
+                    <span class="badge badge-primary mr-1" :key="index">{{middle.lineas.linea}}</span>
+                    </template>
+                </a>
+                <div class="p-2">    
+                    <p class="lead font-weight-bold">{{item.nombre}}</p>
+                    <p>{{item.descripcion}}</p>
                     
-                    <p class="lead font-weight-bold">Nombre del Producto</p>
-                    
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa
-                        sint voluptatibus!
-                        Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.
-                    </p>
                     <p class="lead">
-                        <span class="mr-1"> <del>$200</del> </span>
-                        <span>$100</span>
+                        <span class="mr-1">{{item.almacenes[0].precio_venta}}</span>
                     </p>
                     <div class="d-flex justify-content-start align-items-baseline">
                         <label for="colores" class="mr-1">Colores:</label>
-                        <div class="picker-color ml-1" name="colores" style="backgroundColor: #c5170f"></div>
-                        <div class="picker-color ml-1" name="colores" style="backgroundColor: #9b9b9b"></div>
-                        <div class="picker-color ml-1" name="colores" style="backgroundColor: #1d334a"></div>
+                        <template v-for="(middle, index) in item.colores_producto">
+                            <div class="picker-color  ml-1" name="colores" :key="index" :style="{backgroundColor: middle.color.hexa}"></div>
+                        </template>
                     </div>
                     <form class="d-flex justify-content-start align-items-baseline">
                         <label for="cantidad">Cantidad:</label>
-                        <button type="button" class="btn btn-outline-info ml-2"><i class="fas fa-minus" {{-- @click="addQuantity" --}}></i></button>
-                        <strong style="width: 35px; text-align:center">{{-- {{ quantity }} --}}0</strong>
-                        <button type="button" class="btn btn-outline-info mr-2"><i class="fas fa-plus" {{-- @click="subQuantity" --}}></i></button>
-                        {{-- <input name="cantidad" type="number" value="1" aria-label="Search" class="form-control ml-1 mr-2" style="width: 80px"> --}}
+                        <button type="button" class="btn btn-outline-info ml-2" @click="subQuantity"><i class="fas fa-minus"></i></button>
+                        <strong style="width: 35px; text-align:center">{{ quantity }}</strong>
+                        <button type="button" class="btn btn-outline-info mr-2" @click="addQuantity"><i class="fas fa-plus"></i></button>
                         <label for="tallas">Talla:</label>
                         <select name="tallas" id="tallas" class="form-control ml-1 mr-2" style="width: 80px">
-                            <option value="36">36</option>
-                            <option value="37">37</option>
-                            <option value="38">38</option>
-                            <option value="39">39</option>
+                            <template v-for="(middle, index) in item.tallas_producto">
+                            <option :key="index" :value="middle.id">{{middle.tallas.talla}}</option>
+                            </template>
                         </select>
-                        <button class="btn btn-primary btn-md my-0 p ml-1" type="submit">Añadir al carrito
+                        <button class="btn btn-primary btn-md my-0 p ml-1" type="submit">Comprar
                             <i class="fas fa-shopping-cart ml-1"></i>
                         </button>
                     </form>
@@ -49,7 +45,7 @@
                 </div>                  
             </div>             
         </div>
-        {{-- lightbox? --}}
+        lightbox?
         <div class="row mt-2 mb-2">
             <div class="col-2 mb-2">
                 <img class="img-thumbnail img-fluid" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/04LDEYRW59.jpg" alt="">
@@ -73,26 +69,33 @@
         <hr>
     </div>
 </div>
-@include('footer')
-@endsection
-{{-- <script>
+
+</template>
+<script>
     export default {
-        data: {
-            quantity: 0
+        name: "product-details-component",
+        props:['item'],
+        data(){
+            return{
+                quantity: 0
+            }
+        },
+        created() {
+
         },
         methods: {
-            addQuantity: function() {
+            addQuantity() {
                 this.quantity++;
             },
-            subQuantity: function() {
-                if (quantity > 0) {
+            subQuantity() {
+                if (this.quantity > 0) {
                     this.quantity--;
                 }
             }
         }
     }
-</script> --}}
-<style>
+</script> 
+<style scoped>
     .row>.col-2 img {
         padding: 0;
         max-width: auto;

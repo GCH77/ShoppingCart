@@ -13,6 +13,6 @@ class LineasProducto extends Model
 
     public function lineas()
     {
-        return $this->hasOne('App\Linea', 'id', 'id_linea');
+        return $this->hasOne('App\Linea', 'id', 'id_lineas');
     }
 }

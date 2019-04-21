@@ -2,8 +2,8 @@
 
 @section('content')
 
-{{-- item cards --}}
-@include('productos')
+{{-- <view-welcome></view-welcome> --}}
+<router-view name="cliente"></router-view>
 
 @include('footer')
 

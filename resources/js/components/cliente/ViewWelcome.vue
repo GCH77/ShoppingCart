@@ -11,7 +11,7 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="carousel-item">
-						<img class="first-slide" src="{{ asset('storage/carousel/ipsa.jpg') }}" alt="First slide">
+						<img class="first-slide" src="../../../../storage/app/public/carousel/chicago.jpg" alt="First slide">
 						<div class="container">
 							<div class="carousel-caption text-left">
 								<h1>Example headline.</h1>
@@ -21,7 +21,7 @@
 						</div>
 					</div>
 					<div class="carousel-item active">
-						<img class="second-slide" src="{{ asset('storage/carousel/underpred.jpg') }}" alt="Second slide">
+						<img class="second-slide" src="../../../../storage/app/public/carousel/la.jpg" alt="Second slide">
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>Another example headline.</h1>
@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img class="third-slide" src="{{ asset('storage/carousel/air-jordan.jpg') }}" alt="Third slide">
+						<img class="third-slide" src="../../../../storage/app/public/carousel/ny.jpg" alt="Third slide">
 						<div class="container">
 							<div class="carousel-caption text-right">
 								<h1>One more for good measure.</h1>
@@ -52,21 +52,30 @@
 			</div>
 			
     </div>
+    <template v-for="item in productos">
+        <product-list-component :key="item.id" :item="item" :filter="$attrs"></product-list-component>
+    </template>
 </div>
-
 
 </template>
 <script>
 export default {
+	name: 'view-welcome',
+	props: ['auth'],
     data() {
         return{
-            productos: []
+            productos: ''
         }
+    },
+    created() {
+		console.log(this.$attrs);
+        this.getAllProductos();
     },
     methods: {
         getAllProductos() {
-            axios.get(productos).then((response) => {
-            console.log(response);
+            axios.get('list').then((response) => {
+            this.productos = response.data;
+            console.log(response.data);
             // for (const productos of response.data) {
             //    this.items.push(productos);
             // }

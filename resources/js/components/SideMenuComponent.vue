@@ -127,6 +127,7 @@
 </template>
 <script>
 	export default {
+		name: 'side-menu-component',
 		props: ['auth'],
 		data(){
 			return{

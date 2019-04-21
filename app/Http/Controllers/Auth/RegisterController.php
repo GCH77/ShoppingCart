@@ -68,15 +68,14 @@ class RegisterController extends Controller
         $persona = new Persona;
         $persona->nombre = $data['name'];
         $persona->apellidos = $data['apellidos'];
-        $persona->id_tipos_documento = 1;
         $persona->correo = $data['email'];
+        $persona->id_rol = 4;
         $persona->save();
 
         // dd($persona->id);
         $user = new User;
         $user->username = $data['name']." ".$persona->apellidos = $data['apellidos'];
         $user->id_persona = $persona->id;
-        $user->id_rol_main = 4;
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
         $user->save();

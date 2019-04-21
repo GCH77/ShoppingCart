@@ -18,11 +18,26 @@ class Producto extends Model
 
     public function imagenes()
     {
-        return $this->hasMany('App\Imagenes', 'id_productos', 'id');
+        return $this->hasMany('App\Imagene', 'id_productos', 'id');
     }
 
-    public function categoriaLineas()
+    public function lineasProducto()
     {
         return $this->hasMany('App\LineasProducto', 'id_productos', 'id');
+    }
+
+    public function almacenes()
+    {
+        return $this->hasMany('App\Almacene', 'id_productos', 'id');
+    }
+
+    public function generosProducto()
+    {
+        return $this->hasMany('App\GenerosProducto', 'id_productos', 'id');
+    }
+
+    public function tallasProducto()
+    {
+        return $this->hasMany('App\TallasProducto', 'id_productos', 'id');
     }
 }

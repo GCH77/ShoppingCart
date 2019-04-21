@@ -8,6 +8,6 @@ class Almacene extends Model
 {
     public function productos()
     {
-        return $this->hasMany('App\Producto', 'id_producto', 'id');
+        return $this->belongsTo('App\Producto', 'id_productos');
     }
 }
