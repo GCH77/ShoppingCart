@@ -21,7 +21,7 @@
                      <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-user"></i></span>
                   </div>
                   <input v-if="newUsuario.id" v-model="newUsuario.user.username" type="text" class="form-control" id="modelUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
-                  <input v-else v-model="newUsuario.username" type="text" class="form-control" id="modelUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                  <input v-else v-model="newUsuario.nameuser" type="text" class="form-control" id="modelUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
                </div>
             </div>
          </div>
@@ -60,10 +60,7 @@
          <div class="col-md-12">
             <div class="form-group">
                <label for="modelRol">Rol</label>
-               <select v-if="newUsuario.id" v-model="newUsuario.user.id_rol_main" id="modelRol" class="form-control" disabled>
-                  <option v-for="rol in roles" :key="rol.id" :value="rol.id">{{rol.rol}}</option>
-               </select>
-               <select v-else v-model="newUsuario.rol" id="modelRol" class="form-control">
+               <select v-model="newUsuario.id_rol" id="modelRol" class="form-control">
                   <option v-for="rol in roles" :key="rol.id" :value="rol.id">{{rol.rol}}</option>
                </select>
             </div>

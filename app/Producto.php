@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
+    public function genero()
+    {
+        return $this->hasOne('App\Genero', 'id', 'id_genero');
+    }
+
     public function marca()
     {
         return $this->hasOne('App\Marca', 'id', 'id_marca');

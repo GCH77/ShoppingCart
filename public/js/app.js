@@ -2530,9 +2530,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "form-new-usuario",
   props: {
@@ -2622,9 +2619,9 @@ __webpack_require__.r(__webpack_exports__);
         nombre: '',
         apellidos: '',
         num_documento: '',
-        username: '',
+        nameuser: '',
         correo: '',
-        rol: '',
+        id_rol: '',
         id_tipos_documento: '',
         direccion: '',
         telefono: ''
@@ -39722,8 +39719,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.newUsuario.username,
-                      expression: "newUsuario.username"
+                      value: _vm.newUsuario.nameuser,
+                      expression: "newUsuario.nameuser"
                     }
                   ],
                   staticClass: "form-control",
@@ -39734,13 +39731,13 @@ var render = function() {
                     "aria-describedby": "inputGroupPrepend",
                     required: ""
                   },
-                  domProps: { value: _vm.newUsuario.username },
+                  domProps: { value: _vm.newUsuario.nameuser },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.newUsuario, "username", $event.target.value)
+                      _vm.$set(_vm.newUsuario, "nameuser", $event.target.value)
                     }
                   }
                 })
@@ -39937,91 +39934,46 @@ var render = function() {
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "modelRol" } }, [_vm._v("Rol")]),
           _vm._v(" "),
-          _vm.newUsuario.id
-            ? _c(
-                "select",
+          _c(
+            "select",
+            {
+              directives: [
                 {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newUsuario.user.id_rol_main,
-                      expression: "newUsuario.user.id_rol_main"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "modelRol", disabled: "" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.newUsuario.user,
-                        "id_rol_main",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                _vm._l(_vm.roles, function(rol) {
-                  return _c(
-                    "option",
-                    { key: rol.id, domProps: { value: rol.id } },
-                    [_vm._v(_vm._s(rol.rol))]
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newUsuario.id_rol,
+                  expression: "newUsuario.id_rol"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "modelRol" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.newUsuario,
+                    "id_rol",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                   )
-                }),
-                0
+                }
+              }
+            },
+            _vm._l(_vm.roles, function(rol) {
+              return _c(
+                "option",
+                { key: rol.id, domProps: { value: rol.id } },
+                [_vm._v(_vm._s(rol.rol))]
               )
-            : _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newUsuario.rol,
-                      expression: "newUsuario.rol"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "modelRol" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.newUsuario,
-                        "rol",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                _vm._l(_vm.roles, function(rol) {
-                  return _c(
-                    "option",
-                    { key: rol.id, domProps: { value: rol.id } },
-                    [_vm._v(_vm._s(rol.rol))]
-                  )
-                }),
-                0
-              )
+            }),
+            0
+          )
         ])
       ])
     ]),
@@ -40158,7 +40110,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(props.correo))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(props.user.id_rol_main))])
+            _c("td", [_vm._v(_vm._s(props.id_rol))])
           ]
         }
       },
