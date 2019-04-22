@@ -37,9 +37,11 @@
                             <option :key="index" :value="middle.id">{{middle.tallas.talla}}</option>
                             </template>
                         </select>
-                        <button class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item.id)">Comprar
+                        <button v-if="this.attrs.id" class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item.id)">Comprar
                             <i class="fas fa-shopping-cart ml-1"></i>
                         </button>
+                        <a v-else class="btn btn-primary" href="http://localhost:8000/register#/" role="button">Comprar</a>
+                        <!-- <a href="" class="button">Go to Google</a> -->
                     </form>
                     
                 </div>                  
@@ -74,7 +76,7 @@
 <script>
     export default {
         name: "product-details-component",
-        props:['item'],
+        props:['item', 'attrs'],
         data(){
             return{
                 quantity: 0

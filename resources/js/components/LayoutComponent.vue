@@ -1,7 +1,9 @@
 <template>
    <div class="row justify-content-center">
         <div class="col-md-12">
-            <router-view v-if="viewRender" name="cliente" v-bind="auth"></router-view>
+            <keep-alive v-if="viewRender">
+                <router-view name="cliente" v-bind="auth"></router-view>
+            </keep-alive>
             <side-menu-component v-else :auth="auth"></side-menu-component>
             <!-- <component :is="viewRender" v-bind="auth"></component> -->
         </div>
