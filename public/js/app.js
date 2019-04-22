@@ -2982,7 +2982,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {},
   computed: {
     urlImg: function urlImg() {
-      var words = this.item.imagenes[0].ruta.split("\\");
+      var words = this.item.imagenes[1].ruta.split("\\");
       return "../../../../" + words[4] + "/" + words[7] + "/" + words[8];
     }
   },
@@ -3047,7 +3047,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {},
   computed: {
     urlImg: function urlImg() {
-      var words = this.item.imagenes[0].ruta.split("\\");
+      var words = this.item.imagenes[1].ruta.split("\\");
       return "../../../../" + words[4] + "/" + words[7] + "/" + words[8];
     }
   },
@@ -3129,6 +3129,35 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7712,7 +7741,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Make the image fully responsive */\n.carousel-inner img[data-v-2e0b2a4d] {\n\twidth: 100%;\n\theight: 100%;\n}\n.carousel[data-v-2e0b2a4d] {\n\tmargin-bottom: 4rem;\n}\n.carousel-item .carousel-inner[data-v-2e0b2a4d] {\n\theight: 50rem;\n}\n.carousel img[data-v-2e0b2a4d] {\n\tmax-height: 400px;\n\tposition: relative;\n\tmargin: 0 auto;\n\ttop: 0;\n\tleft: 0;\n\tmin-width: 100%;\n\theight: 50rem;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Make the image fully responsive */\n.carousel[data-v-2e0b2a4d] {\n\tmargin-bottom: 3rem;\n\tbackground-color: rgba(148, 155, 155, 0.664);\n}\n.carousel-inner > .carousel-item > img[data-v-2e0b2a4d] {\npadding-left: 5rem;\nheight: 100%;\nwidth: initial;\nmax-height: 400px;\n/* min-width: 100%; */\nheight: 70rem;\n}\n.carousel-item[data-v-2e0b2a4d]{\n\tbackground-size: contain;\n\t/* text-align:center; */\n}\n/* .carousel-inner img {\n\twidth: 100%; \n\theight: auto;\n}\n\n.carousel-item .carousel-inner {\n\theight: 70rem;\n\tbackground-size: cover;\n}\n.carousel img {\n\tmax-height: 400px;\n\tposition: relative;\n\tmargin: 0 auto;\n\ttop: 0;\n\tleft: 0;\n\tmin-width: 100%;\n\theight: 70rem;\n} */\n", ""]);
 
 // exports
 
@@ -40788,7 +40817,14 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "strong",
-                  { staticStyle: { width: "35px", "text-align": "center" } },
+                  {
+                    staticClass: "form-control",
+                    staticStyle: {
+                      width: "35px",
+                      "text-align": "center",
+                      border: "1px solid transparent"
+                    }
+                  },
                   [_vm._v(_vm._s(_vm.quantity))]
                 ),
                 _vm._v(" "),
@@ -41101,6 +41137,7 @@ var staticRenderFns = [
         [
           _c("ol", { staticClass: "carousel-indicators" }, [
             _c("li", {
+              staticClass: "active",
               attrs: {
                 "data-target": "#carouselPrincipal",
                 "data-slide-to": "0"
@@ -41108,7 +41145,6 @@ var staticRenderFns = [
             }),
             _vm._v(" "),
             _c("li", {
-              staticClass: "active",
               attrs: {
                 "data-target": "#carouselPrincipal",
                 "data-slide-to": "1"
@@ -41120,27 +41156,43 @@ var staticRenderFns = [
                 "data-target": "#carouselPrincipal",
                 "data-slide-to": "2"
               }
+            }),
+            _vm._v(" "),
+            _c("li", {
+              attrs: {
+                "data-target": "#carouselPrincipal",
+                "data-slide-to": "3"
+              }
+            }),
+            _vm._v(" "),
+            _c("li", {
+              attrs: {
+                "data-target": "#carouselPrincipal",
+                "data-slide-to": "4"
+              }
             })
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "carousel-inner" }, [
-            _c("div", { staticClass: "carousel-item" }, [
+            _c("div", { staticClass: "carousel-item active" }, [
               _c("img", {
                 staticClass: "first-slide",
                 attrs: {
-                  src: __webpack_require__(/*! ../../../../storage/app/public/carousel/chicago.jpg */ "./storage/app/public/carousel/chicago.jpg"),
+                  src: __webpack_require__(/*! ../../../../storage/app/public/carousel/yeezy.png */ "./storage/app/public/carousel/yeezy.png"),
                   alt: "First slide"
                 }
               }),
               _vm._v(" "),
               _c("div", { staticClass: "container" }, [
-                _c("div", { staticClass: "carousel-caption text-left" }, [
-                  _c("h1", [_vm._v("Example headline.")]),
+                _c("div", { staticClass: "carousel-caption text-right" }, [
+                  _c("h1", { staticClass: "text-primary" }, [
+                    _vm._v("YEEZY COLLECTION")
+                  ]),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v(
-                      "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
-                    )
+                    _vm._v("Adidas Yeezy 350 v2"),
+                    _c("br"),
+                    _vm._v('\r\n\t\t\t\t\t\t\t\t\t"Hyperspace" ')
                   ]),
                   _vm._v(" "),
                   _c("p", [
@@ -41150,29 +41202,37 @@ var staticRenderFns = [
                         staticClass: "btn btn-lg btn-primary",
                         attrs: { href: "#", role: "button" }
                       },
-                      [_vm._v("Sign up today")]
+                      [_vm._v("Conoce más")]
                     )
                   ])
                 ])
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "carousel-item active" }, [
+            _c("div", { staticClass: "carousel-item" }, [
               _c("img", {
                 staticClass: "second-slide",
                 attrs: {
-                  src: __webpack_require__(/*! ../../../../storage/app/public/carousel/la.jpg */ "./storage/app/public/carousel/la.jpg"),
+                  src: __webpack_require__(/*! ../../../../storage/app/public/carousel/73.png */ "./storage/app/public/carousel/73.png"),
                   alt: "Second slide"
                 }
               }),
               _vm._v(" "),
               _c("div", { staticClass: "container" }, [
-                _c("div", { staticClass: "carousel-caption" }, [
-                  _c("h1", [_vm._v("Another example headline.")]),
+                _c("div", { staticClass: "carousel-caption text-right" }, [
+                  _c("h1", { staticClass: "text-primary" }, [
+                    _vm._v("Nite Jogger")
+                  ]),
                   _vm._v(" "),
                   _c("p", [
+                    _vm._v("La comodidad inigualable de la tecnología BOOST. "),
+                    _c("br"),
                     _vm._v(
-                      "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+                      "\r\n\t\t\t\t\t\t\t\t\tDetalles reflectantes que te hacen más visible de noche. "
+                    ),
+                    _c("br"),
+                    _vm._v(
+                      "\r\n\t\t\t\t\t\t\t\t\tLos Nite Jogger están de vuelta en nuevos colores."
                     )
                   ]),
                   _vm._v(" "),
@@ -41183,7 +41243,7 @@ var staticRenderFns = [
                         staticClass: "btn btn-lg btn-primary",
                         attrs: { href: "#", role: "button" }
                       },
-                      [_vm._v("Learn more")]
+                      [_vm._v("Conoce más")]
                     )
                   ])
                 ])
@@ -41194,19 +41254,26 @@ var staticRenderFns = [
               _c("img", {
                 staticClass: "third-slide",
                 attrs: {
-                  src: __webpack_require__(/*! ../../../../storage/app/public/carousel/ny.jpg */ "./storage/app/public/carousel/ny.jpg"),
+                  src: __webpack_require__(/*! ../../../../storage/app/public/carousel/nike.png */ "./storage/app/public/carousel/nike.png"),
                   alt: "Third slide"
                 }
               }),
               _vm._v(" "),
               _c("div", { staticClass: "container" }, [
                 _c("div", { staticClass: "carousel-caption text-right" }, [
-                  _c("h1", [_vm._v("One more for good measure.")]),
+                  _c("h1", { staticClass: "text-primary" }, [
+                    _vm._v("AIR MAX SELECTS")
+                  ]),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v(
-                      "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
-                    )
+                    _vm._v("Nike Air Max 90. "),
+                    _c("br"),
+                    _vm._v('\r\n\t\t\t\t\t\t\t\t\t"Mars Landing" '),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("b", { staticClass: "text-warning" }, [
+                      _vm._v("30% OFF")
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("p", [
@@ -41216,7 +41283,75 @@ var staticRenderFns = [
                         staticClass: "btn btn-lg btn-primary",
                         attrs: { href: "#", role: "button" }
                       },
-                      [_vm._v("Browse gallery")]
+                      [_vm._v("Conoce más")]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "carousel-item" }, [
+              _c("img", {
+                staticClass: "fourth-slide",
+                attrs: {
+                  src: __webpack_require__(/*! ../../../../storage/app/public/carousel/leather.png */ "./storage/app/public/carousel/leather.png"),
+                  alt: "Fourth slide"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "container" }, [
+                _c("div", { staticClass: "carousel-caption text-right" }, [
+                  _c("h1", { staticClass: "text-primary" }, [
+                    _vm._v("SOLE FURY")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v("Con tecnología de Split-Cushioning. "),
+                    _c("br"),
+                    _vm._v("\r\n\t\t\t\t\t\t\t\t\tCushioning with a kick. ")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-lg btn-primary",
+                        attrs: { href: "#", role: "button" }
+                      },
+                      [_vm._v("Conoce más")]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "carousel-item" }, [
+              _c("img", {
+                staticClass: "fifth-slide",
+                attrs: {
+                  src: __webpack_require__(/*! ../../../../storage/app/public/carousel/puma.png */ "./storage/app/public/carousel/puma.png"),
+                  alt: "Fifth slide"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "container" }, [
+                _c("div", { staticClass: "carousel-caption text-right" }, [
+                  _c("h1", { staticClass: "text-primary" }, [_vm._v("HYBRID")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v("The power of Hybrid Runner Dessert. "),
+                    _c("br"),
+                    _vm._v("\r\n\t\t\t\t\t\t\t\tComodidad soporte y energía.")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-lg btn-primary",
+                        attrs: { href: "#", role: "button" }
+                      },
+                      [_vm._v("Conoce más")]
                     )
                   ])
                 ])
@@ -57442,36 +57577,58 @@ var routes = [{
 
 /***/ }),
 
-/***/ "./storage/app/public/carousel/chicago.jpg":
+/***/ "./storage/app/public/carousel/73.png":
+/*!********************************************!*\
+  !*** ./storage/app/public/carousel/73.png ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/73.png?92c0f6b4624d1ffecbdeee999c68bb90";
+
+/***/ }),
+
+/***/ "./storage/app/public/carousel/leather.png":
 /*!*************************************************!*\
-  !*** ./storage/app/public/carousel/chicago.jpg ***!
+  !*** ./storage/app/public/carousel/leather.png ***!
   \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/chicago.jpg?3b0ea00d8caca79573789a877dcf9255";
+module.exports = "/images/leather.png?10b597a6ad0bec4d2564f28da2a384a3";
 
 /***/ }),
 
-/***/ "./storage/app/public/carousel/la.jpg":
-/*!********************************************!*\
-  !*** ./storage/app/public/carousel/la.jpg ***!
-  \********************************************/
+/***/ "./storage/app/public/carousel/nike.png":
+/*!**********************************************!*\
+  !*** ./storage/app/public/carousel/nike.png ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/la.jpg?f2686b2afdd63e515502de1b879abe0c";
+module.exports = "/images/nike.png?dcafb33bf0ab687838b8853f78454521";
 
 /***/ }),
 
-/***/ "./storage/app/public/carousel/ny.jpg":
-/*!********************************************!*\
-  !*** ./storage/app/public/carousel/ny.jpg ***!
-  \********************************************/
+/***/ "./storage/app/public/carousel/puma.png":
+/*!**********************************************!*\
+  !*** ./storage/app/public/carousel/puma.png ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/ny.jpg?0b75fe318b19b6058540002261a4687a";
+module.exports = "/images/puma.png?44c60ab32a20e3741941d8565c5fa1b4";
+
+/***/ }),
+
+/***/ "./storage/app/public/carousel/yeezy.png":
+/*!***********************************************!*\
+  !*** ./storage/app/public/carousel/yeezy.png ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/yeezy.png?47f42bcaeb1af9ddf6525747846ec8b2";
 
 /***/ }),
 

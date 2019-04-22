@@ -5,38 +5,67 @@
     <div class="container mt-3">
 			<div id="carouselPrincipal" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
-					<li data-target="#carouselPrincipal" data-slide-to="0" class=""></li>
-					<li data-target="#carouselPrincipal" data-slide-to="1" class="active"></li>
+					<li data-target="#carouselPrincipal" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselPrincipal" data-slide-to="1" class=""></li>
 					<li data-target="#carouselPrincipal" data-slide-to="2" class=""></li>
+					<li data-target="#carouselPrincipal" data-slide-to="3" class=""></li>
+					<li data-target="#carouselPrincipal" data-slide-to="4" class=""></li>
 				</ol>
 				<div class="carousel-inner">
-					<div class="carousel-item">
-						<img class="first-slide" src="../../../../storage/app/public/carousel/chicago.jpg" alt="First slide">
-						<div class="container">
-							<div class="carousel-caption text-left">
-								<h1>Example headline.</h1>
-								<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-								<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-							</div>
-						</div>
-					</div>
 					<div class="carousel-item active">
-						<img class="second-slide" src="../../../../storage/app/public/carousel/la.jpg" alt="Second slide">
-						<div class="container">
-							<div class="carousel-caption">
-								<h1>Another example headline.</h1>
-								<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-								<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img class="third-slide" src="../../../../storage/app/public/carousel/ny.jpg" alt="Third slide">
+						<img class="first-slide" src="../../../../storage/app/public/carousel/yeezy.png" alt="First slide">
 						<div class="container">
 							<div class="carousel-caption text-right">
-								<h1>One more for good measure.</h1>
-								<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-								<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+								<h1 class="text-primary">YEEZY COLLECTION</h1>
+								<p>Adidas Yeezy 350 v2<br>
+									"Hyperspace" </p>
+								<p><a class="btn btn-lg btn-primary" href="#" role="button">Conoce más</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="second-slide" src="../../../../storage/app/public/carousel/73.png" alt="Second slide">
+						<div class="container">
+							<div class="carousel-caption text-right">
+								<h1 class="text-primary">Nite Jogger</h1>
+								<p>La comodidad inigualable de la tecnología BOOST. <br>
+									Detalles reflectantes que te hacen más visible de noche. <br>
+									Los Nite Jogger están de vuelta en nuevos colores.</p>
+								<p><a class="btn btn-lg btn-primary" href="#" role="button">Conoce más</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="third-slide" src="../../../../storage/app/public/carousel/nike.png" alt="Third slide">
+						<div class="container">
+							<div class="carousel-caption text-right">
+								<h1 class="text-primary">AIR MAX SELECTS</h1>
+								<p>Nike Air Max 90. <br>
+									"Mars Landing" <br>
+									<b class="text-warning">30% OFF</b> </p>
+								<p><a class="btn btn-lg btn-primary" href="#" role="button">Conoce más</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="fourth-slide" src="../../../../storage/app/public/carousel/leather.png" alt="Fourth slide">
+						<div class="container">
+							<div class="carousel-caption text-right">
+								<h1 class="text-primary">SOLE FURY</h1>
+								<p>Con tecnología de Split-Cushioning. <br>
+									Cushioning with a kick. </p>
+								<p><a class="btn btn-lg btn-primary" href="#" role="button">Conoce más</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="fifth-slide" src="../../../../storage/app/public/carousel/puma.png" alt="Fifth slide">
+						<div class="container">
+							<div class="carousel-caption text-right">
+								<h1 class="text-primary">HYBRID</h1>
+								<p>The power of Hybrid Runner Dessert. <br>
+								Comodidad soporte y energía.</p>
+								<p><a class="btn btn-lg btn-primary" href="#" role="button">Conoce más</a></p>
 							</div>
 						</div>
 					</div>
@@ -87,15 +116,30 @@ export default {
 
 <style scoped>
 	/* Make the image fully responsive */
-	.carousel-inner img {
-		width: 100%;
-		height: 100%;
-	}
 	.carousel {
-		margin-bottom: 4rem;
+		margin-bottom: 3rem;
+		background-color: rgba(148, 155, 155, 0.664);
 	}
+	.carousel-inner > .carousel-item > img {
+	padding-left: 5rem;
+	height: 100%;
+	width: initial;
+	max-height: 400px;
+	/* min-width: 100%; */
+	height: 70rem;
+	}
+	.carousel-item{
+		background-size: contain;
+		/* text-align:center; */
+	}
+	/* .carousel-inner img {
+		width: 100%; 
+		height: auto;
+	}
+	
 	.carousel-item .carousel-inner {
-		height: 50rem;
+		height: 70rem;
+		background-size: cover;
 	}
 	.carousel img {
 		max-height: 400px;
@@ -104,6 +148,6 @@ export default {
 		top: 0;
 		left: 0;
 		min-width: 100%;
-		height: 50rem;
-	}
+		height: 70rem;
+	} */
 </style>

@@ -29,7 +29,7 @@
                     <form class="d-flex justify-content-start align-items-baseline">
                         <label for="cantidad">Cantidad:</label>
                         <button type="button" class="btn btn-outline-info ml-2" @click="subQuantity"><i class="fas fa-minus"></i></button>
-                        <strong style="width: 35px; text-align:center">{{ quantity }}</strong>
+                        <strong style="width: 35px; text-align:center; border: 1px solid transparent;" class="form-control">{{ quantity }}</strong>
                         <button type="button" class="btn btn-outline-info mr-2" @click="addQuantity"><i class="fas fa-plus"></i></button>
                         <label for="tallas">Talla:</label>
                         <select name="tallas" id="tallas" class="form-control ml-1 mr-2" style="width: 80px">
@@ -85,7 +85,7 @@
         },
         computed: {
             urlImg(){
-                let words = this.item.imagenes[0].ruta.split("\\");
+                let words = this.item.imagenes[1].ruta.split("\\");
                 return "../../../../"+words[4]+"/"+words[7]+"/"+words[8];
             }
         },
