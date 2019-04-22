@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Persona;
+use App\Almacene;
 use App\PersonasRole;
 use Illuminate\Http\Request;
 
@@ -37,26 +38,38 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        $persona = new Persona();
-        $persona->nombre = $request->nombre;
-        $persona->apellidos = $request->apellidos;
-        $persona->id_tipos_documento = $request->id_tipos_documento;
-        $persona->num_documento = $request->num_documento;
-        $persona->direccion = $request->direccion;
-        $persona->telefono = $request->telefono;
-        $persona->correo = $request->correo;
-        $persona->id_rol = $request->id_rol;
-        $persona->save();
+        if ($request->nombre) {
+            $persona = new Persona();
+            $persona->nombre = $request->nombre;
+            $persona->apellidos = $request->apellidos;
+            $persona->id_tipos_documento = $request->id_tipos_documento;
+            $persona->num_documento = $request->num_documento;
+            $persona->direccion = $request->direccion;
+            $persona->telefono = $request->telefono;
+            $persona->correo = $request->correo;
+            $persona->id_rol = $request->id_rol;
+            $persona->save();
 
-        $user = new User();
-        $user->id_persona = $persona->id;
-        $user->username = $request->nameuser;
-        $user->email = $request->correo;
-        $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; //password
-        $user->save();
+            $user = new User();
+            $user->id_persona = $persona->id;
+            $user->username = $request->nameuser;
+            $user->email = $request->correo;
+            $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; //password
+            $user->save();
 
-        $data = Persona::where('id', $persona->id)->with('user', 'rol', 'tipoDocumento')->get();
-        return $data[0];
+            $data = Persona::where('id', $persona->id)->with('user', 'rol', 'tipoDocumento')->get();
+            return $data[0];
+        } else {
+            Persona::where('id', $request->id)
+                    ->update([
+                        'id_tipos_documento' => 1,
+                        'num_documento' => $request->num_documento,
+                        'direccion' => $request->direccion,
+                        'telefono' => $request->telefono
+                    ]);
+            
+            Almacene::where('id_productos', $request->id_producto)->decrement('cantidad');
+        }
     }
 
     /**
@@ -67,7 +80,7 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        //
+        // return Persona::findOrFail($id);
     }
 
     /**

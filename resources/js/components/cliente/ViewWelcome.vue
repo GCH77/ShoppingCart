@@ -68,7 +68,7 @@ export default {
         }
     },
     created() {
-		console.log(this.$attrs);
+		// console.log(this.$attrs);
         this.getAllProductos();
     },
     methods: {

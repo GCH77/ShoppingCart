@@ -1,19 +1,18 @@
 <template>
-    <product-details-component :item="item"></product-details-component>
+    <product-details-component :item="item" :attrs="$attrs"></product-details-component>
 </template>
 <script>
 export default {
- name: 'view-details',
- props: ['item'],
+    name: 'view-details',
+    props: ['item'],
     data() {
         return{
             
         }
     },
     created() {
-        
         // console.log("mmm");
-        // console.log(this.item);
+        // console.log(this.$attrs);
     },
     methods: {
        

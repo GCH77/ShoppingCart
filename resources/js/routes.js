@@ -8,13 +8,54 @@ import ViewDetails from './components/cliente/ViewDetails';
 import ViewCheckout from './components/cliente/ViewCheckout';
 
 const routes = [
-   { path: '/inicio', name: 'home', component: Bienvenida },
-   { path: '/productos', name: 'productos', component: ViewProductos },
-   { path: '/proveedores', name: 'proveedores', component: ViewProveedores },
-   { path: '/roles', name: 'roles', component: ViewRoles },
-   { path: '/usuarios', name: 'usuarios', component: ViewUsuarios },
-   { path: '/', name: 'listaproductos', components: { cliente: ViewWelcome }},
-   { path: 'details', name: 'detallesproductos', components: { cliente: ViewDetails }, props: { cliente: true} },
-   { path: 'checkout/:idItem', name: 'checkout', components: { cliente: ViewCheckout } }
+   { 
+      path: '/inicio', 
+      name: 'home', 
+      component: Bienvenida 
+   },
+   { 
+      path: '/productos', 
+      name: 'productos', 
+      component: ViewProductos 
+   },
+   { 
+      path: '/proveedores', 
+      name: 'proveedores', 
+      component: ViewProveedores 
+   },
+   { 
+      path: '/roles', 
+      name: 'roles', 
+      component: ViewRoles 
+   },
+   { 
+      path: '/usuarios', 
+      name: 'usuarios', 
+      component: ViewUsuarios 
+   },
+   { 
+      path: '/', 
+      name: 'listaproductos', 
+      components: { 
+         cliente: ViewWelcome 
+      }
+   },
+   { 
+      path: 'details', 
+      name: 'detallesproductos', 
+      components: { 
+         cliente: ViewDetails 
+      }, 
+      props: { 
+         cliente: true
+      } 
+   },
+   { 
+      path: 'checkout/:idItem', 
+      name: 'checkout', 
+      components: { 
+         cliente: ViewCheckout 
+      } 
+   }
 ]
 export default routes;

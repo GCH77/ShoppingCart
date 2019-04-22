@@ -2,7 +2,7 @@
    <table-component 
       :headers="cabeceras" 
       :model="producto" 
-      getUrl="/productos"
+      getUrl="list"
       title="Lista de Productos"
       titleCreate="Nuevo producto"
       titleEdit="Editar producto"
