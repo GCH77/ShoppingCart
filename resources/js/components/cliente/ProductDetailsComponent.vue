@@ -12,6 +12,7 @@
                     <template v-for="(middle, index) in item.lineas_producto">
                     <span class="badge badge-primary mr-1" :key="index">{{middle.lineas.linea}}</span>
                     </template>
+                    <span class="badge badge-primary mr-1">{{item.marca.marca}}</span>
                 </a>
                 <div class="p-2">    
                     <p class="lead font-weight-bold">{{item.nombre}}</p>
@@ -37,7 +38,7 @@
                             <option :key="index" :value="middle.id">{{middle.tallas.talla}}</option>
                             </template>
                         </select>
-                        <button v-if="this.attrs.id" class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item.id)">Comprar
+                        <button v-if="this.attrs.id" class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item)">Comprar
                             <i class="fas fa-shopping-cart ml-1"></i>
                         </button>
                         <a v-else class="btn btn-primary" href="http://localhost:8000/register#/" role="button">Comprar</a>
@@ -47,7 +48,7 @@
                 </div>                  
             </div>             
         </div>
-        lightbox?
+        <!-- lightbox? -->
         <div class="row mt-2 mb-2">
             <div class="col-2 mb-2">
                 <img class="img-thumbnail img-fluid" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/04LDEYRW59.jpg" alt="">
@@ -101,7 +102,7 @@
                 }
             },
             checkout(data) {
-                this.$router.push({name: "checkout", params: { idItem: data } });
+                this.$router.push({name: "checkout", params: { item: data } });
             }
         }
     }
