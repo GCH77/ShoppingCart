@@ -10,7 +10,6 @@
 
                 <div class="col-md-6 mb-2">
                   <div class="md-form">
-                    <!-- <label for="modelTipoDoc">Tipo Documento</label> -->
                     <select v-model="data.id_tipos_documento" id="modelTipoDoc" class="form-control">
 						<option disabled selected value="">-- Tipo de Documento --</option>
 						<option v-for="tipo in tipos" :key="tipo.id" :value="tipo.id">{{tipo.tipo}}-{{tipo.descripcion}}</option>
@@ -144,7 +143,6 @@ export default {
   padding: 7px 0 0 13px;
   transition: all 200ms;
   opacity: 0.5;
-  /* padding-left: 10px; */
   padding-left: 30px;
 }
 

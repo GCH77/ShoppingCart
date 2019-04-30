@@ -5,4 +5,5 @@
     <layout-component :auth="{{Auth::user()->persona}}"></layout-component>
 
 </div>
+@include('footer')
 @endsection
