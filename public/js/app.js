@@ -2723,7 +2723,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['attrs', 'item'],
   data: function data() {
@@ -7600,7 +7599,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* enable absolute positioning */\n.inner-addon[data-v-e83606b2] { \r\n    position: absolute;\n}\r\n\r\n/* style icon */\n.inner-addon .fas[data-v-e83606b2] {\r\n  position: absolute;\r\n  padding: 10px;\r\n  pointer-events: none;\n}\r\n\r\n/* align icon */\n.left-addon .fas[data-v-e83606b2]  { left:  0px;}\n.right-addon .fas[data-v-e83606b2] { right: 0px;}\r\n\r\n/* add padding  */\n.left-addon input[data-v-e83606b2]  { padding-left:  30px;\n}\n.right-addon input[data-v-e83606b2] { padding-right: 30px;\n}\n.form-group[data-v-e83606b2] {\r\n  position: relative;\r\n  margin-bottom: 1.5rem;\n}\n.form-control-placeholder[data-v-e83606b2] {\r\n  position: absolute;\r\n  top: 0;\r\n  padding: 7px 0 0 13px;\r\n  transition: all 200ms;\r\n  opacity: 0.5;\r\n  /* padding-left: 10px; */\r\n  padding-left: 30px;\n}\n.form-control:focus + .form-control-placeholder[data-v-e83606b2],\r\n.form-control:valid + .form-control-placeholder[data-v-e83606b2] {\r\n  font-size: 75%;\r\n  -webkit-transform: translate3d(0, -100%, 0);\r\n          transform: translate3d(0, -100%, 0);\r\n  opacity: 1;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* enable absolute positioning */\n.inner-addon[data-v-e83606b2] { \r\n    position: absolute;\n}\r\n\r\n/* style icon */\n.inner-addon .fas[data-v-e83606b2] {\r\n  position: absolute;\r\n  padding: 10px;\r\n  pointer-events: none;\n}\r\n\r\n/* align icon */\n.left-addon .fas[data-v-e83606b2]  { left:  0px;}\n.right-addon .fas[data-v-e83606b2] { right: 0px;}\r\n\r\n/* add padding  */\n.left-addon input[data-v-e83606b2]  { padding-left:  30px;\n}\n.right-addon input[data-v-e83606b2] { padding-right: 30px;\n}\n.form-group[data-v-e83606b2] {\r\n  position: relative;\r\n  margin-bottom: 1.5rem;\n}\n.form-control-placeholder[data-v-e83606b2] {\r\n  position: absolute;\r\n  top: 0;\r\n  padding: 7px 0 0 13px;\r\n  transition: all 200ms;\r\n  opacity: 0.5;\r\n  padding-left: 30px;\n}\n.form-control:focus + .form-control-placeholder[data-v-e83606b2],\r\n.form-control:valid + .form-control-placeholder[data-v-e83606b2] {\r\n  font-size: 75%;\r\n  -webkit-transform: translate3d(0, -100%, 0);\r\n          transform: translate3d(0, -100%, 0);\r\n  opacity: 1;\n}\r\n", ""]);
 
 // exports
 
