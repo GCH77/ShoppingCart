@@ -1,6 +1,6 @@
 <template>
     <!-- <product-details-component :item="item"></product-details-component> -->
-    <checkout-component :attrs="$attrs" :id="$route.params.idItem"></checkout-component>
+    <checkout-component :attrs="$attrs" :item="$route.params.item"></checkout-component>
 </template>
 <script>
 export default {
@@ -12,7 +12,7 @@ export default {
         }
     },
     created() {
-        // console.log("mmmm");
+        console.log(this.item);
         // console.log(this.$attrs);
         // console.log(this.$route.params);
     },

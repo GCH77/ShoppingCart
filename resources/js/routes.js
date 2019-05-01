@@ -51,10 +51,13 @@ const routes = [
       } 
    },
    { 
-      path: 'checkout/:idItem', 
+      path: 'checkout', 
       name: 'checkout', 
       components: { 
          cliente: ViewCheckout 
+      }, 
+      props: { 
+         cliente: true
       } 
    }
 ]
