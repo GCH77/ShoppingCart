@@ -8,6 +8,6 @@ class Funcionalidade extends Model
 {
     public function funcionalidadesPermisos()
     {
-        return $this->hasMany('App\PermisosRolesModFunc', 'id_funcionalidades', 'id');
+    return $this->belongsTo('App\PermisosRolesModFunc', 'id_funcionalidades');
     }
 }

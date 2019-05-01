@@ -10,4 +10,9 @@ class Role extends Model
     {
         return $this->hasMany('App\PersonasRole', 'id_roles', 'id');
     }
+
+    public function permisosRolesModFunc()
+    {
+        return $this->hasMany('App\PermisosRolesModFunc', 'id_roles', 'id');
+    }
 }

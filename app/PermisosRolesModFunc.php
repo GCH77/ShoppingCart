@@ -15,4 +15,9 @@ class PermisosRolesModFunc extends Model
   {
     return $this->hasOne('App\Funcionalidade', 'id', 'id_funcionalidades');
   }
+
+    public function roles()
+    {
+    return $this->belongsTo('App\Role', 'id_roles');
+    }
 }
