@@ -2083,54 +2083,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'side-menu-component',
   props: ['auth'],
@@ -2148,6 +2100,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
+    this.$router.push({
+      name: "home"
+    });
   },
   destroyed: function destroyed() {
     window.removeEventListener('resize', this.handleResize);
