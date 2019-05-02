@@ -24,4 +24,5 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/tiposDocumentos', 'TiposDocumentoController@index');
     Route::resource('roles', 'RolesController');
     Route::resource('usuarios', 'UsuariosController');
+    Route::resource('comprar', 'ComprasController');
 });

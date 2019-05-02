@@ -53,7 +53,7 @@
         <div class="col-md-4 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Tu bolsa</span>
-            <span class="badge badge-pill badge-primary">1</span>
+            <span class="badge badge-pill badge-primary">{{item.quantity}}</span>
           </h4>
 
           <ul class="list-group mb-3 z-depth-1">
@@ -68,7 +68,7 @@
             </template>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (COP)</span>
-              <strong>${{item.almacenes[0].precio_venta}}</strong>
+              <strong>${{ precio }}</strong>
             </li>
           </ul>
         </div>
@@ -89,16 +89,22 @@ export default {
             id_tipos_documento: '',
             num_documento: '',
             direccion: '',
-            telefono: ''
+            telefono: '',
+            quantity: this.item.quantity
           }
         }
     },
     created(){
       this.getTipoDocumentos();
     },
+    computed: {
+      precio(){
+        return this.item.almacenes[0].precio_venta * this.item.quantity;
+      }
+    },
     methods: {
         register(){
-          axios.post('usuarios', this.data).then((response) => {
+          axios.post('comprar', this.data).then((response) => {
             this.$router.push({name: "listaproductos"});
           })
         },

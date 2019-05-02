@@ -31,14 +31,15 @@
                         <label for="cantidad">Cantidad:</label>
                         <button type="button" class="btn btn-outline-info ml-2" @click="subQuantity"><i class="fas fa-minus"></i></button>
                         <strong style="width: 35px; text-align:center; border: 1px solid transparent;" class="form-control">{{ quantity }}</strong>
-                        <button type="button" class="btn btn-outline-info mr-2" @click="addQuantity"><i class="fas fa-plus"></i></button>
+                        <button v-if="quantity < item.almacenes[0].cantidad" type="button" class="btn btn-outline-info mr-2" @click="addQuantity"><i class="fas fa-plus"></i></button>
+                        <button v-else="" disabled  type="button" class="btn btn-outline-info mr-2" @click="addQuantity"><i class="fas fa-plus"></i></button>
                         <label for="tallas">Talla:</label>
                         <select name="tallas" id="tallas" class="form-control ml-1 mr-2" style="width: 80px">
                             <template v-for="(middle, index) in item.tallas_producto">
                             <option :key="index" :value="middle.id">{{middle.tallas.talla}}</option>
                             </template>
                         </select>
-                        <button v-if="this.attrs.id" class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item)">Comprar
+                        <button v-if="this.attrs.id" :disabled="quantity<=0" class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item)">Comprar
                             <i class="fas fa-shopping-cart ml-1"></i>
                         </button>
                         <a v-else class="btn btn-primary" href="http://localhost:8000/register#/" role="button">Comprar</a>
@@ -103,6 +104,8 @@
             },
             checkout(data) {
                 this.$router.push({name: "checkout", params: { item: data } });
+                data.quantity = this.quantity;
+                console.log(data);
             }
         }
     }

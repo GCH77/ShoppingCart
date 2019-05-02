@@ -38,7 +38,6 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->nombre) {
             $persona = new Persona();
             $persona->nombre = $request->nombre;
             $persona->apellidos = $request->apellidos;
@@ -59,17 +58,7 @@ class UsuariosController extends Controller
 
             $data = Persona::where('id', $persona->id)->with('user', 'rol', 'tipoDocumento')->get();
             return $data[0];
-        } else {
-            Persona::where('id', $request->id)
-                    ->update([
-                        'id_tipos_documento' => 1,
-                        'num_documento' => $request->num_documento,
-                        'direccion' => $request->direccion,
-                        'telefono' => $request->telefono
-                    ]);
-            
-            Almacene::where('id_productos', $request->id_producto)->decrement('cantidad');
-        }
+        
     }
 
     /**
