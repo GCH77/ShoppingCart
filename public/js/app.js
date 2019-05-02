@@ -2734,18 +2734,24 @@ __webpack_require__.r(__webpack_exports__);
         id_tipos_documento: '',
         num_documento: '',
         direccion: '',
-        telefono: ''
+        telefono: '',
+        quantity: this.item.quantity
       }
     };
   },
   created: function created() {
     this.getTipoDocumentos();
   },
+  computed: {
+    precio: function precio() {
+      return this.item.almacenes[0].precio_venta * this.item.quantity;
+    }
+  },
   methods: {
     register: function register() {
       var _this = this;
 
-      axios.post('usuarios', this.data).then(function (response) {
+      axios.post('comprar', this.data).then(function (response) {
         _this.$router.push({
           name: "listaproductos"
         });
@@ -2772,6 +2778,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2879,6 +2886,8 @@ __webpack_require__.r(__webpack_exports__);
           item: data
         }
       });
+      data.quantity = this.quantity;
+      console.log(data);
     }
   }
 });
@@ -7599,7 +7608,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* enable absolute positioning */\n.inner-addon[data-v-e83606b2] { \r\n    position: absolute;\n}\r\n\r\n/* style icon */\n.inner-addon .fas[data-v-e83606b2] {\r\n  position: absolute;\r\n  padding: 10px;\r\n  pointer-events: none;\n}\r\n\r\n/* align icon */\n.left-addon .fas[data-v-e83606b2]  { left:  0px;}\n.right-addon .fas[data-v-e83606b2] { right: 0px;}\r\n\r\n/* add padding  */\n.left-addon input[data-v-e83606b2]  { padding-left:  30px;\n}\n.right-addon input[data-v-e83606b2] { padding-right: 30px;\n}\n.form-group[data-v-e83606b2] {\r\n  position: relative;\r\n  margin-bottom: 1.5rem;\n}\n.form-control-placeholder[data-v-e83606b2] {\r\n  position: absolute;\r\n  top: 0;\r\n  padding: 7px 0 0 13px;\r\n  transition: all 200ms;\r\n  opacity: 0.5;\r\n  padding-left: 30px;\n}\n.form-control:focus + .form-control-placeholder[data-v-e83606b2],\r\n.form-control:valid + .form-control-placeholder[data-v-e83606b2] {\r\n  font-size: 75%;\r\n  -webkit-transform: translate3d(0, -100%, 0);\r\n          transform: translate3d(0, -100%, 0);\r\n  opacity: 1;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* enable absolute positioning */\n.inner-addon[data-v-e83606b2] { \r\n    position: absolute;\n}\r\n\r\n/* style icon */\n.inner-addon .fas[data-v-e83606b2] {\r\n  position: absolute;\r\n  padding: 10px;\r\n  pointer-events: none;\n}\r\n\r\n/* align icon */\n.left-addon .fas[data-v-e83606b2]  { left:  0px;}\n.right-addon .fas[data-v-e83606b2] { right: 0px;}\r\n\r\n/* add padding  */\n.left-addon input[data-v-e83606b2]  { padding-left:  30px;\n}\n.right-addon input[data-v-e83606b2] { padding-right: 30px;\n}\n.form-group[data-v-e83606b2] {\r\n  position: relative;\r\n  margin-bottom: 1.5rem;\n}\n.form-control-placeholder[data-v-e83606b2] {\r\n  position: absolute;\r\n  top: 0;\r\n  padding: 7px 0 0 13px;\r\n  transition: all 200ms;\r\n  opacity: 0.5;\r\n  padding-left: 30px;\n}\n.form-control:focus + .form-control-placeholder[data-v-e83606b2],\r\n.form-control:valid + .form-control-placeholder[data-v-e83606b2] {\r\n  font-size: 75%;\r\n  -webkit-transform: translate3d(0, -100%, 0);\r\n          transform: translate3d(0, -100%, 0);\r\n  opacity: 1;\n}\r\n", ""]);
 
 // exports
 
@@ -39013,24 +39022,20 @@ var render = function() {
       { staticClass: "col-md-12" },
       [
         _vm.viewRender
-          ? _c(
-              "keep-alive",
-              [
-                _c(
+          ? [
+              _c(
+                "router-view",
+                _vm._b(
+                  { attrs: { name: "cliente" } },
                   "router-view",
-                  _vm._b(
-                    { attrs: { name: "cliente" } },
-                    "router-view",
-                    _vm.auth,
-                    false
-                  )
+                  _vm.auth,
+                  false
                 )
-              ],
-              1
-            )
+              )
+            ]
           : _c("side-menu-component", { attrs: { auth: _vm.auth } })
       ],
-      1
+      2
     )
   ])
 }
@@ -40649,7 +40654,20 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4 mb-4" }, [
-          _vm._m(0),
+          _c(
+            "h4",
+            {
+              staticClass:
+                "d-flex justify-content-between align-items-center mb-3"
+            },
+            [
+              _c("span", { staticClass: "text-muted" }, [_vm._v("Tu bolsa")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "badge badge-pill badge-primary" }, [
+                _vm._v(_vm._s(_vm.item.quantity))
+              ])
+            ]
+          ),
           _vm._v(" "),
           _c(
             "ul",
@@ -40688,9 +40706,7 @@ var render = function() {
                 [
                   _c("span", [_vm._v("Total (COP)")]),
                   _vm._v(" "),
-                  _c("strong", [
-                    _vm._v("$" + _vm._s(_vm.item.almacenes[0].precio_venta))
-                  ])
+                  _c("strong", [_vm._v("$" + _vm._s(_vm.precio))])
                 ]
               )
             ],
@@ -40701,24 +40717,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "h4",
-      { staticClass: "d-flex justify-content-between align-items-center mb-3" },
-      [
-        _c("span", { staticClass: "text-muted" }, [_vm._v("Tu bolsa")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "badge badge-pill badge-primary" }, [
-          _vm._v("1")
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -40848,15 +40847,25 @@ var render = function() {
                   [_vm._v(_vm._s(_vm.quantity))]
                 ),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-info mr-2",
-                    attrs: { type: "button" },
-                    on: { click: _vm.addQuantity }
-                  },
-                  [_c("i", { staticClass: "fas fa-plus" })]
-                ),
+                _vm.quantity < _vm.item.almacenes[0].cantidad
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-outline-info mr-2",
+                        attrs: { type: "button" },
+                        on: { click: _vm.addQuantity }
+                      },
+                      [_c("i", { staticClass: "fas fa-plus" })]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-outline-info mr-2",
+                        attrs: { disabled: "", type: "button" },
+                        on: { click: _vm.addQuantity }
+                      },
+                      [_c("i", { staticClass: "fas fa-plus" })]
+                    ),
                 _vm._v(" "),
                 _c("label", { attrs: { for: "tallas" } }, [_vm._v("Talla:")]),
                 _vm._v(" "),
@@ -40886,7 +40895,7 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-primary btn-md my-0 p ml-1",
-                        attrs: { type: "submit" },
+                        attrs: { disabled: _vm.quantity <= 0, type: "submit" },
                         on: {
                           click: function($event) {
                             $event.preventDefault()
