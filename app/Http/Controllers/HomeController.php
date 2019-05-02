@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         // dd(Auth::user());
-        $user = User::where('id', Auth::user()->id)->with('persona', 'persona.rol')->get();
+        $user = User::where('id', Auth::user()->id)->with('persona', 'persona.rol', 'persona.rol.permisosRolesModFunc')->get();
         // dd($user);
         return view('home', ["userAll" => $user]);
     }

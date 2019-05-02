@@ -1782,7 +1782,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    // console.log(this.auth);
+    console.log("Desde LayoutComponent - auth");
+    console.log(this.auth); //TO CONFIG
+
     if (this.auth.id_rol == 4) {
       this.viewRender = true;
     }
@@ -2098,6 +2100,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    console.log("Desde SideMenuComponent - auth");
+    console.log(this.auth);
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
     this.$router.push({
@@ -3050,23 +3054,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'view-welcome',
-  props: ['auth'],
+  name: "view-welcome",
+  props: ["auth"],
   data: function data() {
     return {
-      productos: ''
+      productos: ""
     };
   },
   created: function created() {
-    // console.log(this.$attrs);
+    console.log("Desde ViewWelcome - auth");
+    console.log(this.$attrs);
     this.getAllProductos();
   },
   methods: {
     getAllProductos: function getAllProductos() {
       var _this = this;
 
-      axios.get('list').then(function (response) {
+      axios.get("list").then(function (response) {
         _this.productos = response.data;
         console.log(response.data); // for (const productos of response.data) {
         //    this.items.push(productos);
@@ -7592,7 +7635,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Make the image fully responsive */\n.carousel[data-v-2e0b2a4d] {\n\tmargin-bottom: 3rem;\n\tbackground-color: rgba(148, 155, 155, 0.664);\n}\n.carousel-inner > .carousel-item > img[data-v-2e0b2a4d] {\npadding-left: 5rem;\nheight: 100%;\nwidth: initial;\nmax-height: 400px;\n/* min-width: 100%; */\nheight: 70rem;\n}\n.carousel-item[data-v-2e0b2a4d]{\n\tbackground-size: contain;\n\t/* text-align:center; */\n}\n/* .carousel-inner img {\n\twidth: 100%; \n\theight: auto;\n}\n\n.carousel-item .carousel-inner {\n\theight: 70rem;\n\tbackground-size: cover;\n}\n.carousel img {\n\tmax-height: 400px;\n\tposition: relative;\n\tmargin: 0 auto;\n\ttop: 0;\n\tleft: 0;\n\tmin-width: 100%;\n\theight: 70rem;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Make the image fully responsive */\n.carousel[data-v-2e0b2a4d] {\r\n  margin-bottom: 3rem;\r\n  background-color: rgba(148, 155, 155, 0.664);\n}\n.carousel-inner > .carousel-item > img[data-v-2e0b2a4d] {\r\n  padding-left: 5rem;\r\n  height: 100%;\r\n  width: initial;\r\n  max-height: 400px;\r\n  /* min-width: 100%; */\r\n  height: 70rem;\n}\n.carousel-item[data-v-2e0b2a4d] {\r\n  background-size: contain;\r\n  /* text-align:center; */\n}\r\n/* .carousel-inner img {\r\n\t\twidth: 100%; \r\n\t\theight: auto;\r\n\t}\r\n\t\r\n\t.carousel-item .carousel-inner {\r\n\t\theight: 70rem;\r\n\t\tbackground-size: cover;\r\n\t}\r\n\t.carousel img {\r\n\t\tmax-height: 400px;\r\n\t\tposition: relative;\r\n\t\tmargin: 0 auto;\r\n\t\ttop: 0;\r\n\t\tleft: 0;\r\n\t\tmin-width: 100%;\r\n\t\theight: 70rem;\r\n\t} */\r\n", ""]);
 
 // exports
 
@@ -41181,9 +41224,11 @@ var staticRenderFns = [
                   ]),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v("Adidas Yeezy 350 v2"),
+                    _vm._v(
+                      "\n                Adidas Yeezy 350 v2\n                "
+                    ),
                     _c("br"),
-                    _vm._v('\r\n\t\t\t\t\t\t\t\t\t"Hyperspace" ')
+                    _vm._v('"Hyperspace"\n              ')
                   ]),
                   _vm._v(" "),
                   _c("p", [
@@ -41216,14 +41261,16 @@ var staticRenderFns = [
                   ]),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v("La comodidad inigualable de la tecnología BOOST. "),
-                    _c("br"),
                     _vm._v(
-                      "\r\n\t\t\t\t\t\t\t\t\tDetalles reflectantes que te hacen más visible de noche. "
+                      "\n                La comodidad inigualable de la tecnología BOOST.\n                "
                     ),
                     _c("br"),
                     _vm._v(
-                      "\r\n\t\t\t\t\t\t\t\t\tLos Nite Jogger están de vuelta en nuevos colores."
+                      "Detalles reflectantes que te hacen más visible de noche.\n                "
+                    ),
+                    _c("br"),
+                    _vm._v(
+                      "Los Nite Jogger están de vuelta en nuevos colores.\n              "
                     )
                   ]),
                   _vm._v(" "),
@@ -41257,9 +41304,11 @@ var staticRenderFns = [
                   ]),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v("Nike Air Max 90. "),
+                    _vm._v(
+                      "\n                Nike Air Max 90.\n                "
+                    ),
                     _c("br"),
-                    _vm._v('\r\n\t\t\t\t\t\t\t\t\t"Mars Landing" '),
+                    _vm._v('"Mars Landing"\n                '),
                     _c("br"),
                     _vm._v(" "),
                     _c("b", { staticClass: "text-warning" }, [
@@ -41297,9 +41346,11 @@ var staticRenderFns = [
                   ]),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v("Con tecnología de Split-Cushioning. "),
+                    _vm._v(
+                      "\n                Con tecnología de Split-Cushioning.\n                "
+                    ),
                     _c("br"),
-                    _vm._v("\r\n\t\t\t\t\t\t\t\t\tCushioning with a kick. ")
+                    _vm._v("Cushioning with a kick.\n              ")
                   ]),
                   _vm._v(" "),
                   _c("p", [
@@ -41330,9 +41381,11 @@ var staticRenderFns = [
                   _c("h1", { staticClass: "text-primary" }, [_vm._v("HYBRID")]),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v("The power of Hybrid Runner Dessert. "),
+                    _vm._v(
+                      "\n                The power of Hybrid Runner Dessert.\n                "
+                    ),
                     _c("br"),
-                    _vm._v("\r\n\t\t\t\t\t\t\t\tComodidad soporte y energía.")
+                    _vm._v("Comodidad soporte y energía.\n              ")
                   ]),
                   _vm._v(" "),
                   _c("p", [

@@ -93,6 +93,8 @@
 			}
 		},
 		created() {
+			console.log("Desde SideMenuComponent - auth");
+        	console.log(this.auth);
 			window.addEventListener('resize', this.handleResize)
 			this.handleResize();
 			this.$router.push({name: "home"});
