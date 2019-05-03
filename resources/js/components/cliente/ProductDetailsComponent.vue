@@ -42,7 +42,10 @@
                         <button v-if="this.attrs.id" :disabled="quantity<=0" class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item)">Comprar
                             <i class="fas fa-shopping-cart ml-1"></i>
                         </button>
-                        <a v-else class="btn btn-primary" href="http://localhost:8000/register#/" role="button">Comprar</a>
+                        <a v-else class="btn btn-primary" href="http://localhost:8000/register#/" role="button">
+                            Comprar
+                            <i class="fas fa-shopping-cart ml-1"></i>
+                        </a>
                         <!-- <a href="" class="button">Go to Google</a> -->
                     </form>
                     
@@ -52,22 +55,22 @@
         <!-- lightbox? -->
         <div class="row mt-2 mb-2">
             <div class="col-2 mb-2">
-                <img class="img-thumbnail img-fluid" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/04LDEYRW59.jpg" alt="">
+                <img class="img-thumbnail img-fluid" src="https://http2.mlstatic.com/tenis-hombre-heathrow-adys700071-nkh-dc-shoes-azul-D_NQ_NP_873727-MLM28296019220_102018-F.jpg" alt="">
             </div>
             <div class="col-2 mb-2">
-                <img class="img-thumbnail img-fluid" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/90V03Q5Y60.jpg" alt="">
+                <img class="img-thumbnail img-fluid" src="https://images-sportsdirect.wearepentagon.com/1/38104_11303402.jpg" alt="">
             </div>
             <div class="col-2 mb-2">
-                <img class="img-thumbnail img-fluid" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/O83SF2RB6D.jpg" alt="">
+                <img class="img-thumbnail img-fluid" src="https://assets.adidas.com/images/h_600,f_auto,q_auto:sensitive,fl_lossy/c86980d8aa7a4eba889aa8260166b62a_9366/Barricade_Club_Skor_Svart_CM7781_01_standard.jpg" alt="">
             </div>
             <div class="col-2 mb-2">
-                <img class="img-thumbnail img-fluid" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/5JVPSVP7EI.jpg" alt="">
+                <img class="img-thumbnail img-fluid" src="http://www.int4life-europa.es/images/category_24/Tenis%20Casual%20Hombre%20Tommy%20Shoes%20ZLGP%20Beige%2090%20Cuero10%20Textil%20Tenis.jpg" alt="">
             </div>
             <div class="col-2 mb-2">
-                <img class="img-thumbnail img-fluid" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/C5Y10KIIHA.jpg" alt="">
+                <img class="img-thumbnail img-fluid" src="https://www.coppel.com/images/catalog/pr/8062072-1.jpg" alt="">
             </div>
             <div class="col-2 mb-2">
-                <img class="img-thumbnail img-fluid" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/YSSFRY5B25.jpg" alt="">
+                <img class="img-thumbnail img-fluid" src="https://dsw.scene7.com/is/image/DSWShoes/420257_008_ss_01?$pdp-image$" alt="">
             </div>
         </div>
         <hr>

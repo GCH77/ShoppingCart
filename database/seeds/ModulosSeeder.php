@@ -12,19 +12,19 @@ class ModulosSeeder extends Seeder
     public function run()
     {
         DB::table('modulos')->insert([
-            'modulo' => 'Usuarios'
-        ]);
-
-        DB::table('modulos')->insert([
             'modulo' => 'Productos'
         ]);
 
         DB::table('modulos')->insert([
-            'modulo' => 'Roles'
+            'modulo' => 'Proveedores'
         ]);
 
         DB::table('modulos')->insert([
-            'modulo' => 'Proveedores'
+            'modulo' => 'Usuarios'
+        ]);
+
+        DB::table('modulos')->insert([
+            'modulo' => 'Roles'
         ]);
 
     }

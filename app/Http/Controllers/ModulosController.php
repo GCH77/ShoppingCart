@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Producto;
-use App\Almacene;
-use App\Persona;
+use App\Modulo;
 use Illuminate\Http\Request;
 
-class ComprasController extends Controller
+class ModulosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class ComprasController extends Controller
      */
     public function index()
     {
-        //
+        return Modulo::all();
     }
 
     /**
@@ -37,26 +35,16 @@ class ComprasController extends Controller
      */
     public function store(Request $request)
     {
-        Persona::where('id', $request->id)
-        ->update([
-            'id_tipos_documento' => 1,
-            'num_documento' => $request->num_documento,
-            'direccion' => $request->direccion,
-            'telefono' => $request->telefono
-            ]);
-            
-        $almacen = Almacene::where('id_productos', $request->id_producto)->get();
-        $cantidad = $almacen[0]->cantidad - $request->quantity;
-        Almacene::where('id_productos', $request->id_producto)->update(['cantidad' => $cantidad]);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Producto  $producto
+     * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show(Modulo $modulo)
     {
         //
     }
@@ -64,10 +52,10 @@ class ComprasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Producto  $producto
+     * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit(Modulo $modulo)
     {
         //
     }
@@ -76,10 +64,10 @@ class ComprasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Producto  $producto
+     * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, Modulo $modulo)
     {
         //
     }
@@ -87,10 +75,10 @@ class ComprasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Producto  $producto
+     * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy(Modulo $modulo)
     {
         //
     }

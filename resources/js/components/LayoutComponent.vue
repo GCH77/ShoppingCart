@@ -19,9 +19,9 @@ export default {
     },
     created(){
         console.log("Desde LayoutComponent - auth");
-        console.log(this.auth);
+        console.log(this.auth.persona.id_rol);
         //TO CONFIG
-        if (this.auth.id_rol == 4) {
+        if (this.auth.persona.id_rol == 4) {
             this.viewRender = true;
         }
     }

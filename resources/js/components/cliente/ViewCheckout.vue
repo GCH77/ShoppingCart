@@ -12,8 +12,9 @@ export default {
         }
     },
     created() {
-        console.log(this.item);
-        // console.log(this.$attrs);
+        // console.log(this.item);
+        console.log("Desde ViewCheckOut - auth");
+        console.log(this.$attrs);
         // console.log(this.$route.params);
     },
     methods: {

@@ -20,33 +20,44 @@
 								Inicio
 							</router-link>							
 						</li>
-						<li 
+						<template v-for="mod in showModules">
+							<li :key="mod.id" 
+								:id="mod.modulo"
+								:class="[$router.currentRoute.name === mod.modulo ? 'active' : '']"
+							>
+								<router-link :to="{name: mod.modulo}">
+									<i :class="mod.icon"></i>
+									{{ mod.label }}
+								</router-link>							
+							</li>
+						</template>
+						<!-- <li 
 							id="productos"
-							:class="[this.$router.currentRoute.name === 'productos' ? 'active' : '']"
+							:class="[this.$router.currentRoute.name === 'Productos' ? 'active' : '']"
 						>
-							<router-link :to="{name: 'productos'}">
+							<router-link :to="{name: 'Productos'}">
 								<i class="fas fa-layer-group"></i>
 								Productos
 							</router-link>							
 						</li>
-						<li id="proveedores" :class="[this.$router.currentRoute.name === 'proveedores' ? 'active' : '']">
-							<router-link :to="{name: 'proveedores'}">
+						<li id="proveedores" :class="[this.$router.currentRoute.name === 'Proveedores' ? 'active' : '']">
+							<router-link :to="{name: 'Proveedores'}">
 								<i class="fas fa-dolly"></i>
 								Proveedores
 							</router-link>						
 						</li>
-						<li id="usuarios" :class="[this.$router.currentRoute.name === 'usuarios' ? 'active' : '']">
-							<router-link :to="{name: 'usuarios'}">
+						<li id="usuarios" :class="[this.$router.currentRoute.name === 'Usuarios' ? 'active' : '']">
+							<router-link :to="{name: 'Usuarios'}">
 								<i class="fas fa-users"></i>
 								Usuarios
 							</router-link>	
 						</li>
-						<li id="roles" :class="[this.$router.currentRoute.name === 'roles' ? 'active' : '']">
-							<router-link :to="{name: 'roles'}">
+						<li id="roles" :class="[this.$router.currentRoute.name === 'Roles' ? 'active' : '']">
+							<router-link :to="{name: 'Roles'}">
 								<i class="fas fa-key"></i>
 								Roles
 							</router-link>
-						</li>
+						</li> -->
 						<li>
 							<a href="#">
 								<i class="fas fa-question"></i>
@@ -89,12 +100,18 @@
 				},
 				collapse: false,
 				iconClass: 'fas fa-angle-left',
-				i: 0
+				i: 0,
+				accessModules: '',
+				modulos: '',
+				showModules: []
 			}
 		},
-		created() {
-			console.log("Desde SideMenuComponent - auth");
-        	console.log(this.auth);
+		async created() {
+			// console.log("Desde SideMenuComponent - auth");
+			// console.log(this.auth.persona.rol.permisos_roles_mod_func);
+			await this.getModules();
+			this.configShowModules();
+			// console.log(this.accessModules);
 			window.addEventListener('resize', this.handleResize)
 			this.handleResize();
 			this.$router.push({name: "home"});
@@ -132,6 +149,60 @@
 			},
 			isImpar(n){
 				return n % 2 === 0 ? false: true;
+			},
+			eliminarObjetosDuplicados(arr, prop) {
+				let nuevoArray = [];
+				let lookup  = {};
+			
+				for (let i in arr) {
+						lookup[arr[i][prop]] = arr[i];
+				}
+			
+				for (let i in lookup) {
+						nuevoArray.push(lookup[i]);
+				}
+			
+				return nuevoArray;
+			},
+			async getModules(){
+				await axios.get('modulos').then((response) => {
+					this.modulos = response.data;
+				});
+			},
+			configShowModules(){
+				//PENDIENTE - ROLES
+				this.accessModules = this.eliminarObjetosDuplicados(this.auth.persona.rol.permisos_roles_mod_func, 'id_modulos');
+				for (const element of this.accessModules) {
+					for (const modulo of this.modulos) {
+						if (element.id_modulos === modulo.id) {
+							switch (modulo.modulo) {
+								case 'Productos':
+									this.showModules.push(
+										{id: modulo.id, modulo: modulo.modulo, icon: 'fas fa-layer-group', label: 'Productos'}
+									);
+									break;
+								case 'Proveedores':
+									this.showModules.push(
+										{id: modulo.id, modulo: modulo.modulo, icon: 'fas fa-dolly', label: 'Proveedores'}
+									);
+									break;
+								case 'Usuarios':
+									this.showModules.push(
+										{id: modulo.id, modulo: modulo.modulo, icon: 'fas fa-users', label: 'Usuarios'}
+									);
+									break;
+								case 'Roles':
+									this.showModules.push(
+										{id: modulo.id, modulo: modulo.modulo, icon: 'fas fa-key', label: 'Roles'}
+									);
+									break;
+								default:
+									console.log("Warning. This module doesn't exist in our system.");
+									break;
+							}
+						}
+					}
+				}
 			}
 		}
 	}

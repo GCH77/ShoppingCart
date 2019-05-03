@@ -28,6 +28,6 @@ class HomeController extends Controller
         // dd(Auth::user());
         $user = User::where('id', Auth::user()->id)->with('persona', 'persona.rol', 'persona.rol.permisosRolesModFunc')->get();
         // dd($user);
-        return view('home', ["userAll" => $user]);
+        return view('home', ["userAll" => $user[0]]);
     }
 }

@@ -15,22 +15,22 @@ const routes = [
    },
    { 
       path: '/productos', 
-      name: 'productos', 
+      name: 'Productos', 
       component: ViewProductos 
    },
    { 
       path: '/proveedores', 
-      name: 'proveedores', 
+      name: 'Proveedores', 
       component: ViewProveedores 
    },
    { 
       path: '/roles', 
-      name: 'roles', 
+      name: 'Roles', 
       component: ViewRoles 
    },
    { 
       path: '/usuarios', 
-      name: 'usuarios', 
+      name: 'Usuarios', 
       component: ViewUsuarios 
    },
    { 
