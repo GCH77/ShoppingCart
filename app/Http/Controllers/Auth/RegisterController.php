@@ -68,8 +68,8 @@ class RegisterController extends Controller
         $persona = new Persona;
         $persona->nombre = $data['name'];
         $persona->apellidos = $data['apellidos'];
-        $persona->id_tipos_documento = 1;
         $persona->correo = $data['email'];
+        $persona->id_rol = 4;
         $persona->save();
 
         // dd($persona->id);
@@ -79,6 +79,8 @@ class RegisterController extends Controller
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
         $user->save();
+
+        // $this->redirectTo = 'home#/details';
 
         return $user;
         // return User::create([

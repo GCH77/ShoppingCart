@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePersonasRolesTable extends Migration
+class CreateLineasProductosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreatePersonasRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('personas_roles', function (Blueprint $table) {
+        Schema::create('lineas_productos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_persona');
-            $table->unsignedInteger('id_roles');
+            $table->unsignedInteger('id_lineas');            
+            $table->unsignedInteger('id_productos');
             $table->timestamps();
 
-            $table->foreign('id_persona')->references('id')->on('personas');
-            $table->foreign('id_roles')->references('id')->on('roles');
+            $table->foreign('id_lineas')->references('id')->on('lineas');
+            $table->foreign('id_productos')->references('id')->on('productos');
+
         });
     }
 
@@ -31,6 +32,6 @@ class CreatePersonasRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personas_roles');
+        Schema::dropIfExists('lineas_productos');
     }
 }

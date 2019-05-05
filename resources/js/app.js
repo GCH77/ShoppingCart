@@ -5,10 +5,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import './bootstrap';
+import VueRouter from 'vue-router';
+import routes from './routes';
 
 window.Vue = require('vue');
-
+Vue.use(VueRouter);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,7 +22,23 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('layout-component', require('./components/LayoutComponent.vue').default);
+Vue.component('side-menu-component', require('./components/SideMenuComponent.vue').default);
+Vue.component('view-bienvenida', require('./components/Bienvenida.vue').default);
+Vue.component('view-productos', require('./components/Productos/ViewProductos.vue').default);
+Vue.component('view-proveedores', require('./components/Proveedores/ViewProveedores.vue').default);
+Vue.component('view-roles', require('./components/Roles/ViewRoles.vue').default);
+Vue.component('view-usuarios', require('./components/Usuarios/ViewUsuarios.vue').default);
+Vue.component('table-component', require('./components/TableComponent.vue').default);
+Vue.component('form-new-product', require('./components/Productos/FormNewProduct.vue').default);
+Vue.component('form-new-rol', require('./components/Roles/FormNewRol.vue').default);
+Vue.component('form-new-usuario', require('./components/Usuarios/FormNewUsuario.vue').default);
+Vue.component('view-welcome', require('./components/cliente/ViewWelcome.vue').default);
+Vue.component('product-list-component', require('./components/cliente/ProductListComponent.vue').default);
+Vue.component('view-details', require('./components/cliente/ViewDetails.vue').default);
+Vue.component('product-details-component', require('./components/cliente/ProductDetailsComponent.vue').default);
+Vue.component('view-checkout', require('./components/cliente/ViewCheckout.vue').default);
+Vue.component('checkout-component', require('./components/cliente/CheckoutComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,6 +46,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const router = new VueRouter({
+    routes
+});
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router
 });
