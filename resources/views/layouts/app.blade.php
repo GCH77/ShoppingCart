@@ -25,12 +25,17 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container-fluid">
-                @guest
+        @guest
+            <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Nice-commerce') }}
                     </a>
-                @else
+        @else
+            @if ($userAll->persona->id_rol === 4)
+            <div class="container">
+            @else
+            <div class="container-fluid">                
+            @endif
                     <a class="navbar-brand" href="{{ url('/home') }}">
                         {{ config('app.name', 'Nice-commerce') }}
                     </a>

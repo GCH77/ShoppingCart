@@ -28,9 +28,9 @@ export default {
          cabeceras: ['#', 'Rol', 'Descripcion'],
          rol: {
             rol: '',
-            descripcion: ''
-         },
-         roles: [],
+            descripcion: '',
+            checkboxes: []
+         }
       }
    },
    methods: {

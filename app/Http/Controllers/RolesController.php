@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\PermisosRolesModFunc;
 use Illuminate\Http\Request;
 
 class RolesController extends Controller
 {
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::with('permisosRolesModFunc')->get();
         return $roles;
     }
 
@@ -21,10 +22,28 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $roles = new Role();
         $roles->rol = $request->rol;
         $roles->descripcion = $request->descripcion;
         $roles->save();
+
+        $methodsFunc = array();
+        foreach ($request->checkboxes as $key => $value) {
+            $methodsFunc[$key] = explode(",",$value);
+        }
+        // dd($methodsFunc[0][0]);
+        
+        for ($i=0; $i < sizeof($methodsFunc); $i++) { 
+            $permisos = new PermisosRolesModFunc();
+            $permisos->id_roles = $roles->id;
+            $permisos->id_modulos = $methodsFunc[$i][0];
+            $permisos->id_funcionalidades = $methodsFunc[$i][1];
+            $permisos->save();
+            // print_r($methodsFunc[$i][1]);
+
+        }
+
 
         return $roles;
     }
@@ -54,6 +73,7 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
+        $permisos = PermisosRolesModFunc::where('id_roles', $id)->delete();
         $roles = Role::find($id);
         $roles->delete();
     }

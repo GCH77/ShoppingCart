@@ -15,7 +15,7 @@
          <td>{{props.telefono}}</td>
          <td>{{props.user.username}}</td>
          <td>{{props.correo}}</td>
-         <td>{{props.id_rol}}</td>
+         <td>{{props.rol.rol}}</td>
          <!-- <template v-for="(rol, index) in props.personas_roles">
             <td :key="index">{{rol.roles.rol}}</td>
          </template> -->

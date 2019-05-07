@@ -12,19 +12,19 @@ class FuncionalidadesSeeder extends Seeder
     public function run()
     {
         DB::table('funcionalidades')->insert([
-            'funcionalidad' => 'Create'
+            'funcionalidad' => 'Crear'
         ]);
 
         DB::table('funcionalidades')->insert([
-            'funcionalidad' => 'Read'
+            'funcionalidad' => 'Leer'
         ]);
 
         DB::table('funcionalidades')->insert([
-            'funcionalidad' => 'Update'
+            'funcionalidad' => 'Actualizar'
         ]);
 
         DB::table('funcionalidades')->insert([
-            'funcionalidad' => 'Delete'
+            'funcionalidad' => 'Borrar'
         ]);
     }
 }

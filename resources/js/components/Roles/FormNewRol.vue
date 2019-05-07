@@ -12,6 +12,7 @@
       <!-- <div class="col-md-12"> -->
          <div class="form-group">
             <label for="modelRol">Permisos o Acceso</label>
+            <span>{{ newRol.checkboxes }}</span>
             <div class="alert alert-info" role="alert">
                Nota. A continuacion usted debe seleccionar unicamente las facultades de cada Modulos
                al que desee que el nuevo Rol quiere que tenga acceso o permiso.
@@ -21,109 +22,32 @@
                   <tr>
                      <th scope="col" align="center">#</th>
                      <th scope="col" align="center">Modulos Sistema</th>
-                     <th id="center" scope="col">Crear</th>
-                     <th id="center" scope="col">Leer</th>
-                     <th id="center" scope="col">Actualizar</th>
-                     <th id="center" scope="col">Borrar</th>
+                     <template v-for="funcion in funciones">
+                        <th :key="funcion.id" id="center" scope="col">{{ funcion.funcionalidad }}</th>
+                     </template>
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <th scope="row">1</th>
-                     <td>Gestion de Productos</td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <th scope="row">2</th>
-                     <td>Gestion de Proveedores</td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <th scope="row">3</th>
-                     <td>Gestion de Usuarios</td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <th scope="row">4</th>
-                     <td>Gestion de Roles</td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                     <td id="center">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        </div>
-                     </td>
-                  </tr>
+                  <template v-for="modulo in modulos">
+                     <tr :key="modulo.id">
+                        <th scope="row">{{ modulo.id }}</th>
+                        <td>Gestion de {{ modulo.modulo }}</td>
+                        <template v-for="funcion in funciones">
+                           <td id="center" :key="funcion.id">
+                              <div class="custom-control custom-checkbox">
+                                 <input 
+                                    type="checkbox" 
+                                    class="custom-control-input" 
+                                    :id="modulo.modulo+funcion.id"
+                                    :value="modulo.id+','+funcion.id"
+                                    v-model="newRol.checkboxes"
+                                 >
+                                 <label class="custom-control-label" :for="modulo.modulo+funcion.id"></label>
+                              </div>
+                           </td>
+                        </template>
+                     </tr>
+                  </template>
                </tbody>
             </table>
          </div>
@@ -149,8 +73,14 @@ export default {
    },
    data(){
       return{
-         newRol: this.model
+         newRol: this.model,
+         modulos: '',
+         funciones: ''
       }
+   },
+   created(){
+      this.getModulos();
+      this.getFunciones();
    },
    watch: {
       model(data){
@@ -158,7 +88,16 @@ export default {
       }
    },
    methods: {
-
+      getModulos(){
+         axios.get('modulos').then((response) => {
+            this.modulos = response.data;
+         })
+      },
+      getFunciones(){
+         axios.get('funciones').then((response) => {
+            this.funciones = response.data;
+         })
+      }
    }
 }
 </script>

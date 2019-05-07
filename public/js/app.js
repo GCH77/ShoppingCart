@@ -1982,82 +1982,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "form-new-rol",
   props: {
@@ -2068,15 +1992,36 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      newRol: this.model
+      newRol: this.model,
+      modulos: '',
+      funciones: ''
     };
+  },
+  created: function created() {
+    this.getModulos();
+    this.getFunciones();
   },
   watch: {
     model: function model(data) {
       this.newRol = data;
     }
   },
-  methods: {}
+  methods: {
+    getModulos: function getModulos() {
+      var _this = this;
+
+      axios.get('modulos').then(function (response) {
+        _this.modulos = response.data;
+      });
+    },
+    getFunciones: function getFunciones() {
+      var _this2 = this;
+
+      axios.get('funciones').then(function (response) {
+        _this2.funciones = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2119,9 +2064,9 @@ __webpack_require__.r(__webpack_exports__);
       cabeceras: ['#', 'Rol', 'Descripcion'],
       rol: {
         rol: '',
-        descripcion: ''
-      },
-      roles: []
+        descripcion: '',
+        checkboxes: []
+      }
     };
   },
   methods: {}
@@ -40575,7 +40520,162 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "modelRol" } }, [
+        _vm._v("Permisos o Acceso")
+      ]),
+      _vm._v(" "),
+      _c("span", [_vm._v(_vm._s(_vm.newRol.checkboxes))]),
+      _vm._v(" "),
+      _c("div", { staticClass: "alert alert-info", attrs: { role: "alert" } }, [
+        _vm._v(
+          "\n            Nota. A continuacion usted debe seleccionar unicamente las facultades de cada Modulos\n            al que desee que el nuevo Rol quiere que tenga acceso o permiso.\n         "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        { staticClass: "table table-sm table-hover table-bordered" },
+        [
+          _c("thead", [
+            _c(
+              "tr",
+              [
+                _c("th", { attrs: { scope: "col", align: "center" } }, [
+                  _vm._v("#")
+                ]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col", align: "center" } }, [
+                  _vm._v("Modulos Sistema")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.funciones, function(funcion) {
+                  return [
+                    _c(
+                      "th",
+                      {
+                        key: funcion.id,
+                        attrs: { id: "center", scope: "col" }
+                      },
+                      [_vm._v(_vm._s(funcion.funcionalidad))]
+                    )
+                  ]
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.modulos, function(modulo) {
+                return [
+                  _c(
+                    "tr",
+                    { key: modulo.id },
+                    [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(modulo.id))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("Gestion de " + _vm._s(modulo.modulo))]),
+                      _vm._v(" "),
+                      _vm._l(_vm.funciones, function(funcion) {
+                        return [
+                          _c(
+                            "td",
+                            { key: funcion.id, attrs: { id: "center" } },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "custom-control custom-checkbox"
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.newRol.checkboxes,
+                                        expression: "newRol.checkboxes"
+                                      }
+                                    ],
+                                    staticClass: "custom-control-input",
+                                    attrs: {
+                                      type: "checkbox",
+                                      id: modulo.modulo + funcion.id
+                                    },
+                                    domProps: {
+                                      value: modulo.id + "," + funcion.id,
+                                      checked: Array.isArray(
+                                        _vm.newRol.checkboxes
+                                      )
+                                        ? _vm._i(
+                                            _vm.newRol.checkboxes,
+                                            modulo.id + "," + funcion.id
+                                          ) > -1
+                                        : _vm.newRol.checkboxes
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$a = _vm.newRol.checkboxes,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v =
+                                              modulo.id + "," + funcion.id,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              _vm.$set(
+                                                _vm.newRol,
+                                                "checkboxes",
+                                                $$a.concat([$$v])
+                                              )
+                                          } else {
+                                            $$i > -1 &&
+                                              _vm.$set(
+                                                _vm.newRol,
+                                                "checkboxes",
+                                                $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1))
+                                              )
+                                          }
+                                        } else {
+                                          _vm.$set(
+                                            _vm.newRol,
+                                            "checkboxes",
+                                            $$c
+                                          )
+                                        }
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("label", {
+                                    staticClass: "custom-control-label",
+                                    attrs: { for: modulo.modulo + funcion.id }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ]
+              })
+            ],
+            2
+          )
+        ]
+      )
+    ]),
     _vm._v(" "),
     !_vm.newRol.id
       ? _c("div", { staticClass: "form-group" }, [
@@ -40638,228 +40738,7 @@ var render = function() {
         ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "modelRol" } }, [
-        _vm._v("Permisos o Acceso")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "alert alert-info", attrs: { role: "alert" } }, [
-        _vm._v(
-          "\n            Nota. A continuacion usted debe seleccionar unicamente las facultades de cada Modulos\n            al que desee que el nuevo Rol quiere que tenga acceso o permiso.\n         "
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "table",
-        { staticClass: "table table-sm table-hover table-bordered" },
-        [
-          _c("thead", [
-            _c("tr", [
-              _c("th", { attrs: { scope: "col", align: "center" } }, [
-                _vm._v("#")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col", align: "center" } }, [
-                _vm._v("Modulos Sistema")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { id: "center", scope: "col" } }, [
-                _vm._v("Crear")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { id: "center", scope: "col" } }, [
-                _vm._v("Leer")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { id: "center", scope: "col" } }, [
-                _vm._v("Actualizar")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { id: "center", scope: "col" } }, [
-                _vm._v("Borrar")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Gestion de Productos")]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Gestion de Proveedores")]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Gestion de Usuarios")]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Gestion de Roles")]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "center" } }, [
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", value: "", id: "defaultCheck1" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -41778,7 +41657,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(props.correo))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(props.id_rol))])
+            _c("td", [_vm._v(_vm._s(props.rol.rol))])
           ]
         }
       },
