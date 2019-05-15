@@ -11,6 +11,6 @@ class LineasProductosSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\LineasProducto::class, 1)->create();
+        factory(App\LineasProducto::class, 3)->create();
     }
 }

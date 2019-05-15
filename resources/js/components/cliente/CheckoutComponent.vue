@@ -70,9 +70,12 @@
                 <img :src="urlImg" class="image w-100">
               </div>
               <div class="col-md-8 px-3">
-                <button type="button" class="close" aria-label="Close">
+                <a class="close" aria-label="Close" href="http://localhost:8000/home#/">
+                  <span aria-hidden="true" style="padding-left: 5px;">&times;</span>
+                </a>
+                <!-- <button type="button" class="close" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
-                </button>
+                </button> -->
                 <div class="card-block px-3">
                   <h5 class="card-title text-muted mt-1">{{item.marca.marca}}</h5>
                   <h5 class="card-subtitle mb-2"><strong>{{item.nombre}}</strong></h5>
@@ -106,7 +109,7 @@
               <strong>${{ precio }}</strong>
             </li>
           </ul>
-          <button v-if="validate" class="btn btn-primary btn-lg btn-block" type="submit">
+          <button v-if="validate" class="btn btn-primary btn-lg btn-block" type="submit" @click.prevent="register">
             <i class="fas fa-donate"></i>
             Comprar
           </button>
@@ -214,10 +217,10 @@ export default {
       },
       validate(){
         if (
-          this.attrs.persona.num_documento === '' || 
-          this.attrs.persona.id_tipos_documento === '' ||
-          this.attrs.persona.direccion === '' ||
-          this.attrs.persona.telefono === ''
+          this.attrs.persona.num_documento === '' || this.attrs.persona.num_documento === null ||
+          this.attrs.persona.id_tipos_documento === '' || this.attrs.persona.id_tipos_documento === null ||
+          this.attrs.persona.direccion === '' || this.attrs.persona.direccion === null ||
+          this.attrs.persona.telefono === '' || this.attrs.persona.telefono === null
           ) {
           return false;
         }else {
@@ -227,12 +230,22 @@ export default {
     },
     methods: {
         register(){
-          if (this.validacionInputs()) {
-            console.log("Valido");
+          if (this.validate) {
             axios.post('comprar', this.data).then((response) => {
               this.$router.push({name: "listaproductos"});
-            toastr.success("Su compra se realizo correctamente!", "Compra");
-            }); 
+              toastr.success("Su compra se realizo correctamente!", "Compra");
+            });
+            
+          }else {
+            if (this.validacionInputs()) {
+              console.log("Valido");
+              axios.post('comprar', this.data).then((response) => {
+                // this.$router.push({name: "listaproductos"});
+                toastr.success("Su compra se realizo correctamente!", "Compra");
+              }); 
+              console.log("Holaaaaaaaaaaaaaaaaaaaaaa");
+              setTimeout("location.href='/home'", 2500);
+            }
           }
         },
         getTipoDocumentos(){
@@ -281,7 +294,7 @@ export default {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
-  border-radius: 15%;
+  border-radius: 3%;
 }
 /* enable absolute positioning */
 .inner-addon { 

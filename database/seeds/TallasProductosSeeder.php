@@ -11,6 +11,6 @@ class TallasProductosSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\TallasProducto::class, 1)->create();
+        factory(App\TallasProducto::class, 9)->create();
     }
 }

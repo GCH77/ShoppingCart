@@ -11,13 +11,13 @@ class ProductosSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Producto::class, 1)->create()->each(
+        factory(App\Producto::class, 3)->create()->each(
             function($producto){
                 DB::table('almacenes')->insert([
                     'id_productos' => $producto->id,
                     'cantidad' => 10,
-                    'precio_compra' => 184200,
-                    'precio_venta' => 245600
+                    'precio_compra' => random_int(90000, 680500),
+                    'precio_venta' => random_int(149900, 857900)
                 ]);
             }
         );

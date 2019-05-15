@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Producto;
 use App\Almacene;
 use App\Persona;
+use App\User;
 use Illuminate\Http\Request;
 
 class ComprasController extends Controller
@@ -37,13 +38,25 @@ class ComprasController extends Controller
      */
     public function store(Request $request)
     {
-        Persona::where('id', $request->id)
-        ->update([
-            'id_tipos_documento' => 1,
-            'num_documento' => $request->num_documento,
-            'direccion' => $request->direccion,
-            'telefono' => $request->telefono
-            ]);
+        $persona = Persona::find($request->id);
+        if (
+            $persona->num_documento == null || $persona->num_documento == '' ||
+            $persona->id_tipos_documento == null || $persona->id_tipos_documento == '' ||
+            $persona->direccion == null || $persona->direccion == '' ||
+            $persona->telefono == null || $persona->telefono == ''
+        ) {
+            Persona::where('id', $request->id)
+            ->update([
+                'id_tipos_documento' => $request->id_tipos_documento,
+                'num_documento' => $request->num_documento,
+                'direccion' => $request->direccion,
+                'telefono' => $request->telefono
+                ]);
+            
+            // $almacen = Almacene::where('id_productos', $request->id_producto)->get();
+            // $cantidad = $almacen[0]->cantidad - $request->quantity;
+            // Almacene::where('id_productos', $request->id_producto)->update(['cantidad' => $cantidad]);
+        }
             
         $almacen = Almacene::where('id_productos', $request->id_producto)->get();
         $cantidad = $almacen[0]->cantidad - $request->quantity;

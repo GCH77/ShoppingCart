@@ -120,9 +120,41 @@
         </a>
       </div>
     </div>
-    <template v-for="item in productos">
-      <product-list-component :key="item.id" :item="item"></product-list-component>
-    </template>
+    <div class="container">
+      <div class="row">
+        <!-- <template v-for="item in productos">
+          <product-list-component :key="item.id" :item="item"></product-list-component>
+        </template> -->
+        <div class="col-md-12">
+          <h2>Trending <b>Products</b></h2>
+          <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+          <!-- Carousel indicators -->
+            <!-- <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>    -->
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+              <div class="item carousel-item active">
+                <div class="row">
+                  <template v-for="item in productos">
+                    <product-list-component :key="item.id" :item="item"></product-list-component>
+                  </template>
+                </div>
+              </div>
+            </div>
+            <!-- Carousel controls -->
+            <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+              <i class="fa fa-angle-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -155,7 +187,7 @@ export default {
 
 <style scoped>
 /* Make the image fully responsive */
-.carousel {
+#carouselPrincipal {
   margin-bottom: 3rem;
   background-color: rgba(148, 155, 155, 0.664);
 }
@@ -188,5 +220,81 @@ export default {
 		left: 0;
 		min-width: 100%;
 		height: 70rem;
-	} */
+  } */
+  h2 {
+	color: #000;
+	font-size: 26px;
+	font-weight: 300;
+	text-align: center;
+	text-transform: uppercase;
+	position: relative;
+	margin: 30px 0 80px;
+}
+h2 b {
+	color: #ffc000;
+}
+h2::after {
+	content: "";
+	width: 100px;
+	position: absolute;
+	margin: 0 auto;
+	height: 4px;
+	background: rgba(0, 0, 0, 0.2);
+	left: 0;
+	right: 0;
+	bottom: -20px;
+}
+.carousel {
+	margin: 50px auto;
+	padding: 0 70px;
+}
+.carousel .carousel-control {
+	height: 100px;
+    width: 40px;
+    background: none;
+    margin: auto 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+.carousel .carousel-control i {
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    margin: -16px 0 0 0;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    color: rgba(0, 0, 0, 0.8);
+    text-shadow: none;
+    font-weight: bold;
+}
+.carousel .carousel-control.left i {
+	margin-left: -3px;
+}
+.carousel .carousel-control.left i {
+	margin-right: -3px;
+}
+/* .carousel .carousel-indicators {
+	bottom: -50px;
+} */
+/* .carousel-indicators li, .carousel-indicators li.active {
+	width: 10px;
+	height: 10px;
+	margin: 4px;
+	border-radius: 50%;
+	border-color: transparent;
+} */
+/* .carousel-indicators li {	
+	background: rgba(0, 0, 0, 0.2);
+}
+.carousel-indicators li.active {	
+	background: rgba(0, 0, 0, 0.6);
+} */
+.star-rating li {
+	padding: 0;
+}
+.star-rating i {
+	font-size: 14px;
+	color: #ffc000;
+}
 </style>

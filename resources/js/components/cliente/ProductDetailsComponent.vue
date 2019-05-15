@@ -4,7 +4,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-6 mb-4" id="imagenproducto">
-                <img :src="urlImg" class="img-fluid" alt="">   
+                <img :src="urlImg" class="img-fluid" alt="" style="border-radius: 3%;">   
             </div>
             
             <div class="col-md-6 mb-4">
@@ -18,8 +18,8 @@
                     <p class="lead font-weight-bold">{{item.nombre}}</p>
                     <p>{{item.descripcion}}</p>
                     
-                    <p class="lead">
-                        <span class="mr-1">${{item.almacenes[0].precio_venta}}</span>
+                    <p>
+                        Precio: <span class="item-price ml-3">${{item.almacenes[0].precio_venta}}</span>
                     </p>
                     <div class="d-flex justify-content-start align-items-baseline">
                         <label for="colores" class="mr-3">Colores:</label>
@@ -30,9 +30,12 @@
                     <form class="d-flex justify-content-start align-items-baseline">
                         <label for="cantidad">Cantidad:</label>
                         <button type="button" class="btn btn-outline-info ml-2" @click="subQuantity"><i class="fas fa-minus"></i></button>
+                        
                         <strong style="width: 35px; text-align:center; border: 1px solid transparent;" class="form-control">{{ quantity }}</strong>
+                        
                         <button v-if="quantity < item.almacenes[0].cantidad" type="button" class="btn btn-outline-info mr-2" @click="addQuantity"><i class="fas fa-plus"></i></button>
                         <button v-else="" disabled  type="button" class="btn btn-outline-info mr-2" @click="addQuantity"><i class="fas fa-plus"></i></button>
+                        
                         <label for="tallas">Talla:</label>
                         <select name="tallas" id="tallas" class="form-control ml-1 mr-2" style="width: 80px">
                             <template v-for="(middle, index) in item.tallas_producto">
@@ -106,14 +109,22 @@
                 }
             },
             checkout(data) {
-                this.$router.push({name: "checkout", params: { item: data } });
                 data.quantity = this.quantity;
+                this.$router.push({name: "checkout", params: { item: data } });
+                console.log("Desde DetailsProduct - checkout - data");
                 console.log(data);
             }
         }
     }
 </script> 
 <style scoped>
+    .item-price {
+        font-size: 10px;
+    }
+    .item-price{
+        color: #86bd57;
+        font-size: 125%;
+    }
     .row>.col-2 img {
         padding: 0;
         max-width: auto;
