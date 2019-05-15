@@ -12,7 +12,7 @@
       <!-- <div class="col-md-12"> -->
          <div class="form-group">
             <label for="modelRol">Permisos o Acceso</label>
-            <span>{{ newRol.checkboxes }}</span>
+            <span>{{ newRol.permisos_roles_mod_func }}</span>
             <div class="alert alert-info" role="alert">
                Nota. A continuacion usted debe seleccionar unicamente las facultades de cada Modulos
                al que desee que el nuevo Rol quiere que tenga acceso o permiso.
@@ -40,7 +40,7 @@
                                     class="custom-control-input" 
                                     :id="modulo.modulo+funcion.id"
                                     :value="modulo.id+','+funcion.id"
-                                    v-model="newRol.checkboxes"
+                                    v-model="newRol.permisos_roles_mod_func"
                                  >
                                  <label class="custom-control-label" :for="modulo.modulo+funcion.id"></label>
                               </div>
@@ -73,7 +73,7 @@ export default {
    },
    data(){
       return{
-         newRol: this.model,
+         newRol: '',
          modulos: '',
          funciones: ''
       }
@@ -84,7 +84,20 @@ export default {
    },
    watch: {
       model(data){
-         this.newRol = data;
+         let checkbox = [];
+         console.log("FormNewRol - watch - Data");
+         // data.rol === '' ? console.log("Vacio") : console.log("Lleno");
+         if (data.rol != '') {
+            console.log(data.permisos_roles_mod_func);
+            data.permisos_roles_mod_func.forEach(element => {
+               // console.log(element.id_modulos+","+element.id_funcionalidades);
+               checkbox.push(element.id_modulos+","+element.id_funcionalidades);
+            });
+            data.permisos_roles_mod_func = checkbox;
+            this.newRol = data;
+         }else {
+            this.newRol = data;
+         }
       }
    },
    methods: {

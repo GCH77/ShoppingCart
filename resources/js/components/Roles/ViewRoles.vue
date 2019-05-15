@@ -25,11 +25,11 @@ export default {
    name: "view-roles",
    data(){
       return{
-         cabeceras: ['#', 'Rol', 'Descripcion'],
+         cabeceras: ['#', 'Rol', 'Descripcion', 'Acciones'],
          rol: {
             rol: '',
             descripcion: '',
-            checkboxes: []
+            permisos_roles_mod_func: []
          }
       }
    },

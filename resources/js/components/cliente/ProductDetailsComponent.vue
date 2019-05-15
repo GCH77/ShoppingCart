@@ -92,7 +92,7 @@
         },
         computed: {
             urlImg(){
-                let words = this.item.imagenes[1].ruta.split("\\");
+                let words = this.item.imagenes[0].ruta.split("\\");
                 return "../../../../"+words[4]+"/"+words[7]+"/"+words[8];
             }
         },

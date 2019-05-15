@@ -182,6 +182,7 @@ export default {
             console.log("Valido");
             axios.post('comprar', this.data).then((response) => {
               this.$router.push({name: "listaproductos"});
+            toastr.success("Su compra se realizo correctamente!", "Compra");
             }); 
           }
         },

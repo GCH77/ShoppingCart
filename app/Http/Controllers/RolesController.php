@@ -29,7 +29,7 @@ class RolesController extends Controller
         $roles->save();
 
         $methodsFunc = array();
-        foreach ($request->checkboxes as $key => $value) {
+        foreach ($request->permisos_roles_mod_func as $key => $value) {
             $methodsFunc[$key] = explode(",",$value);
         }
         // dd($methodsFunc[0][0]);
@@ -44,8 +44,8 @@ class RolesController extends Controller
 
         }
 
-
-        return $roles;
+        $data = Role::where('id', $roles->id)->with('permisosRolesModFunc')->get();
+        return $data[0];
     }
 
     /**
@@ -62,7 +62,25 @@ class RolesController extends Controller
         $roles->descripcion = $request->descripcion;
         $roles->save();
 
-        return $roles;
+        $methodsFunc = array();
+        foreach ($request->permisos_roles_mod_func as $key => $value) {
+            $methodsFunc[$key] = explode(",",$value);
+        }
+        // dd($methodsFunc[0][0]);
+        PermisosRolesModFunc::where('id_roles', $roles->id)->delete();
+        
+        for ($i=0; $i < sizeof($methodsFunc); $i++) { 
+            $permisos = new PermisosRolesModFunc();
+            $permisos->id_roles = $roles->id;
+            $permisos->id_modulos = $methodsFunc[$i][0];
+            $permisos->id_funcionalidades = $methodsFunc[$i][1];
+            $permisos->save();
+            // print_r($methodsFunc[$i][1]);
+
+        }
+        
+        $data = Role::where('id', $roles->id)->with('permisosRolesModFunc')->get();
+        return $data[0];
     }
 
     /**

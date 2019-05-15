@@ -130,6 +130,9 @@ export default {
       }
    },
    methods: {
+      prueba(){
+         // toastr.success("Funciona men!", "Success");
+      },
       editItem(item){
          this.isEdition = true;
          this.crudModel = item;
@@ -141,12 +144,14 @@ export default {
                      this.items.splice(index, 1);
                }
             })
+            toastr.success("Registro borrado correctamente!", "Borrar");
          });
       },
       saveData(data){
          axios.post(this.getUrl, data).then((response) => {
             this.items.push(response.data);
             console.log(response.data);
+            toastr.success("Registro creado correctamente!", "Crear");
          });
          this.crudModel = this.model;
       },
@@ -158,6 +163,7 @@ export default {
                }
             });
             this.clearModel();
+            toastr.success("Registro editado correctamente!", "Edicion");
          });
       },
       getAllRegisters(){

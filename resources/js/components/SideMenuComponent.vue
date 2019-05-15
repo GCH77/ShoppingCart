@@ -80,9 +80,9 @@
 
 			<!-- Page Content  -->
 				<div class="content">
-					<keep-alive>
+					<!-- <keep-alive> -->
 						<router-view></router-view>
-					</keep-alive>
+					<!-- </keep-alive> -->
 				</div>
 			</div>
 		</div>
