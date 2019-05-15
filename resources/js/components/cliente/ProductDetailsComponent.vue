@@ -22,9 +22,9 @@
                         <span class="mr-1">${{item.almacenes[0].precio_venta}}</span>
                     </p>
                     <div class="d-flex justify-content-start align-items-baseline">
-                        <label for="colores" class="mr-1">Colores:</label>
+                        <label for="colores" class="mr-3">Colores:</label>
                         <template v-for="(middle, index) in item.colores_producto">
-                            <div class="picker-color  ml-1" name="colores" :key="index" :style="{backgroundColor: middle.color.hexa}"></div>
+                            <div class="colors  ml-1" name="colores" :key="index" :style="{backgroundColor: middle.color.hexa}"></div>
                         </template>
                     </div>
                     <form class="d-flex justify-content-start align-items-baseline">
@@ -122,6 +122,14 @@
     #imagenproducto {
         max-height: 650px;
         max-width: 500px;
+    }
+    div.colors{
+        margin-top:3px;
+        width:15px; 
+        height:15px;    
+        margin-right:5px;
+        float:left;
+        border-radius: 30%;
     }
     
 </style>

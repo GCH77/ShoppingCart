@@ -3,8 +3,9 @@
     <div class="container">
       <h2 class="my-5 h2 text-center">Ya casi esta lista tu compra!</h2>
       <div class="row">
-        <div class="col-md-8 mb-4">
-          <div class="card">
+        <div class="col-md-7">
+          <div class="card mb-4" 
+            v-if="!validate">
             <form class="card-body needs-validation" novalidate>
               <div class="row">
 
@@ -51,34 +52,64 @@
 
               </div>
               <hr class="mb-4">
-              <button class="btn btn-primary btn-lg btn-block" type="submit" @click.prevent="register">Confirmar</button>
+              <button class="btn btn-primary btn-lg btn-block" type="submit" @click.prevent="register">
+                <i class="fas fa-donate"></i>
+                Confirmar y Comprar
+              </button>
 
             </form>
           </div>
-
+          <!-- Aparece cuando el num documento no este vacio -->
+          <h4 class="d-flex align-items-center mb-3">
+            <i class="fas fa-shopping-cart" style="color: gray; margin-right: 15px;"></i>
+            <span class="text-muted" style="margin-right: 140px;">Tu lista de productos</span>
+          </h4>
+          <div class="card">
+            <div class="row">
+              <div class="col-md-4">
+                <img :src="urlImg" class="image w-100">
+              </div>
+              <div class="col-md-8 px-3">
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="card-block px-3">
+                  <h5 class="card-title text-muted mt-1">{{item.marca.marca}}</h5>
+                  <h5 class="card-subtitle mb-2"><strong>{{item.nombre}}</strong></h5>
+                  <p class="card-text">Codigo: {{item.cod_barras}}</p>
+                  <p class="card-text">Talla: {{item.tallas_producto[0].tallas.talla}}</p>
+                  <p class="card-text mb-1">${{item.almacenes[0].precio_venta}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="col-md-4 mb-4">
+        <div class="col-md-5 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Tu bolsa</span>
+            <span class="text-muted">Resumen de tu orden</span>
             <span class="badge badge-pill badge-primary">{{item.quantity}}</span>
           </h4>
 
           <ul class="list-group mb-3 z-depth-1">
            <template>
-				<li class="list-group-item d-flex justify-content-between lh-condensed">
-				<div>
-					<h6 class="my-0">{{item.nombre}}</h6>
-					<small class="text-muted">{{item.marca.marca}}</small>
-				</div>
-				<span class="text-muted">${{item.almacenes[0].precio_venta}}</span>
-            	</li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">{{item.nombre}}</h6>
+                  <small class="text-muted">{{item.marca.marca}}</small>
+                </div>
+                <span class="text-muted">${{item.almacenes[0].precio_venta}}</span>
+              </li>
             </template>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (COP)</span>
               <strong>${{ precio }}</strong>
             </li>
           </ul>
+          <button v-if="validate" class="btn btn-primary btn-lg btn-block" type="submit">
+            <i class="fas fa-donate"></i>
+            Comprar
+          </button>
         </div>
       </div>
     </div>
@@ -169,11 +200,29 @@ export default {
       }
     },
     created(){
+      console.log("Desde created - cheackoutComponent - item");
+      console.log(this.item);
       this.getTipoDocumentos();
     },
     computed: {
       precio(){
         return this.item.almacenes[0].precio_venta * this.item.quantity;
+      },
+      urlImg(){
+        let words = this.item.imagenes[0].ruta.split("\\");
+        return "../../../../"+words[4]+"/"+words[7]+"/"+words[8];
+      },
+      validate(){
+        if (
+          this.attrs.persona.num_documento === '' || 
+          this.attrs.persona.id_tipos_documento === '' ||
+          this.attrs.persona.direccion === '' ||
+          this.attrs.persona.telefono === ''
+          ) {
+          return false;
+        }else {
+          return true;
+        }
       }
     },
     methods: {
@@ -218,6 +267,22 @@ export default {
 }
 </script>
 <style scoped>
+.close{
+  margin-right: 5px;
+  margin-top: 5px;
+  background: red;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  color: white;
+}
+
+.image {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  border-radius: 15%;
+}
 /* enable absolute positioning */
 .inner-addon { 
     position: absolute; 
