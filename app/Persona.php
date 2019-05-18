@@ -24,4 +24,9 @@ class Persona extends Model
     {
         return $this->hasOne('App\User', 'id_persona', 'id');
     }
+
+    public function empresas()
+    {
+        return $this->belongsTo('App\Empresa', 'id_personas');
+    }
 }

@@ -11,6 +11,6 @@ class ProveedorProductosSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ProveedorProducto::class, 5)->create();
+        factory(App\ProveedorProducto::class, 3)->create();
     }
 }

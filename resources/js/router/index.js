@@ -1,11 +1,14 @@
-import Bienvenida from './components/Bienvenida';
-import ViewProductos from './components/Productos/ViewProductos';
-import ViewProveedores from './components/Proveedores/ViewProveedores';
-import ViewRoles from './components/Roles/ViewRoles';
-import ViewUsuarios from './components/Usuarios/ViewUsuarios';
-import ViewWelcome from './components/cliente/ViewWelcome';
-import ViewDetails from './components/cliente/ViewDetails';
-import ViewCheckout from './components/cliente/ViewCheckout';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+import Bienvenida from '../components/Bienvenida';
+import ViewProductos from '../components/Productos/ViewProductos';
+import ViewProveedores from '../components/Proveedores/ViewProveedores';
+import ViewRoles from '../components/Roles/ViewRoles';
+import ViewUsuarios from '../components/Usuarios/ViewUsuarios';
+import ViewWelcome from '../components/cliente/ViewWelcome';
+import ViewDetails from '../components/cliente/ViewDetails';
+import ViewCheckout from '../components/cliente/ViewCheckout';
 
 const routes = [
    { 
@@ -60,5 +63,10 @@ const routes = [
          cliente: true
       } 
    }
-]
-export default routes;
+];
+
+Vue.use(VueRouter);
+
+export default new VueRouter({
+   routes
+});
