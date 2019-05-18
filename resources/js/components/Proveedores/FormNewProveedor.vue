@@ -3,46 +3,44 @@
       <div class="form-row">
          <div class="col-md-4">
             <div class="form-group">
-               <label for="modelNombres">Nombres</label>
-               <input v-model="newProveedor.nombre" type="text" class="form-control" id="modelNombres" placeholder="Nombres">
+               <label for="modelNit">Nit</label>
+               <input v-model="newProveedor.nit" type="text" class="form-control" id="modelNit" placeholder="Nit">
             </div>
          </div>
-         
-         
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="modelRazonSocial">Razón Social</label>
+               <input v-model="newProveedor.razon_social" type="text" class="form-control" id="modelRazonSocial" placeholder="Razón Social">
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="modelDireccione">Dirección Empresa</label>
+               <input v-model="newProveedor.direccione" type="text" class="form-control" id="modelDireccione" placeholder="Dirección Empresa">
+            </div>
+         </div>
          <div class="col-md-4">
             <div class="form-group">
                <label for="modelNombres">Nombres</label>
-               <input v-model="newProveedor.nombre" type="text" class="form-control" id="modelNombres" placeholder="Nombres">
+               <input v-model="newProveedor.persona.nombre" type="text" class="form-control" id="modelNombres" placeholder="Nombres">
             </div>
          </div>
          <div class="col-md-4">
             <div class="form-group">
                <label for="modelApellidos">Apellidos</label>
-               <input v-model="newProveedor.apellidos" type="text" class="form-control" id="modelApellidos" placeholder="Apellidos">
-            </div>
-         </div>
-         <div class="col-md-4">
-            <div class="form-group">
-               <label for="modelUsername">Username</label>
-               <div class="input-group">
-                  <div class="input-group-prepend">
-                     <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-user"></i></span>
-                  </div>
-                  <input v-if="newProveedor.id" v-model="newProveedor.user.username" type="text" class="form-control" id="modelUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
-                  <input v-else v-model="newProveedor.nameuser" type="text" class="form-control" id="modelUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
-               </div>
+               <input v-model="newProveedor.persona.apellidos" type="text" class="form-control" id="modelApellidos" placeholder="Apellidos">
             </div>
          </div>
          <div class="col-md-5">
             <div class="form-group">
                <label for="modelCorreo">Correo electronico</label>
-               <input v-model="newProveedor.correo" type="email" class="form-control" id="modelCorreo" placeholder="Correo electronico">
+               <input v-model="newProveedor.persona.correo" type="email" class="form-control" id="modelCorreo" placeholder="Correo electronico">
             </div>
          </div>
          <div class="col-md-3">
             <div class="form-group">
                <label for="modelTipoDoc">Tipo Documento</label>
-               <select v-model="newProveedor.id_tipos_documento" id="modelTipoDoc" class="form-control">
+               <select v-model="newProveedor.persona.id_tipos_documento" id="modelTipoDoc" class="form-control">
                   <option v-for="tipo in tipos" :key="tipo.id" :value="tipo.id">{{tipo.tipo}}-{{tipo.descripcion}}</option>
                </select>
             </div>
@@ -50,27 +48,19 @@
          <div class="col-md-4">
             <div class="form-group">
                <label for="modelNumDoc">Numero documento</label>
-               <input v-model="newProveedor.num_documento" type="text" class="form-control" id="modelNumDoc" placeholder="Numero de documento">
+               <input v-model="newProveedor.persona.num_documento" type="text" class="form-control" id="modelNumDoc" placeholder="Numero de documento">
             </div>
          </div>
          <div class="col-md-6">
             <div class="form-group">
                <label for="modelDireccion">Direccion</label>
-               <input v-model="newProveedor.direccion" type="text" class="form-control" id="modelDireccion" placeholder="Direccion">
+               <input v-model="newProveedor.persona.direccion" type="text" class="form-control" id="modelDireccion" placeholder="Direccion">
             </div>
          </div>
          <div class="col-md-6">
             <div class="form-group">
                <label for="modelTelefono">Telefono</label>
-               <input v-model="newProveedor.telefono" type="text" class="form-control" id="modelTelefono" placeholder="Telefono">
-            </div>
-         </div>
-         <div class="col-md-12">
-            <div class="form-group">
-               <label for="modelRol">Rol</label>
-               <select v-model="newProveedor.id_rol" id="modelRol" class="form-control">
-                  <option v-for="rol in roles" :key="rol.id" :value="rol.id">{{rol.rol}}</option>
-               </select>
+               <input v-model="newProveedor.persona.telefono" type="text" class="form-control" id="modelTelefono" placeholder="Telefono">
             </div>
          </div>
       </div>
@@ -96,8 +86,7 @@ export default {
    data(){
       return{
          newProveedor: this.model,
-         tipos: '',
-         roles: ''
+         tipos: ''
       }
    },
    watch: {
@@ -107,17 +96,11 @@ export default {
    },
    created(){
       this.getTipoDocumentos();
-      this.getRoles();
    },
    methods: {
       getTipoDocumentos(){
          axios.get('/tiposDocumentos').then((response) => {
             this.tipos = response.data;
-         });
-      },
-      getRoles(){
-         axios.get('roles').then((response) => {
-            this.roles = response.data;
          });
       }
    }

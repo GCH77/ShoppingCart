@@ -15,7 +15,7 @@ class ProveedoresController extends Controller
     */
     public function index()
     {
-        return Empresa::with('persona', 'persona.rol', 'persona.tipoDocumento')->get();
+        return Empresa::with('persona', 'persona.tipoDocumento', 'persona.rol')->get();
     }
     
     /**
@@ -37,20 +37,20 @@ class ProveedoresController extends Controller
     public function store(Request $request)
     {
         $persona = new Persona();
-        $persona->nombre = $request->nombre;
-        $persona->apellidos = $request->apellidos;
-        $persona->id_tipos_documento = $request->id_tipos_documento;
-        $persona->num_documento = $request->num_documento;
-        $persona->direccion = $request->direccion;
-        $persona->telefono = $request->telefono;
-        $persona->correo = $request->correo;
-        $persona->id_rol = $request->id_rol;
+        $persona->nombre = $request->persona['nombre'];
+        $persona->apellidos = $request->persona['apellidos'];
+        $persona->id_tipos_documento = $request->persona['id_tipos_documento'];
+        $persona->num_documento = $request->persona['num_documento'];
+        $persona->direccion = $request->persona['direccion'];
+        $persona->telefono = $request->persona['telefono'];
+        $persona->correo = $request->persona['correo'];
+        $persona->id_rol = 5;
         $persona->save();
         
         $empresa = new Empresa();
         $empresa->nit = $request->nit;
         $empresa->razon_social = $request->razon_social;
-        $empresa->direccion = $request->direccion;
+        $empresa->direccione = $request->direccione;
         $empresa->id_personas = $persona->id;
         $empresa->save();
 
@@ -87,23 +87,22 @@ class ProveedoresController extends Controller
     * @param  \App\Empresa  $empresa
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, Empresa $empresa)
+    public function update(Request $request, $id)
     {
-        $persona = Persona::find($id);
-        $persona->nombre = $request->nombre;
-        $persona->apellidos = $request->apellidos;
-        $persona->id_tipos_documento = $request->id_tipos_documento;
-        $persona->num_documento = $request->num_documento;
-        $persona->direccion = $request->direccion;
-        $persona->telefono = $request->telefono;
-        $persona->correo = $request->correo;
-        $persona->id_rol = $request->id_rol;
+        $persona = Persona::find($request->persona['id']);
+        $persona->nombre = $request->persona['nombre'];
+        $persona->apellidos = $request->persona['apellidos'];
+        $persona->id_tipos_documento = $request->persona['id_tipos_documento'];
+        $persona->num_documento = $request->persona['num_documento'];
+        $persona->direccion = $request->persona['direccion'];
+        $persona->telefono = $request->persona['telefono'];
+        $persona->correo = $request->persona['correo'];
         $persona->save();
         
         $empresa = Empresa::find($id);
         $empresa->nit = $request->nit;
         $empresa->razon_social = $request->razon_social;
-        $empresa->direccion = $request->direccion;
+        $empresa->direccione = $request->direccione;
         $empresa->id_personas = $persona->id;
         $empresa->save();
 
@@ -117,10 +116,10 @@ class ProveedoresController extends Controller
     * @param  \App\Empresa  $empresa
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Empresa $empresa)
+    public function destroy(Empresa $empresa, $id)
     {
         $empresa = Empresa::find($id);
-        $persona = Persona::where('id_personas', $persona->id);
+        $persona = Persona::where('id', $empresa->id_personas);
         $empresa->delete();
         $persona->delete();
     }

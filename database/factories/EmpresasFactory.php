@@ -9,6 +9,6 @@ $factory->define(Empresa::class, function (Faker $faker) {
         'id_personas' => 2,
         'nit' => $faker->ean8,
         'razon_social' => $faker->company,
-        'direccion' => $faker->address
+        'direccione' => $faker->address
     ];
 });

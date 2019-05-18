@@ -11,8 +11,9 @@
          <td>{{props.id}}</td>
          <td>{{props.nit}}</td>
          <td>{{props.razon_social}}</td>
-         <td>{{props.direccion}}</td>
-         <td>{{props.nombre}}</td>
+         <td>{{props.direccione}}</td>
+         <td>{{props.persona.nombre}} {{props.persona.apellidos}}</td>
+         <td>{{props.persona.correo}}</td>
       </template>
 
       <template #newProduct="props">
@@ -27,12 +28,20 @@ export default {
    name: "view-proveedores",
    data(){
       return{
-         cabeceras: ['#', 'Nit', 'Razon Social', 'Direccion', 'Representante Legal'],
+         cabeceras: ['#', 'Nit', 'Razón Social', 'Direccion', 'Representante Legal','Correo electrónico'],
          proveedor: {
             nit: '',
             razon_social: '',
-            direccion: '',
-            nombre: ''
+            direccione: '',
+            persona: {
+               nombre: '',
+               apellidos: '',
+               num_documento: '',
+               correo: '',
+               id_tipos_documento: '',
+               direccion: '',
+               telefono: ''               
+            }
          }
       }
    },
