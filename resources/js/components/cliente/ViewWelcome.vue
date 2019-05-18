@@ -127,6 +127,7 @@
         </template> -->
         <div class="col-md-12">
           <h2>Trending <b>Products</b></h2>
+          <!-- <badge-component></badge-component> -->
           <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
           <!-- Carousel indicators -->
             <!-- <ol class="carousel-indicators">
