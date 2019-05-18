@@ -40,4 +40,9 @@ class Producto extends Model
     {
         return $this->hasMany('App\TallasProducto', 'id_productos', 'id');
     }
+
+    public function proveedorProducto()
+    {
+        return $this->hasMany('App\ProveedorProducto', 'id_producto', 'id');
+    }
 }

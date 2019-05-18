@@ -1909,6 +1909,54 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Proveedores/ViewProveedores.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Proveedores/ViewProveedores.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "view-proveedores",
+  data: function data() {
+    return {
+      cabeceras: ['#', 'Rol', 'Descripcion', 'Acciones'],
+      rol: {
+        rol: '',
+        descripcion: '',
+        permisos_roles_mod_func: []
+      }
+    };
+  },
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Roles/FormNewRol.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Roles/FormNewRol.vue?vue&type=script&lang=js& ***!
@@ -41091,18 +41139,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "tab-pane fade",
-      attrs: {
-        id: "v-pills-profile",
-        role: "tabpanel",
-        "aria-labelledby": "v-pills-profile-tab"
-      }
+  return _c("table-component", {
+    attrs: {
+      headers: _vm.cabeceras,
+      model: _vm.proveedor,
+      getUrl: "proveedor",
+      title: "Lista de Proveedores",
+      titleCreate: "Agregar Proveedor",
+      titleEdit: "Editar Proveedor"
     },
-    [_vm._v("\n   HOLA\n")]
-  )
+    scopedSlots: _vm._u([
+      {
+        key: "colums",
+        fn: function(props) {
+          return [
+            _c("td", [_vm._v(_vm._s(props.id))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(props.rol))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(props.descripcion))])
+          ]
+        }
+      },
+      {
+        key: "newProduct",
+        fn: function(props) {
+          return [_c("form-new-rol", { attrs: { model: props } })]
+        }
+      }
+    ])
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -58540,6 +58606,7 @@ Vue.component('view-usuarios', __webpack_require__(/*! ./components/Usuarios/Vie
 Vue.component('table-component', __webpack_require__(/*! ./components/TableComponent.vue */ "./resources/js/components/TableComponent.vue").default);
 Vue.component('form-new-product', __webpack_require__(/*! ./components/Productos/FormNewProduct.vue */ "./resources/js/components/Productos/FormNewProduct.vue").default);
 Vue.component('form-new-rol', __webpack_require__(/*! ./components/Roles/FormNewRol.vue */ "./resources/js/components/Roles/FormNewRol.vue").default);
+Vue.component('form-new-proveedor', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module './components/Roles/FormNewProveedor.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())).default);
 Vue.component('form-new-usuario', __webpack_require__(/*! ./components/Usuarios/FormNewUsuario.vue */ "./resources/js/components/Usuarios/FormNewUsuario.vue").default);
 Vue.component('view-welcome', __webpack_require__(/*! ./components/cliente/ViewWelcome.vue */ "./resources/js/components/cliente/ViewWelcome.vue").default);
 Vue.component('product-list-component', __webpack_require__(/*! ./components/cliente/ProductListComponent.vue */ "./resources/js/components/cliente/ProductListComponent.vue").default);
@@ -58891,15 +58958,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ViewProveedores_vue_vue_type_template_id_5f40eee9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewProveedores.vue?vue&type=template&id=5f40eee9& */ "./resources/js/components/Proveedores/ViewProveedores.vue?vue&type=template&id=5f40eee9&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _ViewProveedores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewProveedores.vue?vue&type=script&lang=js& */ "./resources/js/components/Proveedores/ViewProveedores.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ViewProveedores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _ViewProveedores_vue_vue_type_template_id_5f40eee9___WEBPACK_IMPORTED_MODULE_0__["render"],
   _ViewProveedores_vue_vue_type_template_id_5f40eee9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -58913,6 +58982,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Proveedores/ViewProveedores.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Proveedores/ViewProveedores.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Proveedores/ViewProveedores.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewProveedores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewProveedores.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Proveedores/ViewProveedores.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewProveedores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
