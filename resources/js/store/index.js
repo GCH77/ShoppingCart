@@ -14,7 +14,7 @@ export default new Vuex.Store({
    },
    mutations: {
       setshopCar(state, payload){
-         state.shopCar = payload;
+         state.shopCar.push(payload);
       }
    },
    actions: {

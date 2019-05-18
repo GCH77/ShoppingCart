@@ -1,5 +1,4 @@
 <template>
-
 <div class="main">
     <div class="container mt-3">
         <div class="row">
@@ -24,11 +23,11 @@
                     <div class="d-flex justify-content-start align-items-baseline">
                         <label for="colores" class="mr-3">Colores:</label>
                         <template v-for="(middle, index) in item.colores_producto">
-                            <div class="custom-control custom-checkbox" :key="'input'+index">
-                                <input type="checkbox" class="custom-control-input" :id="'pickerColor'+index" v-model="choosedProduct.color">
-                                <label class="custom-control-label" :for="'pickerColor'+index"></label>
+                            <div class="custom-control custom-radio" :key="'check'+index">
+                                <input type="radio" class="custom-control-input" :id="'customControlValidation'+index" name="radio-stacked" :value="middle.color.hexa" v-model="choosedProduct.color">
+                                <label class="custom-control-label" :for="'customControlValidation'+index"></label>
                             </div>
-                            <div class="colors" name="colores" :key="index" :style="{backgroundColor: middle.color.hexa}"></div>
+                            <div class="colors mr-4" name="colores" :key="'color'+index" :style="{backgroundColor: middle.color.hexa}"></div>
                         </template>
                     </div>
                     <form class="d-flex justify-content-start align-items-baseline">
@@ -43,7 +42,7 @@
                         <label for="tallas">Talla:</label>
                         <select name="tallas" id="tallas" class="form-control ml-1 mr-2" style="width: 80px" v-model="choosedProduct.talla">
                             <template v-for="(middle, index) in item.tallas_producto">
-                            <option :key="index" :value="middle.id">{{middle.tallas.talla}}</option>
+                            <option :key="index" :value="middle.tallas.talla">{{middle.tallas.talla}}</option>
                             </template>
                         </select>
                         <button v-if="this.attrs.id" :disabled="quantity<=0" class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item)">Comprar
@@ -86,47 +85,52 @@
 
 </template>
 <script>
-    export default {
-        name: "product-details-component",
-        props:['item', 'attrs'],
-        data(){
-            return{
-                choosedProduct: {
-                    item: '',
-                    quantity: 0,
-                    color: '',
-                    talla: ''
-                },
-                quantity: 0
-            }
-        },
-        created() {
-            
-        },
-        computed: {
-            urlImg(){
-                let words = this.item.imagenes[0].ruta.split("\\");
-                return "../../../../"+words[4]+"/"+words[7]+"/"+words[8];
-            }
-        },
-        methods: {
-            addQuantity() {
-                this.quantity++;
+import { mapActions, mapState } from 'vuex';
+export default {
+    name: "product-details-component",
+    props:['item', 'attrs'],
+    data(){
+        return{
+            choosedProduct: {
+                item: '',
+                quantity: 0,
+                color: '',
+                talla: ''
             },
-            subQuantity() {
-                if (this.quantity > 0) {
-                    this.quantity--;
-                }
-            },
-            checkout(data) {
-                this.choosedProduct.item = data;
-                data.quantity = this.quantity;
-                this.$router.push({name: "checkout", params: { item: data } });
-                console.log("Desde DetailsProduct - checkout - data");
-                console.log(data);
+            quantity: 0,
+            prueba: ''
+        }
+    },
+    created() {
+        
+    },
+    computed: {
+        ...mapState(['shopCar']),
+        urlImg(){
+            let words = this.item.imagenes[0].ruta.split("\\");
+            return "../../../../"+words[4]+"/"+words[7]+"/"+words[8];
+        }
+    },
+    methods: {
+        ...mapActions(['setshopCar']),
+        addQuantity() {
+            this.quantity++;
+        },
+        subQuantity() {
+            if (this.quantity > 0) {
+                this.quantity--;
             }
+        },
+        checkout(data) {
+            this.choosedProduct.item = data;
+            this.choosedProduct.quantity = this.quantity;
+            this.setshopCar(this.choosedProduct);
+            // this.$router.push({name: "checkout", params: { item: data } });
+            console.log("Desde DetailsProduct - checkout - choosedProduct");
+            console.log(this.shopCar);
         }
     }
+}
 </script> 
 <style scoped>
     .item-price {
