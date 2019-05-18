@@ -17,7 +17,7 @@ class CreateEmpresasTable extends Migration
             $table->increments('id');
             $table->string('nit');
             $table->string('razon_social');
-            $table->string('direccion');
+            $table->string('direccione');
             $table->unsignedInteger('id_personas');
             $table->timestamps();
 
