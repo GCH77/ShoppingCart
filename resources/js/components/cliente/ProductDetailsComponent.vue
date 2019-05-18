@@ -24,7 +24,11 @@
                     <div class="d-flex justify-content-start align-items-baseline">
                         <label for="colores" class="mr-3">Colores:</label>
                         <template v-for="(middle, index) in item.colores_producto">
-                            <div class="colors  ml-1" name="colores" :key="index" :style="{backgroundColor: middle.color.hexa}"></div>
+                            <div class="custom-control custom-checkbox" :key="'input'+index">
+                                <input type="checkbox" class="custom-control-input" :id="'pickerColor'+index" v-model="choosedProduct.color">
+                                <label class="custom-control-label" :for="'pickerColor'+index"></label>
+                            </div>
+                            <div class="colors" name="colores" :key="index" :style="{backgroundColor: middle.color.hexa}"></div>
                         </template>
                     </div>
                     <form class="d-flex justify-content-start align-items-baseline">
@@ -37,7 +41,7 @@
                         <button v-else="" disabled  type="button" class="btn btn-outline-info mr-2" @click="addQuantity"><i class="fas fa-plus"></i></button>
                         
                         <label for="tallas">Talla:</label>
-                        <select name="tallas" id="tallas" class="form-control ml-1 mr-2" style="width: 80px">
+                        <select name="tallas" id="tallas" class="form-control ml-1 mr-2" style="width: 80px" v-model="choosedProduct.talla">
                             <template v-for="(middle, index) in item.tallas_producto">
                             <option :key="index" :value="middle.id">{{middle.tallas.talla}}</option>
                             </template>
@@ -87,6 +91,12 @@
         props:['item', 'attrs'],
         data(){
             return{
+                choosedProduct: {
+                    item: '',
+                    quantity: 0,
+                    color: '',
+                    talla: ''
+                },
                 quantity: 0
             }
         },
@@ -109,6 +119,7 @@
                 }
             },
             checkout(data) {
+                this.choosedProduct.item = data;
                 data.quantity = this.quantity;
                 this.$router.push({name: "checkout", params: { item: data } });
                 console.log("Desde DetailsProduct - checkout - data");

@@ -242,8 +242,7 @@ export default {
               axios.post('comprar', this.data).then((response) => {
                 // this.$router.push({name: "listaproductos"});
                 toastr.success("Su compra se realizo correctamente!", "Compra");
-              }); 
-              console.log("Holaaaaaaaaaaaaaaaaaaaaaa");
+              });
               setTimeout("location.href='/home'", 2500);
             }
           }

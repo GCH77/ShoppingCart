@@ -8,7 +8,7 @@ class Modulo extends Model
 {
     public function modulosPermisos()
     {
-    return $this->belongsTo('App\PermisosRolesModFunc', 'id_modulos');
+        return $this->belongsTo('App\PermisosRolesModFunc', 'id_modulos');
     }
 
 }

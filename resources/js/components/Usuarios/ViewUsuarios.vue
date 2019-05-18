@@ -13,7 +13,7 @@
          <td>{{props.tipo_documento.tipo}} - {{props.num_documento}}</td>
          <td>{{props.direccion}}</td>
          <td>{{props.telefono}}</td>
-         <td>{{props.user.username}}</td>
+         <td>{{props.user ? props.user.username : '  ---  '}}</td>
          <td>{{props.correo}}</td>
          <td>{{props.rol.rol}}</td>
          <!-- <template v-for="(rol, index) in props.personas_roles">

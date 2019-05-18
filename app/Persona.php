@@ -25,8 +25,8 @@ class Persona extends Model
         return $this->hasOne('App\User', 'id_persona', 'id');
     }
 
-    public function empresa()
+    public function empresas()
     {
-        return $this->hasOne('App\Empresa', 'id_personas', 'id');
+        return $this->belongsTo('App\Empresa', 'id_personas');
     }
 }

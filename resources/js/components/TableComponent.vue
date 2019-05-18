@@ -47,7 +47,11 @@
                         <button 
                            type="button" 
                            class="btn btn-outline-danger btn-sm"
-                           @click="deleteItem(item)"
+                           @click="showConfirmDialog(item)"
+                           data-toggle="modal"
+                           data-target="#myModal2"
+                           data-backdrop="static" 
+                           data-keyboard="false"
                            >
                               <i class="fas fa-trash-alt"></i>
                         </button>
@@ -75,9 +79,15 @@
             </div>
          </div>
       </div>
+      <dialog-component 
+         @closeDialog="deleteItem($event)" 
+         :errorDialogMessage=errorDialogMessage
+         :itemsConfirmDialog=itemsConfirmDialog
+      ></dialog-component>
    </div>
 </template>
 <script>
+// import { mapState, mapActions } from 'vuex';
 export default {
    name: "table-component",
    inheritAttrs: false,
@@ -121,7 +131,10 @@ export default {
          items: [],
          crudModel: null,
          isEdition: false,
-         titleModal: this.titleCreate
+         titleModal: this.titleCreate,
+         errorDialogMessage: {},
+         itemsConfirmDialog: {},
+         actionDelete: false
       }
    },
    watch: {
@@ -129,7 +142,11 @@ export default {
          return this.isEdition ? this.titleModal = this.titleEdit : this.titleModal = this.titleCreate;
       }
    },
+   computed: {
+      // ...mapState(['confirmDialog'])
+   },
    methods: {
+      // ...mapActions(['SetErrorDialogMessage']),
       prueba(){
          // toastr.success("Funciona men!", "Success");
       },
@@ -137,14 +154,34 @@ export default {
          this.isEdition = true;
          this.crudModel = item;
       },
+      showConfirmDialog(item){
+         this.itemsConfirmDialog = {
+            id: item.id,
+            rol: item.rol,
+            descripcion: item.descripcion
+         }
+      },
       deleteItem(item){
-         axios.delete(this.getUrl+'/'+item.id).then((response) => {
+         console.log(item);
+         console.log("Borrando.........");
+         axios.delete(this.getUrl+'/'+item).then((response) => {
             this.items.filter((value, index) => {
-               if (value.id === item.id) {
+               if (value.id === item) {
                      this.items.splice(index, 1);
                }
             })
             toastr.success("Registro borrado correctamente!", "Borrar");
+         }).catch((error) => {
+            if (error.response.data.message.slice(0, 15) === 'SQLSTATE[23000]') {
+               this.errorDialogMessage = {
+                  message: 'No se puede borrar este registro porque hay otros registros que dependen de él.',
+                  status: error.response.status
+               };
+               $('#myModal').modal('show');
+            }else {
+               this.catchErrors(error.response.status);
+            }
+            // console.log(error.response);
          });
       },
       saveData(data){
@@ -152,6 +189,16 @@ export default {
             this.items.push(response.data);
             console.log(response.data);
             toastr.success("Registro creado correctamente!", "Crear");
+         }).catch((error) => {
+            if (error.response.data.message.slice(0, 15) === 'SQLSTATE[23000]') {
+               this.errorDialogMessage = {
+                  message: 'Campos obligatorios no fueron diligenciados',
+                  status: error.response.status
+               };
+               $('#myModal').modal('show');
+            }else {
+               this.catchErrors(error.response.status);
+            }
          });
          this.crudModel = this.model;
       },
@@ -164,6 +211,16 @@ export default {
             });
             this.clearModel();
             toastr.success("Registro editado correctamente!", "Edicion");
+         }).catch((error) => {
+            if (error.response.data.message.slice(0, 15) === 'SQLSTATE[23000]') {
+               this.errorDialogMessage = {
+                  message: 'Campos obligatorios fueron borrados durante la edicion.',
+                  status: error.response.status
+               };
+               $('#myModal').modal('show');
+            }else {
+               this.catchErrors(error.response.status);
+            }
          });
       },
       getAllRegisters(){
@@ -178,6 +235,34 @@ export default {
       clearModel(data){
          this.isEdition = false;
          this.crudModel = this.model;
+      },
+      catchErrors(status){
+         switch (status) {
+            case 400:
+               this.errorDialogMessage = {
+                  message: 'El servidor no puede procesar esta solicitud.',
+                  status: error.response.status
+               };
+               $('#myModal').modal('show');
+               break;
+            case 404:
+               this.errorDialogMessage = {
+                  message: 'El servidor no pudo encontrar el contenido solicitado.',
+                  status: error.response.status
+               };
+               $('#myModal').modal('show');
+               break;
+            case 500:
+               this.errorDialogMessage = {
+                  message: 'Error interno del servidor',
+                  status: error.response.status
+               };
+               $('#myModal').modal('show');
+               break;
+         
+            default:
+               break;
+         }
       }
    }
 }

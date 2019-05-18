@@ -13,7 +13,7 @@
                <input v-model="newUsuario.apellidos" type="text" class="form-control" id="modelApellidos" placeholder="Apellidos">
             </div>
          </div>
-         <div class="col-md-4">
+         <div class="col-md-4" v-if="newUsuario.user || newUsuario.nameuser == ''">
             <div class="form-group">
                <label for="modelUsername">Username</label>
                <div class="input-group">
@@ -60,7 +60,7 @@
          <div class="col-md-12">
             <div class="form-group">
                <label for="modelRol">Rol</label>
-               <select v-model="newUsuario.id_rol" id="modelRol" class="form-control">
+               <select v-model="newUsuario.id_rol" id="modelRol" class="form-control" :disabled="newUsuario.id_rol === 5">
                   <option v-for="rol in roles" :key="rol.id" :value="rol.id">{{rol.rol}}</option>
                </select>
             </div>

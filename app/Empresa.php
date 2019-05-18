@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
+    public function proveedroProducto()
+    {
+        return $this->hasMany('App\ProveedorProducto', 'id_empresa', 'id');
+    }
+
     public function persona()
     {
-    return $this->belongsTo('App\Persona', 'id_personas');
+        return $this->hasOne('App\Persona', 'id', 'id_personas');
     }
 }

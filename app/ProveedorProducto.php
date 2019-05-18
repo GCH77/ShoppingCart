@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProveedorProducto extends Model
 {
-    public function producto()
+    public function productos()
     {
-    return $this->belongsTo('App\Producto', 'id_producto');
+        return $this->belongsTo('App\Producto', 'id_producto');
     }
-    
-    public function empresa()
+
+    public function empresas()
     {
-    return $this->belongsTo('App\Empresa', 'id_empresa');
+        return $this->belongsTo('App\Empresa', 'id_empresa');
     }
 }

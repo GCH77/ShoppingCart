@@ -6,13 +6,12 @@
  */
 
 import './bootstrap';
-import VueRouter from 'vue-router';
-import routes from './routes';
+import router from './router';
+import store from './store';
 
 
 window.Vue = require('vue');
 window.toastr = require('toastr');
-Vue.use(VueRouter);
 
 toastr.options = {
     "closeButton": true,
@@ -61,6 +60,7 @@ Vue.component('view-details', require('./components/cliente/ViewDetails.vue').de
 Vue.component('product-details-component', require('./components/cliente/ProductDetailsComponent.vue').default);
 Vue.component('view-checkout', require('./components/cliente/ViewCheckout.vue').default);
 Vue.component('checkout-component', require('./components/cliente/CheckoutComponent.vue').default);
+Vue.component('dialog-component', require('./components/DialogComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -68,11 +68,8 @@ Vue.component('checkout-component', require('./components/cliente/CheckoutCompon
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const router = new VueRouter({
-    routes
-});
-
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });
