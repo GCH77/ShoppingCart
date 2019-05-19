@@ -62,6 +62,7 @@ Vue.component('view-checkout', require('./components/cliente/ViewCheckout.vue').
 Vue.component('checkout-component', require('./components/cliente/CheckoutComponent.vue').default);
 Vue.component('dialog-component', require('./components/DialogComponent.vue').default);
 Vue.component('badge-component', require('./components/BadgeComponent.vue').default);
+Vue.component('brand-component', require('./components/BrandComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

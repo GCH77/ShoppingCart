@@ -45,16 +45,21 @@
                             <option :key="index" :value="middle.tallas.talla">{{middle.tallas.talla}}</option>
                             </template>
                         </select>
-                        <button v-if="this.attrs.id" :disabled="quantity<=0" class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item)">Comprar
-                            <i class="fas fa-shopping-cart ml-1"></i>
+                        <button v-if="this.attrs.id" :disabled="quantity<=0" class="btn btn-primary btn-md my-0 p ml-1" type="submit" @click.prevent="checkout(item)">Añadir
+                            <i class="fas fa-cart-plus"></i>
                         </button>
                         <a v-else class="btn btn-primary" href="http://localhost:8000/register#/" role="button">
-                            Comprar
-                            <i class="fas fa-shopping-cart ml-1"></i>
+                            Añadir
+                            <i class="fas fa-cart-plus"></i>
                         </a>
                         <!-- <a href="" class="button">Go to Google</a> -->
                     </form>
-                    
+                    <div class="alert alert-warning alert-dismissible fade mt-4" id="warningAlert" role="alert">
+                        <strong>Suggestion.</strong> You should choose one color and size of the product
+                        <button type="button" class="close" @click="dismissAlert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>                  
             </div>             
         </div>
@@ -92,13 +97,17 @@ export default {
     data(){
         return{
             choosedProduct: {
-                item: '',
+                id: '',
+                nombre: '',
+                marca: '',
+                cod_barras: '',
+                img: '',
                 quantity: 0,
                 color: '',
-                talla: ''
+                talla: '',
+                precioUnitario: ''
             },
-            quantity: 0,
-            prueba: ''
+            quantity: 0
         }
     },
     created() {
@@ -122,12 +131,33 @@ export default {
             }
         },
         checkout(data) {
-            this.choosedProduct.item = data;
-            this.choosedProduct.quantity = this.quantity;
-            this.setshopCar(this.choosedProduct);
-            // this.$router.push({name: "checkout", params: { item: data } });
-            console.log("Desde DetailsProduct - checkout - choosedProduct");
-            console.log(this.shopCar);
+            if (this.validate()) {
+                this.choosedProduct.id = data.id;
+                this.choosedProduct.nombre = data.nombre;
+                this.choosedProduct.marca = data.marca.marca;
+                this.choosedProduct.cod_barras = data.cod_barras;
+                this.choosedProduct.img = this.urlImg;
+                this.choosedProduct.quantity = this.quantity;
+                this.choosedProduct.precioUnitario = data.almacenes[0].precio_venta
+                this.setshopCar(this.choosedProduct);
+                // this.$router.push({name: "checkout"});
+                toastr.success("Producto añadido al carrito de compras", "ShoppingCart");
+            }
+        },
+        validate(){
+            if (
+                this.choosedProduct.color === '' ||
+                this.choosedProduct.talla === ''
+            ) {
+                console.log("Entre show please");
+                $('.alert').addClass('show');
+                return false;
+            }else {
+                return true;
+            }
+        },
+        dismissAlert(){
+            $('.alert').removeClass('show');
         }
     }
 }
