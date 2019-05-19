@@ -3397,6 +3397,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tipos: '',
       data: {
         id: this.attrs.persona.id,
+        persona: '',
         productos: '',
         id_tipos_documento: '',
         num_documento: '',
@@ -3525,14 +3526,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           console.log("Valido");
           this.data.productos = this.shopCar;
           axios.post('comprar', this.data).then(function (response) {
-            _this2.cleanShopCar();
-
-            _this2.$router.push({
-              name: "listaproductos"
-            });
-
+            // this.cleanShopCar();
+            // this.$router.push({name: "listaproductos"});
             toastr.success("Su compra se realizo correctamente!", "Compra");
           });
+          setTimeout("location.href='/home'", 2600);
         }
       }
     },

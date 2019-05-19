@@ -135,6 +135,7 @@ export default {
           tipos: '',
           data: {
             id: this.attrs.persona.id,
+            persona: '',
             productos: '',
             id_tipos_documento: '',
             num_documento: '',
@@ -262,10 +263,11 @@ export default {
               console.log("Valido");
               this.data.productos = this.shopCar;
               axios.post('comprar', this.data).then((response) => {
-                this.cleanShopCar();
-                this.$router.push({name: "listaproductos"});
+                // this.cleanShopCar();
+                // this.$router.push({name: "listaproductos"});
                 toastr.success("Su compra se realizo correctamente!", "Compra");
               });
+              setTimeout("location.href='/home'", 2600);
             }
           }
         },
