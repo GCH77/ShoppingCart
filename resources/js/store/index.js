@@ -15,11 +15,17 @@ export default new Vuex.Store({
    mutations: {
       setshopCar(state, payload){
          state.shopCar.push(payload);
+      },
+      cleanShopCar(state){
+         state.shopCar = [];
       }
    },
    actions: {
       setshopCar({commit}, payload){
          commit('setshopCar', payload);
+      },
+      cleanShopCar({commit}){
+         commit('cleanShopCar');
       }
    }
 });

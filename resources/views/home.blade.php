@@ -5,7 +5,7 @@
     {{-- <layout-component :auth="{{Auth::user()->persona}}"></layout-component> --}}
     <layout-component :auth="{{$userAll}}"></layout-component>
 {{-- <span>{{Auth::user()->persona}}</span> --}}
-<span>{{$userAll}}</span>
+{{-- <span>{{$userAll}}</span> --}}
 
 </div>
 

@@ -57,10 +57,11 @@ class ComprasController extends Controller
             // $cantidad = $almacen[0]->cantidad - $request->quantity;
             // Almacene::where('id_productos', $request->id_producto)->update(['cantidad' => $cantidad]);
         }
-            
-        $almacen = Almacene::where('id_productos', $request->id_producto)->get();
-        $cantidad = $almacen[0]->cantidad - $request->quantity;
-        Almacene::where('id_productos', $request->id_producto)->update(['cantidad' => $cantidad]);
+        for ($i=0; $i < sizeof($request->productos); $i++) { 
+            $almacen = Almacene::where('id_productos', $request->productos[$i]['id'])->get();
+            $cantidad = $almacen[0]->cantidad - $request->productos[$i]['quantity'];
+            Almacene::where('id_productos', $request->productos[$i]['id'])->update(['cantidad' => $cantidad]);
+        }
     }
 
     /**

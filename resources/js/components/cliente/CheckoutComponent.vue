@@ -4,8 +4,7 @@
       <h2 class="my-5 h2 text-center">Ya casi esta lista tu compra!</h2>
       <div class="row">
         <div class="col-md-7">
-          <div class="card mb-4" 
-            v-if="!validate">
+          <div class="card mb-4" v-if="!validate && shopCar.length > 0">
             <form class="card-body needs-validation" novalidate>
               <div class="row">
 
@@ -61,52 +60,60 @@
           </div>
           <!-- Aparece cuando el num documento no este vacio -->
           <h4 class="d-flex align-items-center mb-3">
-            <i class="fas fa-shopping-cart" style="color: gray; margin-right: 15px;"></i>
+            <i class="fas fa-shopping-cart" style="color: #ffc000; margin-right: 15px;"></i>
             <span class="text-muted" style="margin-right: 140px;">Tu lista de productos</span>
           </h4>
-          <div class="card">
-            <div class="row">
-              <div class="col-md-4">
-                <img :src="urlImg" class="image w-100">
+          <template v-if="shopCar.length > 0">
+            <template v-for="(item, index) in shopCar">
+              <div class="card mt-2" :key="index">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <img :src="item.img" class="image w-100">
+                    </div>
+                    <div class="col-md-8 px-3">
+                      <a class="close" aria-label="Close">
+                        <span aria-hidden="true" style="padding-left: 6px; color: white;" @click="deleteProduct(index)">&times;</span>
+                      </a>
+                      <!-- <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button> -->
+                      <div class="card-block px-3">
+                        <h5 class="card-title text-muted mt-1">{{item.marca}}</h5>
+                        <h5 class="card-subtitle mb-2"><strong>{{item.nombre}}</strong></h5>
+                        <p class="card-text">Codigo: {{item.cod_barras}}</p>
+                        <p class="card-text">Talla: {{ item.talla }}</p>
+                        <p class="card-text mb-1">${{item.precioUnitario}}</p>
+                      </div>
+                    </div>
+                  </div>
               </div>
-              <div class="col-md-8 px-3">
-                <a class="close" aria-label="Close" href="http://localhost:8000/home#/">
-                  <span aria-hidden="true" style="padding-left: 5px;">&times;</span>
-                </a>
-                <!-- <button type="button" class="close" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button> -->
-                <div class="card-block px-3">
-                  <h5 class="card-title text-muted mt-1">{{item.marca.marca}}</h5>
-                  <h5 class="card-subtitle mb-2"><strong>{{item.nombre}}</strong></h5>
-                  <p class="card-text">Codigo: {{item.cod_barras}}</p>
-                  <p class="card-text">Talla: {{item.tallas_producto[0].tallas.talla}}</p>
-                  <p class="card-text mb-1">${{item.almacenes[0].precio_venta}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            </template>
+          </template>
+          <div v-else>
+               <h4>No tienes productos en el carrito</h4>   
+          </div> 
         </div>
 
         <div class="col-md-5 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Resumen de tu orden</span>
-            <span class="badge badge-pill badge-primary">{{item.quantity}}</span>
+            <span class="badge badge-pill badge-primary">{{ total }}</span>
           </h4>
 
           <ul class="list-group mb-3 z-depth-1">
-           <template>
-              <li class="list-group-item d-flex justify-content-between lh-condensed">
+           <template v-for="(item, index) in shopCar">
+              <li class="list-group-item d-flex justify-content-between lh-condensed" :key="index">
                 <div>
                   <h6 class="my-0">{{item.nombre}}</h6>
-                  <small class="text-muted">{{item.marca.marca}}</small>
+                  <small class="text-muted">{{item.marca}}</small><br>
+                  <small class="text-muted">Cantidad: {{item.quantity}}</small>
                 </div>
-                <span class="text-muted">${{item.almacenes[0].precio_venta}}</span>
+                <span class="text-muted">${{ calcularPrecioPorProducto(item.precioUnitario, item.quantity) }}</span>
               </li>
             </template>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (COP)</span>
-              <strong>${{ precio }}</strong>
+              <strong>${{ data.precioTotal }}</strong>
             </li>
           </ul>
           <button v-if="validate" class="btn btn-primary btn-lg btn-block" type="submit" @click.prevent="register">
@@ -120,20 +127,25 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 export default {
-    props: ['attrs', 'item'],
+    props: ['attrs'],
     data() {
         return {
           tipos: '',
           data: {
             id: this.attrs.persona.id,
-            id_producto: this.item.id,
+            persona: '',
+            productos: '',
             id_tipos_documento: '',
             num_documento: '',
             direccion: '',
             telefono: '',
-            quantity: this.item.quantity
-          }
+            precioTotal: 0,
+            cantidadTotal: 0
+          },
+          total: 0,
+          precio: 0
         }
     },
     watch: {
@@ -203,18 +215,13 @@ export default {
       }
     },
     created(){
-      console.log("Desde created - cheackoutComponent - item");
-      console.log(this.item);
+      console.log("Desde created - cheackoutComponent - shopCar");
+      console.log(this.shopCar);
       this.getTipoDocumentos();
+      this.calculatePrecio();
     },
     computed: {
-      precio(){
-        return this.item.almacenes[0].precio_venta * this.item.quantity;
-      },
-      urlImg(){
-        let words = this.item.imagenes[0].ruta.split("\\");
-        return "../../../../"+words[4]+"/"+words[7]+"/"+words[8];
-      },
+      ...mapState(['shopCar']),
       validate(){
         if (
           this.attrs.persona.num_documento === '' || this.attrs.persona.num_documento === null ||
@@ -229,9 +236,24 @@ export default {
       }
     },
     methods: {
+        ...mapActions(['setshopCar', 'cleanShopCar']),
+        deleteProduct(index){
+          this.shopCar.splice(index, 1);
+        },
+        calcularPrecioPorProducto(precio, cantidad){
+          return precio * cantidad;
+        },
+        calculatePrecio(){
+          this.total = this.shopCar.length;
+          this.shopCar.forEach(element => {
+            this.data.precioTotal = this.data.precioTotal + (element.precioUnitario * element.quantity);
+          });
+        },
         register(){
           if (this.validate) {
+            this.data.productos = this.shopCar;
             axios.post('comprar', this.data).then((response) => {
+              this.cleanShopCar();
               this.$router.push({name: "listaproductos"});
               toastr.success("Su compra se realizo correctamente!", "Compra");
             });
@@ -239,11 +261,13 @@ export default {
           }else {
             if (this.validacionInputs()) {
               console.log("Valido");
+              this.data.productos = this.shopCar;
               axios.post('comprar', this.data).then((response) => {
+                // this.cleanShopCar();
                 // this.$router.push({name: "listaproductos"});
                 toastr.success("Su compra se realizo correctamente!", "Compra");
               });
-              setTimeout("location.href='/home'", 2500);
+              setTimeout("location.href='/home'", 2600);
             }
           }
         },

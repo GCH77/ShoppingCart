@@ -1,6 +1,6 @@
 <template>
    <div>
-      <button class="btn btn-default btn-lg btn-link">
+      <button class="btn btn-default btn-lg btn-link" @click="redirect">
          <i class="fas fa-shopping-cart" style="color: #ffc000;"></i>
       </button>
       <span class="badge badge-notify">{{ shopCar.length }}</span>
@@ -12,6 +12,11 @@ export default {
    name: 'BadgeComponent',
    computed: {
       ...mapState(['shopCar'])
+   },
+   methods: {
+      redirect(){
+         this.$router.push({name: "checkout"});
+      }
    }
 }
 </script>
