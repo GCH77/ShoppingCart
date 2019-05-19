@@ -106,6 +106,30 @@ class PermisosRolesFuncionesSeeder extends Seeder
             'id_modulos' => 4,
             'id_funcionalidades' => 4,
         ]);
+        
+        DB::table('permisos_roles_mod_funcs')->insert([
+            'id_roles' => 1,
+            'id_modulos' => 5,
+            'id_funcionalidades' => 1,
+        ]);
+
+        DB::table('permisos_roles_mod_funcs')->insert([
+            'id_roles' => 1,
+            'id_modulos' => 5,
+            'id_funcionalidades' => 2,
+        ]);
+
+        DB::table('permisos_roles_mod_funcs')->insert([
+            'id_roles' => 1,
+            'id_modulos' => 5,
+            'id_funcionalidades' => 3,
+        ]);
+
+        DB::table('permisos_roles_mod_funcs')->insert([
+            'id_roles' => 1,
+            'id_modulos' => 5,
+            'id_funcionalidades' => 4,
+        ]);
 
         DB::table('permisos_roles_mod_funcs')->insert([
             'id_roles' => 2,

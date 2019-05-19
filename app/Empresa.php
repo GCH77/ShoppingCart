@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
-    public function proveedroProducto()
+    public function proveedorProducto()
     {
         return $this->hasMany('App\ProveedorProducto', 'id_empresa', 'id');
     }

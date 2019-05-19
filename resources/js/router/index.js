@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import Bienvenida from '../components/Bienvenida';
 import ViewProductos from '../components/Productos/ViewProductos';
+import ViewPedidos from '../components/Pedidos/ViewPedidos';
 import ViewProveedores from '../components/Proveedores/ViewProveedores';
 import ViewRoles from '../components/Roles/ViewRoles';
 import ViewUsuarios from '../components/Usuarios/ViewUsuarios';
@@ -25,6 +26,11 @@ const routes = [
       path: '/proveedores', 
       name: 'Proveedores', 
       component: ViewProveedores 
+   },
+   { 
+      path: '/pedidos', 
+      name: 'Pedidos', 
+      component: ViewPedidos 
    },
    { 
       path: '/roles', 

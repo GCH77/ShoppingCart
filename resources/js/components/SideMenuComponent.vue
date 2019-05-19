@@ -196,6 +196,11 @@
 										{id: modulo.id, modulo: modulo.modulo, icon: 'fas fa-key', label: 'Roles'}
 									);
 									break;
+								case 'Pedidos':
+									this.showModules.push(
+										{id: modulo.id, modulo: modulo.modulo, icon: 'fas fa-sort-amount-down', label: 'Pedidos'}
+									);
+									break;
 								default:
 									console.log("Warning. This module doesn't exist in our system.");
 									break;

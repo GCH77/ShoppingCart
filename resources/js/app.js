@@ -49,6 +49,8 @@ Vue.component('view-productos', require('./components/Productos/ViewProductos.vu
 Vue.component('view-proveedores', require('./components/Proveedores/ViewProveedores.vue').default);
 Vue.component('view-roles', require('./components/Roles/ViewRoles.vue').default);
 Vue.component('view-usuarios', require('./components/Usuarios/ViewUsuarios.vue').default);
+Vue.component('view-pedidos', require('./components/Pedidos/ViewPedidos.vue').default);
+Vue.component('form-new-pedido', require('./components/Pedidos/FormNewPedido.vue').default);
 Vue.component('table-component', require('./components/TableComponent.vue').default);
 Vue.component('form-new-product', require('./components/Productos/FormNewProduct.vue').default);
 Vue.component('form-new-rol', require('./components/Roles/FormNewRol.vue').default);

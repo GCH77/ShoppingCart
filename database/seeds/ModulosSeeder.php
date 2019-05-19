@@ -26,6 +26,9 @@ class ModulosSeeder extends Seeder
         DB::table('modulos')->insert([
             'modulo' => 'Roles'
         ]);
-
+        
+        DB::table('modulos')->insert([
+            'modulo' => 'Pedidos'
+        ]);
     }
 }

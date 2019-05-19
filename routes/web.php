@@ -17,14 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('list', 'ProductsController');
+Route::get('generate-pdf','pdfController@generatePDF');
 
 Route::group(['middleware' => ['auth']], function(){
     //Put all of routes here
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/tiposDocumentos', 'TiposDocumentoController@index');
+    Route::get('/empresasProveedoras', 'EmpresasProveedorasController@index');
     Route::resource('roles', 'RolesController');
     Route::resource('usuarios', 'UsuariosController');
     Route::resource('proveedores', 'ProveedoresController');
+    Route::resource('pedidos', 'PedidosController');
     Route::resource('comprar', 'ComprasController');
     Route::resource('modulos', 'ModulosController');
     Route::resource('funciones', 'FuncionalidadesController');
