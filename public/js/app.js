@@ -3647,6 +3647,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['attrs'],
@@ -44909,7 +44910,9 @@ var render = function() {
                   _vm._v("\n            Comprar\n          ")
                 ]
               )
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "/factura" } }, [_vm._v("PDF")])
         ])
       ])
     ])

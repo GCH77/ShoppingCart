@@ -120,6 +120,7 @@
             <i class="fas fa-donate"></i>
             Comprar
           </button>
+          <a :href="'/factura'">PDF</a>
         </div>
       </div>
     </div>
