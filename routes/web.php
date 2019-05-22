@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/productos', 'ProductosCliente@index');
+
+
 Auth::routes();
-Route::resource('list', 'ProductsController');
 
 Route::group(['middleware' => ['auth']], function(){
     //Put all of routes here
@@ -25,6 +27,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/empresasProveedoras', 'EmpresasProveedorasController@index');
     // Route::get('/factura','pdfController@generatePDF');
     Route::get('/factura', [ 'uses' => 'ComprasController@generatePDF']);
+    Route::resource('list', 'ProductsController');
     Route::resource('roles', 'RolesController');
     Route::resource('usuarios', 'UsuariosController');
     Route::resource('proveedores', 'ProveedoresController');

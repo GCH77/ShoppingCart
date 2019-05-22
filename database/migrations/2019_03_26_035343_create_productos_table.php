@@ -19,6 +19,7 @@ class CreateProductosTable extends Migration
             $table->string('descripcion', 450)->nulleable();
             $table->string('cod_barras', 30)->nulleable();
             $table->boolean('estado');
+            $table->boolean('visibility');
             $table->unsignedInteger('id_marca');
             $table->unsignedInteger('id_genero');
             $table->timestamps();

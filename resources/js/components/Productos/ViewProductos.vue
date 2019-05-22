@@ -65,7 +65,11 @@ export default {
          cabeceras: ['#', 'Nombre', 'Descripcion', 'Colores'],
          producto: {
             nombre: '',
-            descripcion: ''
+            descripcion: '',
+            cod_barras: '',
+            cantidad: '',
+            precio_compra: '',
+            precio_venta: ''
          },
          itemToDelete: ''
       }

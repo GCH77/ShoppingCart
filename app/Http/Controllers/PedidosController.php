@@ -54,6 +54,7 @@ class PedidosController extends Controller
             $pedido->id_producto = $request->id_producto;
             $pedido->cantidad = $request->cantidad;
             $pedido->statusProgress = 0;
+            $pedido->visibility = 0;
             $pedido->save();
 
             $pedidoHecho = ProveedorProducto::where('id', $pedido->id)->with('empresas', 'productos')->get();

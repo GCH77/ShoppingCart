@@ -174,7 +174,7 @@ export default {
   },
   methods: {
     getAllProductos() {
-      axios.get("list").then(response => {
+      axios.get("/productos").then(response => {
         this.productos = response.data;
         console.log(response.data);
         // for (const productos of response.data) {

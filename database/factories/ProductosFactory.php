@@ -11,6 +11,7 @@ $factory->define(Producto::class, function (Faker $faker) {
         'descripcion' => $faker->text,
         'cod_barras' => $faker->isbn10,
         'estado' => 1,
+        'visibility' => 1,
         'id_marca' => Marca::all()->random()->id,
         'id_genero' => Genero::all()->random()->id
     ];
