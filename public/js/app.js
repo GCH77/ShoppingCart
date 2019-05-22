@@ -3952,6 +3952,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['attrs'],
@@ -4078,9 +4079,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         axios.post('comprar', this.data).then(function (response) {
           _this2.cleanShopCar();
 
-          _this2.$router.push({
-            name: "listaproductos"
-          });
+          setTimeout("location.href='/factura'", 2600); // this.$router.push({name: "listaproductos"});
 
           toastr.success("Su compra se realizo correctamente!", "Compra");
         });
@@ -4093,7 +4092,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             // this.$router.push({name: "listaproductos"});
             toastr.success("Su compra se realizo correctamente!", "Compra");
           });
-          setTimeout("location.href='/home'", 2600);
+          setTimeout("location.href='/factura'", 2600);
         }
       }
     },
@@ -42922,7 +42921,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control",
-        attrs: { type: "text", id: "modelPrecio", placeholder: "Precio" },
+        attrs: { type: "text", id: "modelPrecio", placeholder: "Descripcion" },
         domProps: { value: _vm.newProduct.descripcion },
         on: {
           input: function($event) {
