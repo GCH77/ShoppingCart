@@ -357,19 +357,19 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-   #myModal2 {		
+   #myModal2, #myModal {		
 		color: #434e65;
 		width: 90%;
       left: unset;
 	}
-	#myModal2 .modal-content {
+	#myModal2 .modal-content, #myModal .modal-content {
 		padding: 20px;
 		font-size: 16px;
 		border-radius: 5px;
 		border: none;
       width: 100%;
 	}
-	#myModal2 .modal-header {
+	#myModal2 .modal-header, #myModal .modal-header {
 		border-bottom: none;   
       position: relative;
 		text-align: center;
@@ -378,11 +378,11 @@ export default {
 		// padding: 35px;
       display: block;
 	}
-   #myModal2 .modal-header div span{
+   #myModal2 .modal-header div span, #myModal .modal-header div span{
       color: white;
       font-size: 40px;
    }
-	#myModal2 h4 {
+	#myModal2 h4, #myModal h4 {
 		text-align: center;
 		font-size: 36px;
 		margin: 10px 0;
@@ -391,7 +391,7 @@ export default {
 		min-height: 40px;
 		border-radius: 3px; 
 	}
-	#myModal2 .close {
+	#myModal2 .close, #myModal .close {
         position: absolute;
 		top: 15px;
 		right: 15px;
@@ -399,10 +399,10 @@ export default {
 		text-shadow: none;
 		opacity: 0.5;
 	}
-	#myModal2 .close:hover {
+	#myModal2 .close:hover, #myModal .close:hover {
 		opacity: 0.8;
 	}
-	#myModal2 .icon-box {
+	#myModal2 .icon-box, #myModal .icon-box {
 		color: #fff;		
 		width: 95px;
 		height: 95px;
@@ -413,15 +413,15 @@ export default {
 		padding: 15px;
 		text-align: center;
 	}
-	#myModal2 .icon-box i {
+	#myModal2 .icon-box i, #myModal .icon-box i {
 		font-size: 58px;
 		margin: -2px 0 0 -2px;
 	}
-	#myModal2 .modal-dialog {
+	#myModal2 .modal-dialog, #myModal .modal-dialog {
 		margin-top: 80px;
       max-width: 860px;
 	}
-   #myModal2 .btn {
+   #myModal2 .btn, #myModal .btn {
         color: #fff;
         border-radius: 4px;
 		background: #eeb711;
@@ -434,11 +434,11 @@ export default {
 		min-width: 150px;
         border: none;
     }
-	#myModal2 .btn:hover, #myModal2 .btn:focus {
+	#myModal2 .btn:hover, #myModal .btn:focus {
 		background: #eda645;
 		outline: none;
 	}
-   #myModal2 .modal-footer{
+   #myModal2 .modal-footer, #myModal .modal-footer {
       justify-content: center;
    }
 </style>
