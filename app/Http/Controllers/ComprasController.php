@@ -63,39 +63,40 @@ class ComprasController extends Controller
             $cantidad = $almacen[0]->cantidad - $request->productos[$i]['quantity'];
             Almacene::where('id_productos', $request->productos[$i]['id'])->update(['cantidad' => $cantidad]);
         }
-        // $request = ['title' => 'Reporte Factura'];
-        // $pdf = app('dompdf.wrapper');
-        // $pdf->loadView('archivos.factura', compact('request'));
-        // return $pdf->download('factura.pdf');
+
 
     }
 
-    public function generatePDF()
-    {
-        $request = ['title' => 'Reporte Factura'];
-        $pdf = app('dompdf.wrapper');
-        $pdf->loadView('archivos.factura', compact('request'));
-        return $pdf->stream('factura.pdf');
-
-    }
-
-    // public function generatePDF(Request $request)
-    // {   
-    //     $persona = Persona::find($request->id);
-    //     $request = [
-    //         'nombre' => $request->nombre,
-    //         'apellidos' => $request->apellidos,
-    //         'num_documento' => $request->num_documento,
-    //         'direccion' => $request->direccion,
-    //         'telefono' => $request->telefono,
-    //         'correo' => $request->correo,
-    //         'title' => 'Reporte Factura'
-    //     ];
-        
-    //     $pdf = PDF::loadView('archivos.factura', $request);
+    // public function generatePDF()
+    // {
+    //     $request = ['title' => 'Reporte Factura'];
+    //     $pdf = app('dompdf.wrapper');
+    //     $pdf->loadView('archivos.factura', compact('request'));
     //     return $pdf->stream('factura.pdf');
 
     // }
+
+    public function generatePDF(Request $request)
+    {   
+        $request = Persona::all();
+        $data = Producto::with('almacenes','marca')->get();
+
+        // $data = Persona::find($request->id);
+        // $request = [
+        //     // $request->nombre=>$request->nombre,
+        //     // 'nombre' => $request->nombre,
+        //     // 'apellidos' => $request->apellidos,
+        //     // 'num_documento' => $request->num_documento,
+        //     // 'direccion' => $request->direccion,
+        //     // 'telefono' => $request->telefono,
+        //     // 'correo' => $request->correo,
+        //     'title' => 'Reporte Factura'
+        // ];
+
+        $pdf = PDF::loadView('archivos.factura', compact('request', 'data'));
+        return $pdf->stream('factura.pdf');
+
+    }
 
     /**
      * Display the specified resource.

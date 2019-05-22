@@ -120,7 +120,7 @@
             <i class="fas fa-donate"></i>
             Comprar
           </button>
-          <a :href="'/factura'">PDF</a>
+          <!-- <a :href="'/factura'">PDF</a> -->
         </div>
       </div>
     </div>
@@ -255,7 +255,8 @@ export default {
             this.data.productos = this.shopCar;
             axios.post('comprar', this.data).then((response) => {
               this.cleanShopCar();
-              this.$router.push({name: "listaproductos"});
+              setTimeout("location.href='/factura'", 2600);
+              // this.$router.push({name: "listaproductos"});
               toastr.success("Su compra se realizo correctamente!", "Compra");
             });
             
@@ -268,7 +269,7 @@ export default {
                 // this.$router.push({name: "listaproductos"});
                 toastr.success("Su compra se realizo correctamente!", "Compra");
               });
-              setTimeout("location.href='/home'", 2600);
+              setTimeout("location.href='/factura'", 2600);
             }
           }
         },
