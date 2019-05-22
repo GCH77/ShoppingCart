@@ -6,7 +6,7 @@
       </div>
       <div class="form-group">
          <label for="modelPrecio">Descripcion del producto</label>
-         <input v-model="newProduct.descripcion" type="text" class="form-control" id="modelPrecio" placeholder="Precio">
+         <input v-model="newProduct.descripcion" type="text" class="form-control" id="modelPrecio" placeholder="Descripcion">
       </div>
       <div class="form-group" v-if="!newProduct.id">
          <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$parent.clearModel()">Cancelar</button>

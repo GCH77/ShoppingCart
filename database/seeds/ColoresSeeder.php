@@ -11,6 +11,6 @@ class ColoresSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Colore::class, 100)->create();
+        factory(App\Colore::class, 20)->create();
     }
 }

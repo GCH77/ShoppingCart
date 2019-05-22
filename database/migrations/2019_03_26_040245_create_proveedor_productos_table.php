@@ -17,6 +17,8 @@ class CreateProveedorProductosTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_empresa');
             $table->unsignedInteger('id_producto');
+            $table->integer('cantidad');
+            $table->boolean('statusProgress');
             $table->timestamps();
 
             $table->foreign('id_empresa')->references('id')->on('empresas');

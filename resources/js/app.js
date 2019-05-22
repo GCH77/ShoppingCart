@@ -62,7 +62,6 @@ Vue.component('view-details', require('./components/cliente/ViewDetails.vue').de
 Vue.component('product-details-component', require('./components/cliente/ProductDetailsComponent.vue').default);
 Vue.component('view-checkout', require('./components/cliente/ViewCheckout.vue').default);
 Vue.component('checkout-component', require('./components/cliente/CheckoutComponent.vue').default);
-Vue.component('dialog-component', require('./components/DialogComponent.vue').default);
 Vue.component('badge-component', require('./components/BadgeComponent.vue').default);
 Vue.component('brand-component', require('./components/BrandComponent.vue').default);
 

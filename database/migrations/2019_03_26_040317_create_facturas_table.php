@@ -17,7 +17,6 @@ class CreateFacturasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_personas');
             $table->string('num_comprobante')->unique();
-            $table->dateTime('fecha_hora');
             $table->timestamps();
 
             $table->foreign('id_personas')->references('id')->on('personas');

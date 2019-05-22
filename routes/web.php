@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/tiposDocumentos', 'TiposDocumentoController@index');
     Route::get('/empresasProveedoras', 'EmpresasProveedorasController@index');
+    Route::get('/marcas', 'MarcasController@index');
+    Route::get('/generos', 'GenerosController@index');
     Route::resource('roles', 'RolesController');
     Route::resource('usuarios', 'UsuariosController');
     Route::resource('proveedores', 'ProveedoresController');

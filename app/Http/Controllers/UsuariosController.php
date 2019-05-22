@@ -17,7 +17,7 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        return Persona::with('user', 'rol', 'tipoDocumento')->get();
+        return Persona::where('id_rol', '<>', 5)->with('user', 'rol', 'tipoDocumento')->get();
     }
 
     /**

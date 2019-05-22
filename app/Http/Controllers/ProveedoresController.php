@@ -37,13 +37,13 @@ class ProveedoresController extends Controller
     public function store(Request $request)
     {
         $persona = new Persona();
-        $persona->nombre = $request->persona['nombre'];
-        $persona->apellidos = $request->persona['apellidos'];
-        $persona->id_tipos_documento = $request->persona['id_tipos_documento'];
-        $persona->num_documento = $request->persona['num_documento'];
-        $persona->direccion = $request->persona['direccion'];
-        $persona->telefono = $request->persona['telefono'];
-        $persona->correo = $request->persona['correo'];
+        $persona->nombre = $request->nombre;
+        $persona->apellidos = $request->apellidos;
+        $persona->id_tipos_documento = $request->id_tipos_documento;
+        $persona->num_documento = $request->num_documento;
+        $persona->direccion = $request->direccion;
+        $persona->telefono = $request->telefono;
+        $persona->correo = $request->correo;
         $persona->id_rol = 5;
         $persona->save();
         
@@ -89,14 +89,14 @@ class ProveedoresController extends Controller
     */
     public function update(Request $request, $id)
     {
-        $persona = Persona::find($request->persona['id']);
-        $persona->nombre = $request->persona['nombre'];
-        $persona->apellidos = $request->persona['apellidos'];
-        $persona->id_tipos_documento = $request->persona['id_tipos_documento'];
-        $persona->num_documento = $request->persona['num_documento'];
-        $persona->direccion = $request->persona['direccion'];
-        $persona->telefono = $request->persona['telefono'];
-        $persona->correo = $request->persona['correo'];
+        $persona = Persona::find($request->id_personas);
+        $persona->nombre = $request->nombre;
+        $persona->apellidos = $request->apellidos;
+        $persona->id_tipos_documento = $request->id_tipos_documento;
+        $persona->num_documento = $request->num_documento;
+        $persona->direccion = $request->direccion;
+        $persona->telefono = $request->telefono;
+        $persona->correo = $request->correo;
         $persona->save();
         
         $empresa = Empresa::find($id);
