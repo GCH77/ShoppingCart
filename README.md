@@ -24,3 +24,5 @@ Note. To run the project please execute ```php artisan serve```
 * **Gerson Castillo Hernandez** - [@GCH](https://github.com/GCH77)
 * **Jhon Salcedo Rodriguez** - [@Jhon](https://github.com/jhonssal)
 * **Leidy Merchan Espinel**
+
+Developed with ❤️ in Casanare 😊
